@@ -2888,7 +2888,8 @@ export const mediaCatalog = [
     "baseQuality": 0.8799999999999999
   },
   {
-    "id": "mov-hindi-1",
+    "id": "mov-hindi-1-b",
+    "type": "movie",
     "title": "Lagaan",
     "genres": [
       "Drama",
@@ -2921,7 +2922,8 @@ export const mediaCatalog = [
     "baseQuality": 0.8799999999999999
   },
   {
-    "id": "ser-hindi-1",
+    "id": "ser-hindi-1-b",
+    "type": "series",
     "title": "Scam 1992",
     "genres": [
       "Drama",
@@ -3059,7 +3061,8 @@ export const mediaCatalog = [
     "baseQuality": 0.8799999999999999
   },
   {
-    "id": "ser-tamil-1",
+    "id": "ser-tamil-1-b",
+    "type": "series",
     "title": "Ayali",
     "genres": [
       "Drama",
@@ -3403,7 +3406,8 @@ export const mediaCatalog = [
     "baseQuality": 0.9199999999999999
   },
   {
-    "id": "mus-malayalam-1",
+    "id": "mus-malayalam-1-b",
+    "type": "music",
     "title": "Muthal Nee Mudivum Nee",
     "genres": [
       "Melody",
@@ -4517,7 +4521,8 @@ export const mediaCatalog = [
     "baseQuality": 0.8999999999999999
   },
   {
-    "id": "mus-tamil-3",
+    "id": "mus-tamil-3-b",
+    "type": "music",
     "title": "Vaseegara",
     "genres": [
       "Melody",
@@ -4931,7 +4936,8 @@ export const mediaCatalog = [
     "baseQuality": 0.9099999999999999
   },
   {
-    "id": "mus-tel-1",
+    "id": "mus-tel-1-b",
+    "type": "music",
     "title": "Yenti Yenti",
     "genres": [
       "Melody",
@@ -5346,7 +5352,8 @@ export const mediaCatalog = [
     "baseQuality": 0.9299999999999999
   },
   {
-    "id": "mus-eng-3",
+    "id": "mus-eng-3-b",
+    "type": "music",
     "title": "Clocks",
     "genres": [
       "Melody",
@@ -9260,43 +9267,33 @@ function scoreCatalog(items, moodProfile) {
 function diversifyForYou(rankedItems, moodProfile) {
   const preferredType = moodProfile.contentPreference;
   const preferredLanguage = moodProfile.languagePreference;
-  const languageRank = (item) => {
-    if (!preferredLanguage) return 0;
-    if (item.language === preferredLanguage) return 2;
-    if (item.availableLanguages?.includes(preferredLanguage)) return 1;
-    return 0;
+  const scoreSorted = (items) => [...items].sort((a, b) => b.sortRank - a.sortRank || a.title.localeCompare(b.title));
+
+  // ── Slot A (4 slots): items matching BOTH the user's preferred language AND preferred content type ──
+  // "langMatch" is satisfied when the item's primary language equals the preference,
+  // OR when the preference language appears in availableLanguages.
+  // If no language preference was expressed, every item qualifies as a language match.
+  // If no (or 'all') content-type preference was expressed, every item qualifies as a type match.
+  const langMatch = (item) => {
+    if (!preferredLanguage) return true;
+    return item.language === preferredLanguage || (item.availableLanguages?.includes(preferredLanguage) ?? false);
   };
-  const scoreSorted = (items) => [...items].sort((first, second) => second.sortRank - first.sortRank || first.title.localeCompare(second.title));
-  const preferenceSorted = scoreSorted(rankedItems).sort((first, second) => languageRank(second) - languageRank(first));
+  const typeMatch = (item) => {
+    if (!preferredType || preferredType === 'all') return true;
+    return item.type === preferredType;
+  };
 
-  // Keep the requested type as the majority of For You while retaining a few alternatives.
-  // The first three slots require both the requested type and requested language.
-  // The next three stay with the requested type, then the final two add media diversity.
-  if (preferredType && preferredType !== 'all') {
-    const preferredItems = scoreSorted(preferenceSorted.filter((item) => item.type === preferredType));
-    const languageItems = preferredItems.filter((item) => item.language === preferredLanguage);
-    const topLanguageIds = new Set(languageItems.slice(0, 3).map((item) => item.id));
-    const remainingPreferredItems = preferredItems.filter((item) => !topLanguageIds.has(item.id));
-    const diverseItems = scoreSorted(preferenceSorted.filter((item) => item.type !== preferredType));
-    return [
-      ...languageItems.slice(0, 3),
-      ...remainingPreferredItems.slice(0, 3),
-      ...diverseItems.slice(0, 2),
-    ].slice(0, 8);
-  }
+  // Collect anchor candidates sorted by mood score descending; take up to 4.
+  const anchorPool = scoreSorted(rankedItems.filter((item) => langMatch(item) && typeMatch(item)));
+  const anchorItems = anchorPool.slice(0, 4);
+  const anchorIds = new Set(anchorItems.map((item) => item.id));
 
-  const genres = Array.isArray(moodProfile.genrePreference) ? moodProfile.genrePreference : [];
-  if (genres.length > 0 || preferredLanguage) return preferenceSorted.slice(0, 8);
+  // ── Slot B (remaining slots): best mood-score items not already in Slot A ──
+  // No language or type restriction — pure affective ranking determines order.
+  const fillPool = scoreSorted(rankedItems.filter((item) => !anchorIds.has(item.id)));
+  const fillItems = fillPool.slice(0, 8 - anchorItems.length);
 
-  const typeCounts = {};
-  const selected = [];
-  rankedItems.forEach((item) => {
-    if (selected.length >= 8) return;
-    if ((typeCounts[item.type] || 0) >= 3) return;
-    selected.push(item);
-    typeCounts[item.type] = (typeCounts[item.type] || 0) + 1;
-  });
-  return selected.length >= 6 ? selected : rankedItems.slice(0, 8);
+  return [...anchorItems, ...fillItems];
 }
 
 /**
