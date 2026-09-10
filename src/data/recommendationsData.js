@@ -181,7 +181,7 @@ export function buildStreamSearchUrl(title, provider, artist = '') {
   if (normalizedProvider.includes('netflix')) return `https://www.netflix.com/search?q=${encodedTitle}`;
   if (normalizedProvider.includes('prime')) return `https://www.amazon.com/s?k=${encodedTitle}&i=instant-video`;
   if (normalizedProvider.includes('hotstar')) return `https://www.hotstar.com/in/search?q=${encodedTitle}`;
-  if (normalizedProvider.replace(/\s+/g, '').includes('sunnxt')) return `https://www.sunnxt.com/search/${encodedTitle}`;
+  if (normalizedProvider.replace(/\s+/g, '').includes('sunnxt')) return `https://www.sunnxt.com/search?q=${encodedTitle}`;
   if (normalizedProvider.includes('crunchyroll')) return `https://www.crunchyroll.com/search?q=${encodedTitle}`;
   if (normalizedProvider.includes('spotify')) return `https://open.spotify.com/search/${encodedMusicQuery}`;
   if (normalizedProvider.includes('youtube music')) return `https://music.youtube.com/search?q=${encodedMusicQuery}`;
@@ -1628,7 +1628,7 @@ export const mediaCatalog = [
     "valence": 0.5,
     "energy": 0.75,
     "baseQuality": 0.94,
-    "image": "https://image.tmdb.org/t/p/w500/z6IJi7xmAMmKdbzSnwguIXLIVjN.jpg",
+    "image": "https://m.media-amazon.com/images/M/MV5BYzJlN2JkZjktOWE2OS00Mjk3LWE4MTAtMTcyMjMxNTdmMWFiXkEyXkFqcGc@._V1_.jpg",
     "backdrop": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80",
     "synopsis": "A minor girl goes missing in a small town in Tamilnadu and an investigation follows. A sub inspector investigating a missing girl's case in a uncovers some shocking revelations and dirty truths those threaten to shake up the cultural societal fabric.",
     "moodSynergy": {
@@ -1642,7 +1642,7 @@ export const mediaCatalog = [
     ],
     "streamPlatform": "Prime Video",
     "streamUrl": "https://www.amazon.com",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/z6IJi7xmAMmKdbzSnwguIXLIVjN.jpg",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BYzJlN2JkZjktOWE2OS00Mjk3LWE4MTAtMTcyMjMxNTdmMWFiXkEyXkFqcGc@._V1_.jpg",
     "description": "A minor girl goes missing in a small town in Tamilnadu and an investigation follows. A sub inspector investigating a missing girl's case in a uncovers some shocking revelations and dirty truths those threaten to shake up the cultural societal fabric."
   },
   {
@@ -2423,8 +2423,8 @@ export const mediaCatalog = [
     "synopsis": "Doraemon: Nobita’s Sky Utopia is animation content in Tamil. A bright, feel-good pick designed to keep the smile going.",
     "streamPlatform": "Crunchyroll",
     "streamUrl": "https://www.crunchyroll.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://m.media-amazon.com/images/M/MV5BNGU1ZGNkYzgtZTJhOC00ZjkyLTgzMWEtOTNiODMzODA3OTIwXkEyXkFqcGc@._V1_.jpg",
+    "image": "https://m.media-amazon.com/images/M/MV5BNGU1ZGNkYzgtZTJhOC00ZjkyLTgzMWEtOTNiODMzODA3OTIwXkEyXkFqcGc@._V1_.jpg",
     "rating": 7.9,
     "releaseYear": 2015,
     "year": "2015",
