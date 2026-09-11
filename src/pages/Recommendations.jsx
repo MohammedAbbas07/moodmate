@@ -29,8 +29,12 @@ export default function Recommendations() {
   // Compute items list based on mood and active tab
   // For 'for-you' and 'saved', single list is maintained.
   // For 'movie', 'series', 'anime', 'music', 'all':
-  // - SECTION 1 ("Matched to Your Mood"): Top 10 items ranked by 6-factor calculateMatchScore (no language restriction)
-  // - SECTION 2 ("Rest of [Category]"): Remaining items in default catalog order
+  // - SECTION 1 ("Matched to Your Mood"):
+  //     * Strict language filter: if preferredLanguage is set, ONLY show items in that language (not a mix).
+  //     * Deduplication by title: if same title exists in multiple versions, only keep the single preferred-language/highest-scoring version.
+  //     * Up to 10 items (or fewer if fewer matches exist, without padding).
+  //     * If no language preference, falls back to pure mood-based ranking with title deduplication.
+  // - SECTION 2 ("Rest of [Category]"): Remaining items in category in default catalog order.
   const { moodMatchedItems, restItems, isSplitView } = useMemo(() => {
     if (activeTab === 'for-you' || activeTab === 'saved') {
       const singleList = activeTab === 'saved'
@@ -44,9 +48,17 @@ export default function Recommendations() {
       ? mediaCatalog
       : mediaCatalog.filter((item) => item.type === activeTab);
 
-    // 2. Score and sort all category items by 6-factor calculateMatchScore (mood compatibility, energy, emotional need, etc. without language bias)
-    const scoredCategoryItems = categoryCatalog.map((item) => {
-      const scoreData = calculateMatchScore(item, moodProfile, { includeLanguage: false });
+    const preferredLanguage = moodProfile?.languagePreference;
+
+    // 2. Filter pool for Section 1:
+    // If preferred language set, strictly filter to items in that language; otherwise use full category catalog
+    const eligiblePool = preferredLanguage
+      ? categoryCatalog.filter((item) => item.language === preferredLanguage)
+      : categoryCatalog;
+
+    // 3. Score and sort eligible pool by 6-factor calculateMatchScore
+    const scoredCategoryItems = eligiblePool.map((item) => {
+      const scoreData = calculateMatchScore(item, moodProfile, { includeLanguage: true });
       return {
         ...item,
         matchScoreData: scoreData,
@@ -59,20 +71,26 @@ export default function Recommendations() {
       };
     }).sort((a, b) => b.rawScore - a.rawScore || a.title.localeCompare(b.title));
 
-    // 3. If fewer than 10 items in category, show all under "Matched to Your Mood" and skip "Rest of"
-    if (scoredCategoryItems.length <= 10) {
-      return { moodMatchedItems: scoredCategoryItems, restItems: [], isSplitView: true };
+    // 4. Section 1: Top items up to 10, deduplicated by base title
+    // If the same title exists in multiple language versions, only the highest-scoring matching version is included
+    const seenTitles = new Set();
+    const topItems = [];
+    for (const item of scoredCategoryItems) {
+      const normTitle = (item.title || '').trim().toLowerCase();
+      if (!seenTitles.has(normTitle)) {
+        seenTitles.add(normTitle);
+        topItems.push(item);
+        if (topItems.length >= 10) break;
+      }
     }
 
-    // 4. Section 1: Top 10 items ranked purely by mood compatibility
-    const top10 = scoredCategoryItems.slice(0, 10);
-    const top10IdSet = new Set(top10.map((item) => item.id));
+    const topItemIds = new Set(topItems.map((item) => item.id));
 
-    // 5. Section 2: Remaining items in category in default catalog order
-    const remainingInCatalogOrder = categoryCatalog.filter((item) => !top10IdSet.has(item.id));
+    // 5. Section 2: Remaining items in this category in default catalog order
+    const remainingInCatalogOrder = categoryCatalog.filter((item) => !topItemIds.has(item.id));
 
     return {
-      moodMatchedItems: top10,
+      moodMatchedItems: topItems,
       restItems: remainingInCatalogOrder,
       isSplitView: true,
     };

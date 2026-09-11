@@ -9312,8 +9312,21 @@ function diversifyForYou(rankedItems, moodProfile) {
 
   // ── Slot B (remaining slots): best mood-score items not already in Slot A ──
   // No language or type restriction — pure affective ranking determines order.
+  // Deduplicate by title across languages: if multiple language versions of the same title
+  // score highly, only the single highest-scoring version is selected, ensuring diverse content.
+  const seenTitles = new Set(anchorItems.map((item) => (item.title || '').trim().toLowerCase()));
   const fillPool = scoreSorted(rankedItems.filter((item) => !anchorIds.has(item.id)));
-  const fillItems = fillPool.slice(0, 8 - anchorItems.length);
+  const fillItems = [];
+  const neededFillCount = 8 - anchorItems.length;
+
+  for (const item of fillPool) {
+    const normTitle = (item.title || '').trim().toLowerCase();
+    if (!seenTitles.has(normTitle)) {
+      seenTitles.add(normTitle);
+      fillItems.push(item);
+      if (fillItems.length >= neededFillCount) break;
+    }
+  }
 
   return [...anchorItems, ...fillItems];
 }
