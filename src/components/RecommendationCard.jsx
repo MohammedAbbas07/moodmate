@@ -20,7 +20,9 @@ export default function RecommendationCard({ item, index = 0 }) {
 
   // 6-factor dynamic score calculation
   const scoreData = item.matchScoreData || calculateMatchScore(item, moodProfile);
-  const displayScore = scoreData.formattedScore;
+  const displayScore = typeof scoreData.scoreOutOf5 === 'number'
+    ? scoreData.scoreOutOf5.toFixed(1)
+    : (scoreData.formattedScore || '4.5');
 
   // Dynamic 1-sentence mood synergy explanation
   const explanation = item.matchExplanation || getMatchExplanation(item, moodProfile);

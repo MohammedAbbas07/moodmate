@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Film, Tv, Music, Heart, Search, Compass, ArrowLeft, Globe2 } from 'lucide-react';
+import { Sparkles, Film, Tv, Music, Heart, Search, Compass, ArrowLeft, Globe2, Layers } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import CinematicBackground from '../components/CinematicBackground';
 import RecommendationCard from '../components/RecommendationCard';
 import { useMood } from '../context/MoodContext';
-import { getRecommendationsByMood } from '../data/recommendationsData';
+import { getRecommendationsByMood, calculateMatchScore, mediaCatalog } from '../data/recommendationsData';
 import { hasCompletedMoodProfile } from '../utils/moodProfile';
 
 export default function Recommendations() {
@@ -17,19 +17,72 @@ export default function Recommendations() {
   const currentMoodId = moodProfile?.mood || 'calm';
   const displayedMoodName = moodProfile?.moodName;
 
+  // Human-readable labels for categories
+  const categoryNames = {
+    all: 'All',
+    movie: 'Movies',
+    series: 'Series',
+    anime: 'Anime',
+    music: 'Music',
+  };
+
   // Compute items list based on mood and active tab
-  const items = useMemo(() => {
-    if (activeTab === 'saved') {
-      return savedItems;
+  // For 'for-you' and 'saved', single list is maintained.
+  // For 'movie', 'series', 'anime', 'music', 'all':
+  // - SECTION 1 ("Matched to Your Mood"): Top 10 items ranked by 6-factor calculateMatchScore (no language restriction)
+  // - SECTION 2 ("Rest of [Category]"): Remaining items in default catalog order
+  const { moodMatchedItems, restItems, isSplitView } = useMemo(() => {
+    if (activeTab === 'for-you' || activeTab === 'saved') {
+      const singleList = activeTab === 'saved'
+        ? savedItems
+        : getRecommendationsByMood(currentMoodId, 'for-you', moodProfile);
+      return { moodMatchedItems: singleList, restItems: [], isSplitView: false };
     }
-    return getRecommendationsByMood(currentMoodId, activeTab, moodProfile);
+
+    // 1. Get all items in this category from catalog (preserving default catalog order)
+    const categoryCatalog = activeTab === 'all'
+      ? mediaCatalog
+      : mediaCatalog.filter((item) => item.type === activeTab);
+
+    // 2. Score and sort all category items by 6-factor calculateMatchScore (mood compatibility, energy, emotional need, etc. without language bias)
+    const scoredCategoryItems = categoryCatalog.map((item) => {
+      const scoreData = calculateMatchScore(item, moodProfile, { includeLanguage: false });
+      return {
+        ...item,
+        matchScoreData: scoreData,
+        matchScore: scoreData.scorePercent,
+        matchScore5: scoreData.scoreOutOf5,
+        formattedScore: scoreData.formattedScore,
+        matchExplanation: scoreData.contributors.slice(0, 2).join(' '),
+        sortRank: scoreData.scorePercent,
+        rawScore: scoreData.rawScore,
+      };
+    }).sort((a, b) => b.rawScore - a.rawScore || a.title.localeCompare(b.title));
+
+    // 3. If fewer than 10 items in category, show all under "Matched to Your Mood" and skip "Rest of"
+    if (scoredCategoryItems.length <= 10) {
+      return { moodMatchedItems: scoredCategoryItems, restItems: [], isSplitView: true };
+    }
+
+    // 4. Section 1: Top 10 items ranked purely by mood compatibility
+    const top10 = scoredCategoryItems.slice(0, 10);
+    const top10IdSet = new Set(top10.map((item) => item.id));
+
+    // 5. Section 2: Remaining items in category in default catalog order
+    const remainingInCatalogOrder = categoryCatalog.filter((item) => !top10IdSet.has(item.id));
+
+    return {
+      moodMatchedItems: top10,
+      restItems: remainingInCatalogOrder,
+      isSplitView: true,
+    };
   }, [currentMoodId, activeTab, savedItems, moodProfile]);
 
-  // Apply search query filter
-  const filteredItems = useMemo(() => {
-    if (!searchQuery.trim()) return items;
+  // Helper filter function for search
+  const filterByQuery = (list) => {
+    if (!searchQuery.trim()) return list;
     const q = searchQuery.toLowerCase();
-    return items.filter(
+    return list.filter(
       (item) =>
         item.title.toLowerCase().includes(q) ||
         (item.genres && item.genres.some((g) => g.toLowerCase().includes(q))) ||
@@ -37,15 +90,20 @@ export default function Recommendations() {
         (item.director && item.director.toLowerCase().includes(q)) ||
         (item.language && item.language.toLowerCase().includes(q))
     );
-  }, [items, searchQuery]);
+  };
+
+  // Filtered lists for rendering
+  const filteredMoodMatched = useMemo(() => filterByQuery(moodMatchedItems), [moodMatchedItems, searchQuery]);
+  const filteredRest = useMemo(() => filterByQuery(restItems), [restItems, searchQuery]);
+  const totalFilteredCount = filteredMoodMatched.length + filteredRest.length;
 
   // Category & Tab counts
   const forYouCount = useMemo(() => getRecommendationsByMood(currentMoodId, 'for-you', moodProfile).length, [currentMoodId, moodProfile]);
-  const allCount = useMemo(() => getRecommendationsByMood(currentMoodId, 'all', moodProfile).length, [currentMoodId, moodProfile]);
-  const moviesCount = useMemo(() => getRecommendationsByMood(currentMoodId, 'movie', moodProfile).length, [currentMoodId, moodProfile]);
-  const seriesCount = useMemo(() => getRecommendationsByMood(currentMoodId, 'series', moodProfile).length, [currentMoodId, moodProfile]);
-  const animeCount = useMemo(() => getRecommendationsByMood(currentMoodId, 'anime', moodProfile).length, [currentMoodId, moodProfile]);
-  const musicCount = useMemo(() => getRecommendationsByMood(currentMoodId, 'music', moodProfile).length, [currentMoodId, moodProfile]);
+  const allCount = useMemo(() => mediaCatalog.length, []);
+  const moviesCount = useMemo(() => mediaCatalog.filter((item) => item.type === 'movie').length, []);
+  const seriesCount = useMemo(() => mediaCatalog.filter((item) => item.type === 'series').length, []);
+  const animeCount = useMemo(() => mediaCatalog.filter((item) => item.type === 'anime').length, []);
+  const musicCount = useMemo(() => mediaCatalog.filter((item) => item.type === 'music').length, []);
 
   return (
     <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
@@ -200,15 +258,9 @@ export default function Recommendations() {
           </div>
         </div>
 
-        {/* Results Gallery Grid */}
+        {/* Results Gallery */}
         <div className="mt-8">
-          {filteredItems.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
-              {filteredItems.map((item, idx) => (
-                <RecommendationCard key={item.id} item={item} index={idx} />
-              ))}
-            </div>
-          ) : (
+          {totalFilteredCount === 0 ? (
             <div className="rounded-3xl border border-white/[0.08] bg-[#0a0b12]/60 py-16 px-6 text-center backdrop-blur-xl">
               <Compass size={32} className="mx-auto text-white/30" />
               <h3 className="mt-4 text-base font-semibold text-white">No matches found</h3>
@@ -225,6 +277,75 @@ export default function Recommendations() {
                   Clear Search
                 </button>
               )}
+            </div>
+          ) : isSplitView ? (
+            <div className="space-y-12">
+              {/* SECTION 1: Matched to Your Mood (Top 10 ranked purely by mood score) */}
+              {filteredMoodMatched.length > 0 && (
+                <section>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/[0.08] gap-2 mb-6">
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-300 shadow-sm shadow-purple-900/30">
+                        <Sparkles size={16} />
+                      </div>
+                      <div>
+                        <h2 className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                          Matched to Your Mood
+                          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                            {filteredMoodMatched.length}
+                          </span>
+                        </h2>
+                        <p className="text-xs text-white/50">
+                          Top recommendations ranked by 6-factor mood compatibility, energy, emotional need, and quality
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+                    {filteredMoodMatched.map((item, idx) => (
+                      <RecommendationCard key={item.id} item={item} index={idx} />
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* SECTION 2: Rest of [Category Name] (All remaining items in catalog order) */}
+              {filteredRest.length > 0 && (
+                <section className="pt-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/[0.08] gap-2 mb-6">
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/[0.05] border border-white/10 text-white/70 shadow-sm">
+                        <Layers size={16} />
+                      </div>
+                      <div>
+                        <h2 className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                          Rest of {categoryNames[activeTab] || 'Catalog'}
+                          <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-white/[0.06] text-white/60 border border-white/10">
+                            {filteredRest.length}
+                          </span>
+                        </h2>
+                        <p className="text-xs text-white/50">
+                          Explore all remaining titles in default catalog order
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+                    {filteredRest.map((item, idx) => (
+                      <RecommendationCard key={item.id} item={item} index={idx} />
+                    ))}
+                  </div>
+                </section>
+              )}
+            </div>
+          ) : (
+            /* Single section view for 'for-you' and 'saved' */
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+              {filteredMoodMatched.map((item, idx) => (
+                <RecommendationCard key={item.id} item={item} index={idx} />
+              ))}
             </div>
           )}
         </div>

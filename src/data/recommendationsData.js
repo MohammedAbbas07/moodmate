@@ -194,10 +194,19 @@ export function buildStreamSearchUrl(title, provider, artist = '') {
  * emotional need 18, content preference 16, intent 14, quality 12.
  * Genre (+0 to 12) and language (+0 to 10) are separate bounded adjustments.
  */
-export function calculateMatchScore(item, moodProfile) {
+export function calculateMatchScore(item, moodProfile, options = {}) {
   if (!moodProfile?.assessmentStatus) {
     const scorePercent = Math.round((item.baseQuality ?? 0.5) * 100);
-    return { scorePercent, scoreOutOf5: Number((scorePercent / 20).toFixed(1)), formattedScore: String(scorePercent) + '% Mood Match' };
+    const scoreOutOf5 = Number((scorePercent / 20).toFixed(1));
+    return {
+      scorePercent,
+      scoreOutOf5,
+      formattedScore: `${scoreOutOf5.toFixed(1)}`,
+      rawScore: scorePercent,
+      factorScores: {},
+      adjustments: {},
+      contributors: ['Selected for baseline editorial quality.'],
+    };
   }
   const mood = moodProfile.mood;
   const moodTags = item.moodTags || [];
@@ -213,12 +222,16 @@ export function calculateMatchScore(item, moodProfile) {
     quality: clamp(item.baseQuality ?? 0.5),
   };
   const activeWeights = Object.entries(RECOMMENDATION_WEIGHTS).filter(([factor]) => factorScores[factor] !== null);
-  const coreScore = activeWeights.reduce((sum, [factor, weight]) => sum + factorScores[factor] * weight, 0) / activeWeights.reduce((sum, [, weight]) => sum + weight, 0);
+  const totalActiveWeight = activeWeights.reduce((sum, [, weight]) => sum + weight, 0);
+  const coreScore = (activeWeights.reduce((sum, [factor, weight]) => sum + factorScores[factor] * weight, 0) / (totalActiveWeight || 1)) * 100;
   const preferredGenres = Array.isArray(moodProfile.genrePreference) ? moodProfile.genrePreference : [];
   const matchedGenres = genreMatches(item, preferredGenres);
   const genreAdjustment = preferredGenres.length ? (matchedGenres.length / preferredGenres.length) * 12 : 0;
-  const language = languageAdjustment(item, moodProfile.languagePreference);
-  const scorePercent = Math.round(clamp(coreScore + genreAdjustment + language.score, 0, 100));
+  const applyLanguage = options.includeLanguage !== false && moodProfile.languagePreference;
+  const language = applyLanguage ? languageAdjustment(item, moodProfile.languagePreference) : { score: 0, label: null };
+  const rawScore = clamp(coreScore + genreAdjustment + language.score, 0, 100);
+  const scorePercent = Math.round(rawScore);
+  const scoreOutOf5 = Number((scorePercent / 20).toFixed(1));
   const contributors = [];
   if (matchedGenres.length) contributors.push('Matches your preference for ' + matchedGenres.join(' and ').toLowerCase() + ' ' + (moodProfile.contentPreference !== 'all' ? moodProfile.contentPreference + 's.' : 'content.'));
   if (language.label) contributors.push(language.label);
@@ -227,7 +240,15 @@ export function calculateMatchScore(item, moodProfile) {
   if (factorScores.userIntent !== null && factorScores.userIntent >= 0.7) contributors.push('Supports your goal of ' + moodProfile.userIntent + '.');
   if (!contributors.length && factorScores.mood >= 0.72) contributors.push('Aligns with your current ' + (moodProfile.shortName?.toLowerCase() || mood) + ' mood.');
   if (!contributors.length) contributors.push('A balanced match based on the signals currently available.');
-  return { scorePercent, scoreOutOf5: Number((scorePercent / 20).toFixed(1)), formattedScore: String(scorePercent) + '% Mood Match', factorScores, adjustments: { genre: genreAdjustment, language: language.score }, contributors };
+  return {
+    scorePercent,
+    scoreOutOf5,
+    formattedScore: `${scoreOutOf5.toFixed(1)}`,
+    rawScore,
+    factorScores,
+    adjustments: { genre: genreAdjustment, language: language.score },
+    contributors,
+  };
 }
 
 export function getMatchExplanation(item, moodProfile) {
@@ -9249,9 +9270,9 @@ function legacyGetRecommendationsByMood(moodId = 'calm', formatFilter = 'for-you
 /**
  * Retrieve single item by ID
  */
-function scoreCatalog(items, moodProfile) {
+function scoreCatalog(items, moodProfile, options = {}) {
   return items.map((item) => {
-    const scoreData = calculateMatchScore(item, moodProfile);
+    const scoreData = calculateMatchScore(item, moodProfile, options);
     return {
       ...item,
       matchScoreData: scoreData,
@@ -9260,8 +9281,9 @@ function scoreCatalog(items, moodProfile) {
       formattedScore: scoreData.formattedScore,
       matchExplanation: scoreData.contributors.slice(0, 2).join(' '),
       sortRank: scoreData.scorePercent,
+      rawScore: scoreData.rawScore,
     };
-  }).sort((first, second) => second.sortRank - first.sortRank || first.title.localeCompare(second.title));
+  }).sort((first, second) => second.sortRank - first.sortRank || (second.rawScore ?? 0) - (first.rawScore ?? 0) || first.title.localeCompare(second.title));
 }
 
 function diversifyForYou(rankedItems, moodProfile) {
@@ -9297,8 +9319,9 @@ function diversifyForYou(rankedItems, moodProfile) {
 }
 
 /**
- * One ranking path for every tab. The displayed match score is the same value
- * used to sort cards; language is already included as a bounded adjustment.
+ * One ranking path for every tab.
+ * - 'for-you': Uses special 4+4 language enforcement (4 matching preferred language + type, 4 diverse best-mood).
+ * - Other tabs ('all', 'movie', 'series', 'anime', 'music'): Sorted by mood profile relevance with no language restriction.
  */
 export function getRecommendationsByMood(moodId = null, formatFilter = 'for-you', moodProfile = null) {
   if (!moodProfile?.assessmentStatus && formatFilter === 'for-you') return [];
@@ -9306,10 +9329,14 @@ export function getRecommendationsByMood(moodId = null, formatFilter = 'for-you'
   const pool = ['movie', 'series', 'anime', 'music'].includes(formatFilter)
     ? mediaCatalog.filter((item) => item.type === formatFilter)
     : mediaCatalog;
-  const rankedItems = scoreCatalog(pool, moodProfile);
 
-  if (formatFilter === 'for-you') return diversifyForYou(rankedItems, moodProfile);
-  return rankedItems;
+  if (formatFilter === 'for-you') {
+    const rankedItems = scoreCatalog(pool, moodProfile, { includeLanguage: true });
+    return diversifyForYou(rankedItems, moodProfile);
+  }
+
+  // All other tabs: sort purely by 6-factor mood relevance with no language restriction
+  return scoreCatalog(pool, moodProfile, { includeLanguage: false });
 }
 
 export function getItemById(id) {
