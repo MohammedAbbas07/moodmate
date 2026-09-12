@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Film, Tv, Music, Heart, Search, Compass, ArrowLeft, Globe2, Layers } from 'lucide-react';
+import { Sparkles, Film, Tv, Music, Heart, Search, Compass, ArrowLeft, Globe2, Layers, Loader2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import CinematicBackground from '../components/CinematicBackground';
 import RecommendationCard from '../components/RecommendationCard';
@@ -13,6 +13,16 @@ export default function Recommendations() {
   const hasProfile = hasCompletedMoodProfile(moodProfile);
   const [activeTab, setActiveTab] = useState(() => (hasProfile ? 'for-you' : 'all')); // 'for-you' | 'all' | 'movie' | 'series' | 'anime' | 'music' | 'saved'
   const [searchQuery, setSearchQuery] = useState('');
+  const [isReady, setIsReady] = useState(false);
+  const timerRef = useRef(null);
+
+  // Show spinner on mount and on every tab change — cleared after 650 ms
+  useEffect(() => {
+    setIsReady(false);
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setIsReady(true), 650);
+    return () => clearTimeout(timerRef.current);
+  }, [activeTab]);
 
   const currentMoodId = moodProfile?.mood || 'calm';
   const displayedMoodName = moodProfile?.moodName;
@@ -277,7 +287,21 @@ export default function Recommendations() {
         </div>
 
         {/* Results Gallery */}
-        <div className="mt-8">
+        <div className="relative mt-8">
+
+          {/* Loading overlay — visible while computing/rendering, fades once isReady */}
+          <div
+            className={`absolute inset-0 z-20 flex flex-col items-center justify-center rounded-3xl bg-[#05060a]/80 backdrop-blur-sm transition-opacity duration-400 ${
+              isReady ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
+            }`}
+            style={{ minHeight: '220px' }}
+          >
+            <Loader2 size={36} className="animate-spin text-purple-400" />
+            <p className="mt-4 text-xs font-medium text-white/40 tracking-wide">Finding your recommendations…</p>
+          </div>
+
+          {/* Content — fades in after ready */}
+          <div className={`transition-opacity duration-400 ${isReady ? 'opacity-100' : 'opacity-0'}`}>
           {totalFilteredCount === 0 ? (
             <div className="rounded-3xl border border-white/[0.08] bg-[#0a0b12]/60 py-16 px-6 text-center backdrop-blur-xl">
               <Compass size={32} className="mx-auto text-white/30" />
@@ -366,6 +390,7 @@ export default function Recommendations() {
               ))}
             </div>
           )}
+          </div>
         </div>
 
       </main>

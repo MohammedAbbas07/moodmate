@@ -107,7 +107,7 @@ export function MoodProvider({ children }) {
         setSavedItems(databaseItems);
       } catch (error) {
         console.error('Unable to load saved items:', error);
-        setWatchlistError('Unable to load your watchlist. Showing saved items from this device.');
+        setWatchlistError('Guest mode — your saves are stored on this device only.');
         setSavedItems(readLocalSavedItems());
       }
     };

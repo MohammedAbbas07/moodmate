@@ -121,8 +121,26 @@ export default function Welcome() {
         </div>
       </main>
 
-      <footer className="relative z-10 py-6 text-center text-[11px] text-white/25">
-        MoodMate · Affective Discovery Platform
+      <footer className="relative z-10 py-6 px-4 text-[11px] text-white/25">
+        <div className="mx-auto max-w-5xl flex items-center justify-between gap-4">
+          {/* Bottom-left: nav-pill-style links */}
+          <nav className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.03] p-1 shadow-inner backdrop-blur-md">
+            <a
+              href="/about"
+              className="rounded-full px-3.5 py-1.5 text-xs font-medium text-white/60 transition-all hover:text-white hover:bg-white/[0.04]"
+            >
+              About Us
+            </a>
+            <span className="text-white/15 select-none">·</span>
+            <a
+              href="/terms"
+              className="rounded-full px-3.5 py-1.5 text-xs font-medium text-white/60 transition-all hover:text-white hover:bg-white/[0.04]"
+            >
+              Terms &amp; Conditions
+            </a>
+          </nav>
+          <span>MoodMate · Affective Discovery Platform</span>
+        </div>
       </footer>
     </div>
   );

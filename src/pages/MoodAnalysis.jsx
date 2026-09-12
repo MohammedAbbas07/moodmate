@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Sparkles, ArrowRight, RefreshCw, Heart, Zap, CheckCircle, Info } from 'lucide-react';
+import { Sparkles, ArrowRight, RefreshCw, Heart, Zap, CheckCircle, Info, Loader2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import CinematicBackground from '../components/CinematicBackground';
 import { useMood } from '../context/MoodContext';
@@ -10,6 +11,23 @@ export default function MoodAnalysis() {
   const navigate = useNavigate();
   const { moodProfile } = useMood();
   const hasProfile = hasCompletedMoodProfile(moodProfile);
+  const [isAnalyzing, setIsAnalyzing] = useState(true);
+  const [isFindingRecs, setIsFindingRecs] = useState(false);
+
+  useEffect(() => {
+    // Spinner displays until mood data is loaded, then smoothly fades out
+    const timer = setTimeout(() => {
+      setIsAnalyzing(false);
+    }, 900);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleGoToRecommendations = () => {
+    setIsFindingRecs(true);
+    setTimeout(() => {
+      navigate('/recommendations');
+    }, 850);
+  };
 
   // Do not show synthetic metrics before the chat has produced a profile.
   // Keeping this guard at the page entry prevents placeholder state from looking analyzed.
@@ -39,6 +57,20 @@ export default function MoodAnalysis() {
   const energyPercent = hasProfile ? Math.round(moodProfile.energy * 100) : null;
   const displayedMoodName = hasProfile ? moodProfile.moodName : 'No mood profile yet';
 
+  const valence = moodProfile?.valence ?? 0.5;
+  const energy = moodProfile?.energy ?? 0.5;
+
+  let moodInsight = '';
+  if (valence >= 0.5 && energy >= 0.5) {
+    moodInsight = "You're energized and ready — seek dynamic, high-paced content";
+  } else if (valence >= 0.5 && energy < 0.5) {
+    moodInsight = "You're in a positive, calm space — cozy, feel-good content fits perfectly";
+  } else if (valence < 0.5 && energy >= 0.5) {
+    moodInsight = "You're tense but engaged — thrilling content can help channel that energy";
+  } else {
+    moodInsight = "You need comfort and restoration — gentle, soothing content is your match";
+  }
+
   // Convert the existing valence and energy percentages into readable state badges.
   // Thresholds follow the requested emotional-state ranges and remain hidden before assessment.
   const valenceState = valencePercent < 40
@@ -58,6 +90,26 @@ export default function MoodAnalysis() {
 
   return (
     <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
+      {/* TRANSITION 1: Chat -> Mood Analysis Loading Overlay */}
+      <div
+        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#05060a]/80 backdrop-blur-sm transition-opacity duration-500 ${
+          isAnalyzing ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <Loader2 size={46} className="animate-spin text-purple-400" />
+        <p className="mt-5 text-sm font-medium text-white/70 tracking-wide">Analyzing your mood...</p>
+      </div>
+
+      {/* TRANSITION 2: Mood Profile -> Recommendations Loading Overlay */}
+      <div
+        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#05060a]/80 backdrop-blur-sm transition-opacity duration-500 ${
+          isFindingRecs ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <Loader2 size={46} className="animate-spin text-purple-400" />
+        <p className="mt-5 text-sm font-medium text-white/70 tracking-wide">Finding your recommendations...</p>
+      </div>
+
       <CinematicBackground />
       <Navbar />
 
@@ -96,6 +148,18 @@ export default function MoodAnalysis() {
               : 'Your mood profile will be available after you complete the existing eight-question check-in.'}
           </p>
         </div>
+
+        {/* Mood Insight Summary & Research Grounding */}
+        {hasProfile && (
+          <div className="mt-8 text-center max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl font-bold text-purple-300 tracking-tight leading-snug">
+              {moodInsight}
+            </p>
+            <p className="mt-2 text-xs text-white/40 italic">
+              Your mood is mapped using the Valence-Arousal model, a research-backed framework for understanding emotional states.
+            </p>
+          </div>
+        )}
 
         {/* 3-Column Core Metrics Dashboard */}
         <div className="mt-10 grid gap-5 sm:grid-cols-3">
@@ -187,6 +251,11 @@ export default function MoodAnalysis() {
 
         </div>
 
+        {/* Disclaimer */}
+        <p className="mt-5 text-center text-[11px] text-white/30 leading-relaxed">
+          ⚠️ MoodMate&apos;s mood analysis is for entertainment personalization only and is not a substitute for professional mental health assessment.
+        </p>
+
         {/* Conversational Insights & Extracted Signals */}
         <div className="mt-6 rounded-2xl border border-white/[0.08] bg-[#07080c]/90 p-6 backdrop-blur-xl">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -227,7 +296,7 @@ export default function MoodAnalysis() {
         {/* Action Decision Area */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
-            onClick={() => navigate('/recommendations')}
+            onClick={handleGoToRecommendations}
             className="flex w-full sm:w-auto items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-sm font-semibold text-black shadow-2xl shadow-white/10 transition-all hover:scale-105 active:scale-95"
           >
             <span>Discover Personalized Recommendations</span>

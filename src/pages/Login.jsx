@@ -1,8 +1,58 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, ArrowLeft, Heart, Film, Headphones, UserCheck, Shield } from 'lucide-react';
+import { Sparkles, ArrowRight, ArrowLeft, Heart, Film, Headphones, UserCheck, Shield, Loader2 } from 'lucide-react';
 import { useMood } from '../context/MoodContext';
 
+
+function getNicknameFromProfile(email, responseData) {
+  // 1. Check response data from backend API
+  if (responseData?.nickname) return responseData.nickname;
+  if (responseData?.name && !responseData.name.includes('@')) return responseData.name;
+  if (responseData?.user?.nickname) return responseData.user.nickname;
+  if (responseData?.user?.name && !responseData.user.name.includes('@')) return responseData.user.name;
+
+  // 2. Check localStorage saved user
+  try {
+    const saved = localStorage.getItem('newMoodMate_user');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed?.nickname) return parsed.nickname;
+      if (parsed?.name && parsed.name !== 'Guest Explorer' && !parsed.name.includes('@')) {
+        return parsed.name;
+      }
+    }
+  } catch {}
+
+  // 3. Check custom profile storage
+  try {
+    const profile = localStorage.getItem('moodmate_user_profile');
+    if (profile) {
+      const parsed = JSON.parse(profile);
+      if (parsed?.nickname) return parsed.nickname;
+      if (parsed?.name && !parsed.name.includes('@')) return parsed.name;
+    }
+  } catch {}
+
+  // 4. Handle specific user email cases or extract clean name (never full email)
+  if (email) {
+    const lower = email.toLowerCase();
+    if (lower.includes('amazeabbas')) {
+      return 'Md Abbas';
+    }
+    const prefix = email.split('@')[0];
+    const cleaned = prefix.replace(/[._\-\d]+/g, ' ').trim();
+    if (cleaned) {
+      return cleaned
+        .split(' ')
+        .filter(Boolean)
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+        .join(' ');
+    }
+    return prefix;
+  }
+
+  return 'Explorer';
+}
 
 export default function Login() {
   const navigate = useNavigate();
@@ -12,6 +62,8 @@ export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [transitioning, setTransitioning] = useState(false);
+  const [loginNickname, setLoginNickname] = useState('Guest');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,9 +126,11 @@ export default function Login() {
 
       localStorage.setItem('moodmate_token', data.token);
       localStorage.setItem('moodmate_user_id', String(data.user_id));
-      const name = email ? email.split('@')[0] : 'Mood Explorer';
-      loginUser({ name, email, isGuest: false });
-      navigate('/welcome');
+      const nickname = getNicknameFromProfile(email, data);
+      loginUser({ name: nickname, email, nickname, isGuest: false });
+      setLoginNickname(nickname);
+      setTransitioning(true);
+      setTimeout(() => navigate('/welcome'), 1500);
     } catch {
       setError('Unable to connect to MoodMate. Please try again.');
     } finally {
@@ -87,11 +141,27 @@ export default function Login() {
   const handleGuestLogin = () => {
     localStorage.setItem('moodmate_is_guest', 'true');
     loginUser({ name: 'Guest Explorer', isGuest: true });
-    navigate('/welcome');
+    setLoginNickname('Guest');
+    setTransitioning(true);
+    setTimeout(() => navigate('/welcome'), 1500);
   };
 
   return (
     <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between overflow-hidden">
+
+      {/* Transition overlay — shown while navigating to Welcome */}
+      <div
+        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#05060a]/50 backdrop-blur-md transition-opacity duration-500 ${
+          transitioning ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <Loader2 size={56} className="animate-spin text-purple-400" />
+        <h1 className="mt-8 px-6 text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-center text-white leading-tight max-w-4xl">
+          Logging in as{' '}
+          <span className="text-gradient-cinematic">{loginNickname}</span>
+        </h1>
+      </div>
+
       {/* Background ambient lighting */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-[20%] left-[10%] h-[500px] w-[500px] rounded-full bg-purple-600/15 blur-[160px]" />

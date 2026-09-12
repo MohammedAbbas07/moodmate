@@ -9,6 +9,8 @@ import Chat from './pages/Chat';
 import MoodAnalysis from './pages/MoodAnalysis';
 import Recommendations from './pages/Recommendations';
 import Details from './pages/Details';
+import AboutUs from './pages/AboutUs';
+import TermsAndConditions from './pages/TermsAndConditions';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -37,6 +39,12 @@ export default function App() {
 
           {/* Dynamic Item Details */}
           <Route path="/details/:id" element={<Details />} />
+
+          {/* About Us */}
+          <Route path="/about" element={<AboutUs />} />
+
+          {/* Terms & Conditions */}
+          <Route path="/terms" element={<TermsAndConditions />} />
 
           {/* 404 Catch-All */}
           <Route path="*" element={<NotFound />} />

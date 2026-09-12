@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Sparkles, Send, ArrowLeft, RefreshCw, ShieldCheck } from 'lucide-react';
+import { Sparkles, Send, ArrowLeft, RefreshCw, ShieldCheck, Loader2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { analyzeSentiment, generateAdaptiveReply } from '../utils/sentimentEngine';
 import { useMood } from '../context/MoodContext';
@@ -58,6 +58,7 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [conversationFinished, setConversationFinished] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const [messages, setMessages] = useState([
     {
@@ -149,8 +150,11 @@ export default function Chat() {
         setConversationFinished(true);
 
         setTimeout(() => {
-          navigate('/mood-analysis');
-        }, 1500);
+          setIsAnalyzing(true);
+          setTimeout(() => {
+            navigate('/mood-analysis');
+          }, 800);
+        }, 1200);
       }, 900);
     }
   };
@@ -180,6 +184,16 @@ export default function Chat() {
 
   return (
     <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
+      {/* TRANSITION 1: Chat -> Mood Analysis Loading Overlay */}
+      <div
+        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#05060a]/80 backdrop-blur-sm transition-opacity duration-500 ${
+          isAnalyzing ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <Loader2 size={46} className="animate-spin text-purple-400" />
+        <p className="mt-5 text-sm font-medium text-white/70 tracking-wide">Analyzing your mood...</p>
+      </div>
+
       {/* Background ambient lighting */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-[15%] left-[25%] h-[550px] w-[550px] rounded-full bg-purple-600/10 blur-[170px]" />

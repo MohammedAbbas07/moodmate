@@ -334,15 +334,29 @@ export default function Landing() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/[0.08] bg-[#05060a] py-8 text-center text-xs text-white/35">
-        <div className="mx-auto max-w-7xl px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 font-semibold text-white/80">
-            <Sparkles size={14} className="text-purple-400" />
-            <span>MoodMate</span>
-            <span className="text-white/30 font-normal">· Personalized Multimedia Recommendation Platform</span>
-          </div>
-          <div>
-            Affective Entertainment Discovery
+      <footer className="relative z-10 border-t border-white/[0.08] bg-[#05060a] py-6 text-xs text-white/35">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Bottom-left: nav-pill-style links */}
+          <nav className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.03] p-1 shadow-inner backdrop-blur-md">
+            <a
+              href="/about"
+              className="rounded-full px-3.5 py-1.5 text-xs font-medium text-white/60 transition-all hover:text-white hover:bg-white/[0.04]"
+            >
+              About Us
+            </a>
+            <span className="text-white/15 select-none">·</span>
+            <a
+              href="/terms"
+              className="rounded-full px-3.5 py-1.5 text-xs font-medium text-white/60 transition-all hover:text-white hover:bg-white/[0.04]"
+            >
+              Terms &amp; Conditions
+            </a>
+          </nav>
+
+          {/* Right: branding text */}
+          <div className="flex items-center gap-2 font-semibold text-white/50">
+            <Sparkles size={13} className="text-purple-400/60" />
+            <span>MoodMate · Personalized Multimedia Recommendation Platform</span>
           </div>
         </div>
       </footer>
