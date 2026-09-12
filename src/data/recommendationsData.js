@@ -185,7 +185,8 @@ export function buildStreamSearchUrl(title, provider, artist = '') {
   if (normalizedProvider.includes('crunchyroll')) return `https://www.crunchyroll.com/search?q=${encodedTitle}`;
   if (normalizedProvider.includes('spotify')) return `https://open.spotify.com/search/${encodedMusicQuery}`;
   if (normalizedProvider.includes('youtube music')) return `https://music.youtube.com/search?q=${encodedMusicQuery}`;
-  if (normalizedProvider.includes('disney')) return `https://www.google.com/search?q=${encodeURIComponent(`${title} watch online`)}`;
+  if (normalizedProvider.includes('apple')) return `https://tv.apple.com/search?q=${encodedTitle}`;
+  if (normalizedProvider.includes('disney') && !normalizedProvider.includes('hotstar')) return `https://www.hotstar.com/in/search?q=${encodedTitle}`;
   return `https://www.google.com/search?q=${encodeURIComponent(`${title} watch online`)}`;
 }
 

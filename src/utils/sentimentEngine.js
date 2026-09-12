@@ -21,7 +21,9 @@ const EMOTION_TERMS = [
   { phrase: 'happy', mood: 'upbeat', valence: 0.48, energy: 0, weight: 1.15 }, { phrase: 'good', mood: 'upbeat', valence: 0.3, energy: 0.58, weight: 0.8 },
   { phrase: 'great', mood: 'upbeat', valence: 0.5, energy: 0.7, weight: 1.0 }, { phrase: 'productive', mood: 'upbeat', valence: 0.36, energy: 0.72, weight: 0.9 },
   { phrase: 'excited', mood: 'excited', valence: 0.45, energy: 0.9, weight: 1.2 }, { phrase: 'high energy', mood: 'excited', valence: 0.2, energy: 0.9, weight: 1.2 },
-  { phrase: 'energized', mood: 'excited', valence: 0.32, energy: 0.85, weight: 1.1 }, { phrase: 'calm', mood: 'calm', valence: 0.22, energy: 0.28, weight: 1.0 },
+  { phrase: 'energized', mood: 'excited', valence: 0.32, energy: 0.85, weight: 1.1 },
+  { phrase: 'energetic', mood: 'excited', valence: 0.6, energy: 0.85, weight: 1.2 }, { phrase: 'energetically', mood: 'excited', valence: 0.6, energy: 0.85, weight: 1.2 },
+  { phrase: 'calm', mood: 'calm', valence: 0.22, energy: 0.28, weight: 1.0 },
   { phrase: 'peaceful', mood: 'calm', valence: 0.3, energy: 0.24, weight: 1.1 }, { phrase: 'relaxed', mood: 'calm', valence: 0.22, energy: 0.3, weight: 1.0 },
   { phrase: 'overthinking', mood: 'reflective', valence: -0.08, energy: 0.56, weight: 1.0 }, { phrase: 'deep thoughts', mood: 'reflective', valence: 0, energy: 0.42, weight: 1.0 },
   { phrase: 'bored', mood: 'bored', valence: -0.18, energy: 0.5, weight: 1.0 }, { phrase: 'restless', mood: 'bored', valence: -0.12, energy: 0.62, weight: 1.0 },
@@ -97,24 +99,30 @@ export function analyzeSentiment(messages) {
   const signals = [];
   let valenceTotal = 0; let valenceWeight = 0; let energyTotal = 0; let energyWeight = 0; let positiveEvidence = 0; let negativeEvidence = 0; let evidenceCount = 0;
 
-  answers.forEach((answer) => {
+  answers.forEach((answer, index) => {
+    // Recency weighting: Later chat responses (Questions 5-8, 0-indexed 4-7)
+    // count 1.5x more than earlier responses (Questions 1-4, 0-indexed 0-3),
+    // so a user's final stated mood overrides initial baseline answers.
+    const recencyMultiplier = index >= 4 ? 1.5 : 1.0;
+
     findTerms(answer, EMOTION_TERMS).forEach((term) => {
       const negated = isNegated(answer, term.index);
       if (isRequested(answer, term.index)) return;
+      const effectiveWeight = term.weight * recencyMultiplier;
       if (negated) {
-        if (term.valence > 0) { addScore(moodScores, 'low', term.weight); valenceTotal -= Math.abs(term.valence) * term.weight; valenceWeight += term.weight; negativeEvidence += term.weight; signals.push(`not ${term.phrase}`); evidenceCount += 1; }
+        if (term.valence > 0) { addScore(moodScores, 'low', effectiveWeight); valenceTotal -= Math.abs(term.valence) * effectiveWeight; valenceWeight += effectiveWeight; negativeEvidence += effectiveWeight; signals.push(`not ${term.phrase}`); evidenceCount += 1; }
         return;
       }
-      addScore(moodScores, term.mood, term.weight);
-      valenceTotal += term.valence * term.weight; valenceWeight += term.weight; energyTotal += term.energy * term.weight; energyWeight += term.weight;
-      if (term.valence > 0) positiveEvidence += term.weight;
-      if (term.valence < 0) negativeEvidence += term.weight;
+      addScore(moodScores, term.mood, effectiveWeight);
+      valenceTotal += term.valence * effectiveWeight; valenceWeight += effectiveWeight; energyTotal += term.energy * effectiveWeight; energyWeight += effectiveWeight;
+      if (term.valence > 0) positiveEvidence += effectiveWeight;
+      if (term.valence < 0) negativeEvidence += effectiveWeight;
       signals.push(term.phrase); evidenceCount += 1;
     });
-    findTerms(answer, NEED_AND_INTENT_TERMS).forEach((term) => { addScore(needScores, term.need, term.weight); addScore(intentScores, term.intent, term.weight); signals.push(term.phrase); evidenceCount += 1; });
-    findTerms(answer, FORMAT_TERMS).forEach((term) => { addScore(formatScores, term.value, 1); evidenceCount += 1; });
-    findTerms(answer, GENRE_TERMS).forEach((term) => { addScore(genreScores, term.value, term.weight); signals.push(term.phrase); evidenceCount += 1; });
-    findTerms(answer, LANGUAGE_TERMS).forEach((term) => { const explicit = /\b(?:prefer|want|in|language)\b/.test(answer) || answer === term.phrase; addScore(languageScores, term.value, explicit ? 2 : 1); evidenceCount += 1; });
+    findTerms(answer, NEED_AND_INTENT_TERMS).forEach((term) => { const effectiveWeight = term.weight * recencyMultiplier; addScore(needScores, term.need, effectiveWeight); addScore(intentScores, term.intent, effectiveWeight); signals.push(term.phrase); evidenceCount += 1; });
+    findTerms(answer, FORMAT_TERMS).forEach((term) => { addScore(formatScores, term.value, 1 * recencyMultiplier); evidenceCount += 1; });
+    findTerms(answer, GENRE_TERMS).forEach((term) => { const effectiveWeight = term.weight * recencyMultiplier; addScore(genreScores, term.value, effectiveWeight); signals.push(term.phrase); evidenceCount += 1; });
+    findTerms(answer, LANGUAGE_TERMS).forEach((term) => { const explicit = /\b(?:prefer|want|in|language)\b/.test(answer) || answer === term.phrase; addScore(languageScores, term.value, (explicit ? 2 : 1) * recencyMultiplier); evidenceCount += 1; });
   });
 
   const isMixed = positiveEvidence > 0 && negativeEvidence > 0 && Math.abs(positiveEvidence - negativeEvidence) <= Math.max(0.75, Math.min(positiveEvidence, negativeEvidence));

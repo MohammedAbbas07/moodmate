@@ -48,7 +48,29 @@ try {
   assert.equal(exciting.userIntent, 'stimulation');
   assert.equal(exciting.emotionalNeed, 'Stimulation & Excitement');
 
-  console.log('Extraction behavior tests passed (10 cases).');
+  // Test user sequence: Q1="Calm", Q2="Relaxing", Q5="Energetic", Q7="High energy"
+  const sequenceMessages = [
+    { sender: 'user', text: 'Calm' },
+    { sender: 'user', text: 'Relaxing' },
+    { sender: 'user', text: 'Steady' },
+    { sender: 'user', text: 'Pure comfort' },
+    { sender: 'user', text: 'Energetic' },
+    { sender: 'user', text: 'Movie' },
+    { sender: 'user', text: 'High energy' },
+    { sender: 'user', text: 'English' }
+  ];
+  const seqResult = analyzeSentiment(sequenceMessages);
+  console.log('Sequence test result:', {
+    mood: seqResult.mood,
+    moodName: seqResult.moodName,
+    valence: seqResult.valence,
+    energy: seqResult.energy,
+    rawMoods: seqResult.rawScores.moods
+  });
+  assert.equal(seqResult.mood, 'excited', 'Final mood should be excited/energetic');
+  assert.ok(seqResult.energy > 0.6, 'Final energy should be high (> 0.6)');
+
+  console.log('Extraction behavior tests passed (11 cases).');
 } finally {
   await server.close();
 }
