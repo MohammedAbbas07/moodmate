@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MoodProvider } from './context/MoodContext';
+import { ToastProvider } from './context/ToastContext';
 import ScrollToTop from './components/ScrollToTop';
 
 import Landing from './pages/Landing';
@@ -15,8 +16,9 @@ import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
-    <MoodProvider>
-      <BrowserRouter>
+    <ToastProvider>
+      <MoodProvider>
+        <BrowserRouter>
         <ScrollToTop />
         <Routes>
           {/* Landing / Home */}
@@ -50,7 +52,8 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </MoodProvider>
+      </MoodProvider>
+    </ToastProvider>
   );
 }
 

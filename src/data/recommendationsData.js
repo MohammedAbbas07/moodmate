@@ -2912,6 +2912,7 @@ export const mediaCatalog = [
   {
     "id": "mov-hindi-1-b",
     "type": "movie",
+    "language": "Hindi",
     "title": "Lagaan",
     "genres": [
       "Drama",
@@ -2946,6 +2947,7 @@ export const mediaCatalog = [
   {
     "id": "ser-hindi-1-b",
     "type": "series",
+    "language": "Hindi",
     "title": "Scam 1992",
     "genres": [
       "Drama",
@@ -3085,6 +3087,7 @@ export const mediaCatalog = [
   {
     "id": "ser-tamil-1-b",
     "type": "series",
+    "language": "Tamil",
     "title": "Ayali",
     "genres": [
       "Drama",
@@ -3430,6 +3433,7 @@ export const mediaCatalog = [
   {
     "id": "mus-malayalam-1-b",
     "type": "music",
+    "language": "Malayalam",
     "title": "Muthal Nee Mudivum Nee",
     "genres": [
       "Melody",
@@ -4545,6 +4549,7 @@ export const mediaCatalog = [
   {
     "id": "mus-tamil-3-b",
     "type": "music",
+    "language": "Tamil",
     "title": "Vaseegara",
     "genres": [
       "Melody",
@@ -4960,6 +4965,7 @@ export const mediaCatalog = [
   {
     "id": "mus-tel-1-b",
     "type": "music",
+    "language": "Telugu",
     "title": "Yenti Yenti",
     "genres": [
       "Melody",
@@ -5376,6 +5382,7 @@ export const mediaCatalog = [
   {
     "id": "mus-eng-3-b",
     "type": "music",
+    "language": "English",
     "title": "Clocks",
     "genres": [
       "Melody",
@@ -9293,13 +9300,13 @@ function diversifyForYou(rankedItems, moodProfile) {
   const scoreSorted = (items) => [...items].sort((a, b) => b.sortRank - a.sortRank || a.title.localeCompare(b.title));
 
   // ── Slot A (4 slots): items matching BOTH the user's preferred language AND preferred content type ──
-  // "langMatch" is satisfied when the item's primary language equals the preference,
-  // OR when the preference language appears in availableLanguages.
+  // "langMatch" is satisfied only when the item's PRIMARY language equals the preference.
+  // Dubbed/multi-language availability (availableLanguages) does NOT count as a language match.
   // If no language preference was expressed, every item qualifies as a language match.
   // If no (or 'all') content-type preference was expressed, every item qualifies as a type match.
   const langMatch = (item) => {
     if (!preferredLanguage) return true;
-    return item.language === preferredLanguage || (item.availableLanguages?.includes(preferredLanguage) ?? false);
+    return item.language === preferredLanguage;
   };
   const typeMatch = (item) => {
     if (!preferredType || preferredType === 'all') return true;

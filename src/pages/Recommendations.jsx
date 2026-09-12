@@ -303,23 +303,44 @@ export default function Recommendations() {
           {/* Content — fades in after ready */}
           <div className={`transition-opacity duration-400 ${isReady ? 'opacity-100' : 'opacity-0'}`}>
           {totalFilteredCount === 0 ? (
-            <div className="rounded-3xl border border-white/[0.08] bg-[#0a0b12]/60 py-16 px-6 text-center backdrop-blur-xl">
-              <Compass size={32} className="mx-auto text-white/30" />
-              <h3 className="mt-4 text-base font-semibold text-white">No matches found</h3>
-              <p className="mt-1 text-xs text-white/40 max-w-sm mx-auto">
-                {activeTab === 'saved'
-                  ? 'You have not saved any items yet. Click the heart on any card to build your personal watchlist.'
-                  : 'Try adjusting your search query or switching to another category.'}
-              </p>
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="mt-4 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-purple-300 hover:bg-white/10"
-                >
-                  Clear Search
-                </button>
-              )}
-            </div>
+            activeTab === 'saved' && !searchQuery ? (
+              <div className="rounded-3xl border border-white/[0.08] bg-[#0a0b12]/60 py-20 px-6 text-center backdrop-blur-xl max-w-lg mx-auto my-6 shadow-2xl">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-purple-500/10 border border-purple-500/20 text-purple-400/80 shadow-inner">
+                  <Heart size={42} strokeWidth={1.5} className="text-purple-300/80" />
+                </div>
+                <h3 className="mt-6 text-xl font-bold tracking-tight text-white">Your Watchlist</h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-white/50 max-w-md mx-auto">
+                  Your watchlist is empty — start saving shows and movies that match your mood!
+                </p>
+                <div className="mt-8 flex justify-center">
+                  <button
+                    onClick={() => setActiveTab(hasProfile ? 'for-you' : 'all')}
+                    className="flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/25 transition hover:brightness-110 active:scale-95 cursor-pointer"
+                  >
+                    <Sparkles size={16} />
+                    <span>Discover Recommendations</span>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-3xl border border-white/[0.08] bg-[#0a0b12]/60 py-16 px-6 text-center backdrop-blur-xl">
+                <Compass size={32} className="mx-auto text-white/30" />
+                <h3 className="mt-4 text-base font-semibold text-white">No matches found</h3>
+                <p className="mt-1 text-xs text-white/40 max-w-sm mx-auto">
+                  {activeTab === 'saved'
+                    ? 'No saved items match your search. Try a different search term.'
+                    : 'Try adjusting your search query or switching to another category.'}
+                </p>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="mt-4 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-purple-300 hover:bg-white/10 cursor-pointer"
+                  >
+                    Clear Search
+                  </button>
+                )}
+              </div>
+            )
           ) : isSplitView ? (
             <div className="space-y-12">
               {/* SECTION 1: Matched to Your Mood (Top 10 ranked purely by mood score) */}

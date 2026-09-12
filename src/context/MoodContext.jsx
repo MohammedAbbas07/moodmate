@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import { createMoodProfile } from '../utils/moodProfile';
 import { getItemById } from '../data/recommendationsData';
+import { useToast } from './ToastContext';
 
 export const MoodContext = createContext(null);
 const API_BASE_URL = 'http://localhost:8000';
@@ -15,6 +16,8 @@ function readLocalSavedItems() {
 }
 
 export function MoodProvider({ children }) {
+  const { showSuccess, showError } = useToast();
+
   // 1. Mood Profile state with localStorage persistence
   // A profile is absent until the eight-question conversation is complete.
   // Persisted profiles are normalized through the shared completion contract.
@@ -131,6 +134,12 @@ export function MoodProvider({ children }) {
     // Update immediately so the heart responds before the backend request finishes.
     setSavedItems(nextItems);
 
+    if (exists) {
+      showSuccess('Removed from watchlist');
+    } else {
+      showSuccess('Added to your watchlist ✓');
+    }
+
     if (!token) {
       // Guests keep watchlist changes in localStorage without making an API call.
       return;
@@ -157,7 +166,9 @@ export function MoodProvider({ children }) {
         const response = await fetch(syncUrl, syncOptions);
         if (response.status === 401) {
           localStorage.removeItem('moodmate_token');
-          setWatchlistError('Your session expired. Your watchlist is saved on this device.');
+          const sessionMsg = 'Your session expired. Your watchlist is saved on this device.';
+          setWatchlistError(sessionMsg);
+          showError(sessionMsg);
           return;
         }
         if (!response.ok) {
@@ -165,11 +176,11 @@ export function MoodProvider({ children }) {
         }
       } catch (error) {
         console.error('Unable to sync saved item:', error);
-        setWatchlistError(
-          exists
-            ? 'Unable to remove this item from your account. It was removed from this device.'
-            : 'Unable to save this item to your account. It was saved on this device.'
-        );
+        const errMsg = exists
+          ? 'Unable to remove this item from your account. It was removed from this device.'
+          : 'Unable to save this item to your account. It was saved on this device.';
+        setWatchlistError(errMsg);
+        showError(errMsg);
       }
     };
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Sparkles, ArrowRight, ArrowLeft, Heart, Film, Headphones, UserCheck, Shield, Loader2 } from 'lucide-react';
 import { useMood } from '../context/MoodContext';
+import { useToast } from '../context/ToastContext';
 
 
 function getNicknameFromProfile(email, responseData) {
@@ -57,6 +58,7 @@ function getNicknameFromProfile(email, responseData) {
 export default function Login() {
   const navigate = useNavigate();
   const { loginUser } = useMood();
+  const { showError } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
@@ -70,27 +72,37 @@ export default function Login() {
     setError('');
 
     if (!email && !password) {
-      setError('Please provide both email and password to proceed.');
+      const msg = 'Please provide both email and password to proceed.';
+      setError(msg);
+      showError(msg);
       return;
     }
 
     if (!email) {
-      setError('Please enter your email address to continue.');
+      const msg = 'Please enter your email address to continue.';
+      setError(msg);
+      showError(msg);
       return;
     }
 
     if (!email.includes('@')) {
-      setError('Please enter a valid email address.');
+      const msg = 'Please enter a valid email address.';
+      setError(msg);
+      showError(msg);
       return;
     }
 
     if (!password) {
-      setError('Please enter your password to continue.');
+      const msg = 'Please enter your password to continue.';
+      setError(msg);
+      showError(msg);
       return;
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters.');
+      const msg = 'Password must be at least 6 characters.';
+      setError(msg);
+      showError(msg);
       return;
     }
 
@@ -114,13 +126,21 @@ export default function Login() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(
+        if (!isSignUp && (response.status === 401 || response.status === 400)) {
+          const loginFailMsg = 'Login failed, please check your credentials';
+          setError(loginFailMsg);
+          showError(loginFailMsg);
+          return;
+        }
+
+        const authErrMsg =
           isSignUp && response.status === 400
             ? data.detail || 'Unable to create account'
             : response.status === 401
-              ? 'Invalid email or password'
-              : data.detail || 'Authentication failed'
-        );
+              ? 'Login failed, please check your credentials'
+              : data.detail || 'Authentication failed';
+        setError(authErrMsg);
+        showError(authErrMsg);
         return;
       }
 
@@ -132,7 +152,9 @@ export default function Login() {
       setTransitioning(true);
       setTimeout(() => navigate('/welcome'), 1500);
     } catch {
-      setError('Unable to connect to MoodMate. Please try again.');
+      const netMsg = 'Unable to connect to MoodMate. Please try again.';
+      setError(netMsg);
+      showError(netMsg);
     } finally {
       setIsLoading(false);
     }
