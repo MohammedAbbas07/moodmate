@@ -171,6 +171,13 @@ export function MoodProvider({ children }) {
           showError(sessionMsg);
           return;
         }
+
+        // HTTP 409 Conflict means the item was already saved in the account.
+        // Treat this as success — no error message needed.
+        if (response.status === 409) {
+          return;
+        }
+
         if (!response.ok) {
           throw new Error(`Saved item request failed with status ${response.status}`);
         }
@@ -178,7 +185,7 @@ export function MoodProvider({ children }) {
         console.error('Unable to sync saved item:', error);
         const errMsg = exists
           ? 'Unable to remove this item from your account. It was removed from this device.'
-          : 'Unable to save this item to your account. It was saved on this device.';
+          : 'Backend unavailable — saved on this device only.';
         setWatchlistError(errMsg);
         showError(errMsg);
       }

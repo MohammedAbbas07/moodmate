@@ -19,7 +19,14 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://localhost:5175",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5174",
+        "http://127.0.0.1:5175",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -214,32 +221,39 @@ def get_profile(
         raise HTTPException(status_code=500, detail="Database error") from exc
 
 
+@app.post("/api/user/saved-items/{item_id}", response_model=dict, status_code=status.HTTP_201_CREATED)
 @app.post("/api/user/saved-items", response_model=dict, status_code=status.HTTP_201_CREATED)
 def save_item(
-    payload: SavedItemRequest,
+    item_id: str | None = None,
+    payload: SavedItemRequest | None = None,
     user_id: int = Depends(get_current_user_id),
     db: Session = Depends(get_db),
 ) -> dict[str, str]:
     """Save one catalog item for the authenticated user.
 
+    Supports item ID specified in the URL path or in the request body.
     Duplicate user/item pairs return HTTP 409 instead of creating duplicates.
     Database failures are rolled back before an error response is returned.
     """
+    target_item_id = item_id or (payload.item_id if payload else None)
+    if not target_item_id:
+        raise HTTPException(status_code=400, detail="item_id is required")
+
     try:
         if db.get(User, user_id) is None:
             raise HTTPException(status_code=401, detail="User not found")
         existing = (
             db.query(SavedItem)
-            .filter(SavedItem.user_id == user_id, SavedItem.item_id == payload.item_id)
+            .filter(SavedItem.user_id == user_id, SavedItem.item_id == target_item_id)
             .first()
         )
         if existing is not None:
             raise HTTPException(status_code=409, detail="Item already saved")
 
-        saved_item = SavedItem(user_id=user_id, item_id=payload.item_id)
+        saved_item = SavedItem(user_id=user_id, item_id=target_item_id)
         db.add(saved_item)
         db.commit()
-        return {"message": "Item saved", "item_id": payload.item_id}
+        return {"message": "Item saved", "item_id": target_item_id}
     except HTTPException:
         db.rollback()
         raise
