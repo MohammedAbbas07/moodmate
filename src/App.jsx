@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MoodProvider } from './context/MoodContext';
 import { ToastProvider } from './context/ToastContext';
+import ErrorBoundary from './components/ErrorBoundary';
 import ScrollToTop from './components/ScrollToTop';
 
 import Landing from './pages/Landing';
@@ -16,10 +17,11 @@ import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
-    <ToastProvider>
-      <MoodProvider>
-        <BrowserRouter>
-        <ScrollToTop />
+    <ErrorBoundary>
+      <ToastProvider>
+        <MoodProvider>
+          <BrowserRouter>
+            <ScrollToTop />
         <Routes>
           {/* Landing / Home */}
           <Route path="/" element={<Landing />} />
@@ -54,6 +56,7 @@ export default function App() {
       </BrowserRouter>
       </MoodProvider>
     </ToastProvider>
+    </ErrorBoundary>
   );
 }
 
