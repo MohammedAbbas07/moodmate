@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Sparkles, Film, Tv, Music, Heart, Search, Compass, ArrowLeft, Globe2, Layers, Loader2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import CinematicBackground from '../components/CinematicBackground';
@@ -9,12 +9,21 @@ import { getRecommendationsByMood, calculateMatchScore, mediaCatalog } from '../
 import { hasCompletedMoodProfile } from '../utils/moodProfile';
 
 export default function Recommendations() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabParam = searchParams.get('tab');
   const { moodProfile, savedItems } = useMood();
   const hasProfile = hasCompletedMoodProfile(moodProfile);
-  const [activeTab, setActiveTab] = useState(() => (hasProfile ? 'for-you' : 'all')); // 'for-you' | 'all' | 'movie' | 'series' | 'anime' | 'music' | 'saved'
+  const [activeTab, setActiveTab] = useState(() => (tabParam || (hasProfile ? 'for-you' : 'all'))); // 'for-you' | 'all' | 'movie' | 'series' | 'anime' | 'music' | 'saved'
   const [searchQuery, setSearchQuery] = useState('');
   const [isReady, setIsReady] = useState(false);
   const timerRef = useRef(null);
+
+  // Sync activeTab if searchParam changes (e.g. clicking Watchlist heart while already on recommendations page)
+  useEffect(() => {
+    if (tabParam && tabParam !== activeTab) {
+      setActiveTab(tabParam);
+    }
+  }, [tabParam]);
 
   // Show spinner on mount and on every tab change — cleared after 650 ms
   useEffect(() => {

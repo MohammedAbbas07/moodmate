@@ -3988,40 +3988,6 @@ export const mediaCatalog = [
     "baseQuality": 0.9099999999999999
   },
   {
-    "id": "mus-eng-3",
-    "title": "Weightless",
-    "type": "music",
-    "language": "English",
-    "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
-    ],
-    "mood": [
-      "calm"
-    ],
-    "moodTags": [
-      "calm"
-    ],
-    "artist": "Coldplay",
-    "director": "",
-    "description": "Weightless is melody content in English. A measured, soothing choice for an unhurried evening.",
-    "synopsis": "Weightless is melody content in English. A measured, soothing choice for an unhurried evening.",
-    "streamPlatform": "Spotify",
-    "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
-    "rating": 7.9,
-    "releaseYear": 2019,
-    "year": "2019",
-    "availableLanguages": [
-      "English"
-    ],
-    "valence": 0.72,
-    "energy": 0.25,
-    "baseQuality": 0.9099999999999999
-  },
-  {
     "id": "mov-malayalam-3",
     "title": "Kumbalangi Nights",
     "type": "movie",

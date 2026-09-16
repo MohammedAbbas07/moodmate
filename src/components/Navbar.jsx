@@ -99,9 +99,9 @@ export default function Navbar() {
 
           {/* Saved Items Counter Button */}
           <Link
-            to="/recommendations"
+            to="/recommendations?tab=saved"
             title="Saved in your Watchlist"
-            className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.04] text-white/70 transition hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+            className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.04] text-white/70 transition hover:border-white/20 hover:bg-white/[0.08] hover:text-white cursor-pointer"
           >
             <Heart size={16} className={savedItems.length > 0 ? 'text-pink-400 fill-pink-400/20' : ''} />
             {savedItems.length > 0 && (
