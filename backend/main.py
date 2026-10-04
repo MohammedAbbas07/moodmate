@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 
 from auth import create_access_token, hash_password, verify_password, verify_token
 from database import create_tables, get_db
-from models import SavedItem, User
+from models import Feedback, SavedItem, User
 
 app = FastAPI(
     title="MoodMate API",
@@ -82,6 +82,21 @@ class MessageResponse(BaseModel):
     """Represent simple success messages returned by mutation endpoints."""
 
     message: str
+
+
+class FeedbackRequest(BaseModel):
+    """Validate the feedback payload submitted from the Recommendations page."""
+
+    mood_rating: int = Field(ge=1, le=5)
+    message: str | None = Field(default=None, max_length=2000)
+
+
+class FeedbackResponse(BaseModel):
+    """Confirm successful feedback persistence."""
+
+    id: int
+    message: str
+
 
 
 @app.on_event("startup")
@@ -320,3 +335,47 @@ def delete_saved_item(
     except SQLAlchemyError as exc:
         db.rollback()
         raise HTTPException(status_code=500, detail="Database error") from exc
+
+
+def get_optional_user_id(
+    credentials: HTTPAuthorizationCredentials | None = Depends(security),
+) -> int | None:
+    """Extract the user ID from a bearer token if one is present, otherwise return None.
+
+    Unlike get_current_user_id, this function does not raise on missing or invalid tokens —
+    it simply returns None so that guest feedback submissions are accepted.
+    """
+    if credentials is None or credentials.scheme.lower() != "bearer":
+        return None
+    try:
+        return verify_token(credentials.credentials)
+    except ValueError:
+        return None
+
+
+@app.post("/api/feedback", response_model=FeedbackResponse, status_code=status.HTTP_201_CREATED)
+def submit_feedback(
+    payload: FeedbackRequest,
+    db: Session = Depends(get_db),
+    user_id: int | None = Depends(get_optional_user_id),
+) -> FeedbackResponse:
+    """Accept a mood rating (1-5) and an optional message from any visitor.
+
+    Associates the feedback with the logged-in user when a valid JWT is present.
+    Guest submissions (no token or invalid token) are stored with a NULL user_id.
+    Returns HTTP 201 with the new feedback record ID on success.
+    """
+    try:
+        feedback = Feedback(
+            user_id=user_id,
+            mood_rating=payload.mood_rating,
+            message=payload.message or None,
+        )
+        db.add(feedback)
+        db.commit()
+        db.refresh(feedback)
+        return FeedbackResponse(id=feedback.id, message="Feedback submitted successfully")
+    except SQLAlchemyError as exc:
+        db.rollback()
+        raise HTTPException(status_code=500, detail="Database error") from exc
+

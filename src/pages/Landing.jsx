@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, Sparkles, Film, Tv, Music, Play, CheckCircle2, Sliders, Database, Brain, Globe2, Layers } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import CinematicBackground from '../components/CinematicBackground';
+import ScrollDownIndicator from '../components/ScrollDownIndicator';
 import { moodModel } from '../utils/moodModel';
 import { mediaCatalog } from '../data/recommendationsData';
 import { useMood } from '../context/MoodContext';
@@ -122,7 +123,7 @@ export default function Landing() {
         </div>
 
         {/* Interactive Live Mood Simulator */}
-        <section className="mt-20 rounded-3xl border border-white/[0.08] bg-[#07080c]/80 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl">
+        <section id="mood-preview" className="mt-20 rounded-3xl border border-white/[0.08] bg-[#07080c]/80 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl">
           <div className="border-b border-white/[0.07] pb-6">
             <span className="text-[11px] font-bold uppercase tracking-widest text-purple-400">
               Interactive Preview
@@ -360,6 +361,8 @@ export default function Landing() {
           </div>
         </div>
       </footer>
+
+      <ScrollDownIndicator targetId="mood-preview" />
     </div>
   );
 }

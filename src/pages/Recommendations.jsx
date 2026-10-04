@@ -4,9 +4,12 @@ import { Sparkles, Film, Tv, Music, Heart, Search, Compass, ArrowLeft, Globe2, L
 import Navbar from '../components/Navbar';
 import CinematicBackground from '../components/CinematicBackground';
 import RecommendationCard from '../components/RecommendationCard';
+import ScrollDownIndicator from '../components/ScrollDownIndicator';
+import FeedbackPopup from '../components/FeedbackPopup';
 import { useMood } from '../context/MoodContext';
 import { getRecommendationsByMood, calculateMatchScore, mediaCatalog } from '../data/recommendationsData';
 import { hasCompletedMoodProfile } from '../utils/moodProfile';
+
 
 export default function Recommendations() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -428,6 +431,11 @@ export default function Recommendations() {
       <footer className="relative z-10 py-6 text-center text-[11px] text-white/25">
         MoodMate · Affective Discovery Platform
       </footer>
+
+      <ScrollDownIndicator />
+
+      {/* Feedback popup — appears 15 s after page load, once per session */}
+      <FeedbackPopup />
     </div>
   );
 }

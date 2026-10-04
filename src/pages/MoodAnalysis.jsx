@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Sparkles, ArrowRight, RefreshCw, Heart, Zap, CheckCircle, Info, Loader2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import CinematicBackground from '../components/CinematicBackground';
+import ScrollDownIndicator from '../components/ScrollDownIndicator';
 import { useMood } from '../context/MoodContext';
 import { hasCompletedMoodProfile } from '../utils/moodProfile';
 
@@ -317,6 +318,8 @@ export default function MoodAnalysis() {
       <footer className="relative z-10 py-6 text-center text-[11px] text-white/25">
         MoodMate · Affective Discovery Platform
       </footer>
+
+      <ScrollDownIndicator />
     </div>
   );
 }
