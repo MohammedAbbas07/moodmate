@@ -183,10 +183,10 @@ export default function Chat() {
     : Math.round(((currentStep + 1) / CONVERSATION_QUESTIONS.length) * 100);
 
   return (
-    <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#030308] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
       {/* TRANSITION 1: Chat -> Mood Analysis Loading Overlay */}
       <div
-        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#05060a]/80 backdrop-blur-sm transition-opacity duration-500 ${
+        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#030308]/80 backdrop-blur-sm transition-opacity duration-500 ${
           isAnalyzing ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -196,8 +196,8 @@ export default function Chat() {
 
       {/* Background ambient lighting */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-[15%] left-[25%] h-[550px] w-[550px] rounded-full bg-purple-600/10 blur-[170px]" />
-        <div className="absolute bottom-[20%] right-[20%] h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-[170px]" />
+        <div className="absolute top-[15%] left-[25%] h-[550px] w-[550px] rounded-full bg-purple-600/15 blur-[170px]" />
+        <div className="absolute bottom-[20%] right-[20%] h-[500px] w-[500px] rounded-full bg-indigo-600/12 blur-[170px]" />
       </div>
 
       <Navbar />
@@ -206,7 +206,7 @@ export default function Chat() {
       <main className="relative z-10 mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 lg:px-8 flex-1 flex flex-col">
         
         {/* Chat Window Frame */}
-        <div className="flex-1 flex flex-col rounded-3xl border border-white/[0.09] bg-[#07080c]/90 shadow-2xl backdrop-blur-2xl overflow-hidden min-h-[75vh] md:min-h-[82vh]">
+        <div className="flex-1 flex flex-col rounded-3xl border border-purple-500/30 bg-[#05060a]/90 shadow-2xl shadow-purple-950/30 backdrop-blur-2xl overflow-hidden min-h-[75vh] md:min-h-[82vh]">
           
           {/* Chat Window Header */}
           <div className="flex items-center justify-between border-b border-white/[0.08] bg-white/[0.02] px-6 py-4">
@@ -331,7 +331,7 @@ export default function Chat() {
           )}
 
           {/* Chat Input Bar */}
-          <div className="border-t border-white/[0.08] bg-[#05060a]/90 p-4 sm:p-5">
+          <div className="border-t border-purple-500/20 bg-[#030308]/90 p-4 sm:p-5">
             {!conversationFinished ? (
               <form
                 onSubmit={(e) => {
@@ -352,7 +352,7 @@ export default function Chat() {
                 <button
                   type="submit"
                   disabled={!input.trim() || isTyping}
-                  className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500 text-white shadow-lg shadow-purple-500/30 transition hover:bg-purple-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"
+                  className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500 text-white shadow-lg shadow-purple-500/40 transition hover:bg-purple-600 hover:shadow-purple-500/60 active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 cursor-pointer"
                 >
                   <Send size={16} />
                 </button>

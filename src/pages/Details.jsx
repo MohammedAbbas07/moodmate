@@ -49,11 +49,11 @@ export default function Details() {
 
   if (!item) {
     return (
-      <div className="min-h-screen bg-[#05060a] text-white flex flex-col items-center justify-center p-6">
+      <div className="min-h-screen bg-[#030308] text-white flex flex-col items-center justify-center p-6">
         <h2 className="text-xl font-bold">Item not found</h2>
         <button
           onClick={() => navigate('/recommendations')}
-          className="mt-4 rounded-full bg-purple-500 px-5 py-2 text-xs font-semibold"
+          className="mt-4 rounded-full bg-purple-500 px-5 py-2 text-xs font-semibold shadow-lg shadow-purple-500/40 hover:shadow-purple-500/60 transition cursor-pointer"
         >
           Return to Recommendations
         </button>
@@ -77,7 +77,7 @@ export default function Details() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#030308] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
       {/* Background ambient lighting */}
       <CinematicBackground />
       <Navbar />
@@ -88,7 +88,7 @@ export default function Details() {
         <div className="mb-6">
           <button
             onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-2 text-xs font-medium text-white/50 hover:text-white transition"
+            className="inline-flex items-center gap-2 text-xs font-medium text-white/50 hover:text-white transition cursor-pointer"
           >
             <ArrowLeft size={16} />
             <span>Back to Discovery</span>
@@ -96,7 +96,7 @@ export default function Details() {
         </div>
 
         {/* Hero Media Detail Card */}
-        <div className="relative overflow-hidden rounded-3xl border border-white/[0.09] bg-[#07080c]/90 shadow-2xl backdrop-blur-2xl">
+        <div className="relative overflow-hidden rounded-3xl border border-purple-500/30 bg-[#05060a]/90 shadow-2xl shadow-purple-950/30 backdrop-blur-2xl">
           
           {/* Backdrop Header Image */}
           <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-white/5">
@@ -105,7 +105,7 @@ export default function Details() {
               alt=""
               className="h-full w-full object-cover opacity-35 filter blur-xs scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07080c] via-[#07080c]/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#05060a] via-[#05060a]/60 to-transparent" />
           </div>
 
           {/* Media Info Content Body */}
@@ -114,7 +114,7 @@ export default function Details() {
               
               {/* Poster Column */}
               <div className="mx-auto w-full max-w-[240px] sm:max-w-[280px]">
-                <div className="overflow-hidden rounded-2xl border border-white/[0.15] bg-[#0a0b12] shadow-2xl shadow-black/80 aspect-[3/4]">
+                <div className="overflow-hidden rounded-2xl border border-purple-500/25 bg-[#030308] shadow-2xl shadow-black/80 aspect-[3/4]">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -123,7 +123,7 @@ export default function Details() {
                 </div>
 
                 {/* Match Score Under Poster */}
-                <div className="mt-4 flex items-center justify-between rounded-xl border border-purple-500/20 bg-purple-500/10 px-4 py-2.5">
+                <div className="mt-4 flex items-center justify-between rounded-xl border border-purple-500/40 bg-purple-500/15 px-4 py-2.5 shadow-sm shadow-purple-500/20">
                   <div className="flex items-center gap-2">
                     <Sparkles size={14} className="text-purple-400" />
                     <span className="text-xs font-semibold text-purple-200">Mood Compatibility</span>
@@ -188,7 +188,7 @@ export default function Details() {
                   </div>
 
                   {/* Mood Synergy Box */}
-                  <div className="mt-6 rounded-2xl border border-purple-500/20 bg-purple-500/5 p-5">
+                  <div className="mt-6 rounded-2xl border border-purple-500/30 bg-purple-500/10 p-5 shadow-lg shadow-purple-950/20">
                     <div className="flex items-center gap-2 text-xs font-bold text-purple-300 uppercase tracking-wider">
                       <Sparkles size={14} className="text-purple-400" />
                       <span>Why MoodMate Selected This For You</span>

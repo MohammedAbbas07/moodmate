@@ -70,8 +70,8 @@ export default function FeedbackPopup() {
     <>
       <style>{`
         @keyframes feedbackPulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(168,85,247,0.35), 0 25px 50px -12px rgba(0,0,0,0.7); }
-          50%       { box-shadow: 0 0 0 7px rgba(168,85,247,0),  0 25px 50px -12px rgba(0,0,0,0.7); }
+          0%, 100% { box-shadow: 0 0 0 0 rgba(168,85,247,0.5), 0 0 30px -4px rgba(168,85,247,0.35), 0 25px 50px -12px rgba(0,0,0,0.85); }
+          50%       { box-shadow: 0 0 0 8px rgba(168,85,247,0), 0 0 40px -2px rgba(168,85,247,0.5), 0 25px 50px -12px rgba(0,0,0,0.85); }
         }
         .feedback-glow { animation: feedbackPulse 2.8s ease-in-out infinite; }
       `}</style>
@@ -83,8 +83,8 @@ export default function FeedbackPopup() {
         className={`
           fixed bottom-6 right-6 z-[9999]
           w-[calc(100vw-48px)] max-w-sm
-          rounded-3xl border border-white/[0.11]
-          bg-[#0c0d18]/92 backdrop-blur-2xl
+          rounded-3xl border border-purple-500/35
+          bg-[#05060a]/92 backdrop-blur-2xl
           p-6 text-white
           feedback-glow
           transition-all duration-400
@@ -104,7 +104,7 @@ export default function FeedbackPopup() {
         {submitted ? (
           /* ── Thank-you state ── */
           <div className="flex flex-col items-center gap-3 py-5 text-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/15 border border-purple-500/30">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/20 border border-purple-500/40 shadow-lg shadow-purple-500/30">
               <CheckCircle size={26} className="text-purple-400" strokeWidth={1.75} />
             </div>
             <p className="text-sm font-bold text-white">Thank you!</p>
@@ -187,7 +187,7 @@ export default function FeedbackPopup() {
                   rounded-full py-2.5 text-xs font-semibold
                   transition-all duration-150
                   ${selectedRating && !submitting
-                    ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md shadow-purple-500/25 hover:brightness-110 active:scale-95 cursor-pointer'
+                    ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg shadow-purple-500/40 hover:shadow-purple-500/60 hover:brightness-110 active:scale-95 cursor-pointer'
                     : 'bg-white/[0.05] text-white/25 cursor-not-allowed'}
                 `}
               >

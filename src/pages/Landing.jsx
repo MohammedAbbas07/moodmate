@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Sparkles, Film, Tv, Music, Play, CheckCircle2, Sliders, Database, Brain, Globe2, Layers } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -11,8 +11,23 @@ import { useMood } from '../context/MoodContext';
 
 export default function Landing() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { updateMoodProfile } = useMood();
   const [selectedDemoMood, setSelectedDemoMood] = useState('calm');
+
+  // Scroll to a target section if navigated here with a scrollTo state (e.g. from gate screen)
+  useEffect(() => {
+    const scrollTarget = location.state?.scrollTo;
+    if (!scrollTarget) return;
+    // Small delay to allow the page to fully paint before scrolling
+    const timer = setTimeout(() => {
+      const el = document.getElementById(scrollTarget);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [location.state]);
 
   const demoMoodData = moodModel.moods.find((m) => m.id === selectedDemoMood) || moodModel.moods[0];
   const demoPreviewItems = mediaCatalog.filter((item) => item.moodTags.includes(selectedDemoMood)).slice(0, 4);
@@ -41,7 +56,7 @@ export default function Landing() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#030308] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
       {/* Cinematic Parallax Background */}
       <CinematicBackground />
 
@@ -59,7 +74,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-xs font-medium text-purple-300 backdrop-blur-xl shadow-lg shadow-purple-950/20"
+            className="inline-flex items-center gap-2 rounded-full border border-purple-500/40 bg-purple-500/15 px-4 py-1.5 text-xs font-medium text-purple-300 backdrop-blur-xl shadow-lg shadow-purple-500/25"
           >
             <Sparkles size={13} className="text-purple-400" />
             <span>Mood-Aware Recommendations</span>
@@ -98,7 +113,7 @@ export default function Landing() {
           >
             <button
               onClick={() => navigate('/login')}
-              className="group flex items-center justify-center gap-3 rounded-full bg-white px-9 py-4 text-sm font-semibold text-black shadow-2xl shadow-white/10 transition-all duration-300 hover:scale-105 active:scale-95"
+              className="group flex items-center justify-center gap-3 rounded-full bg-white px-9 py-4 text-sm font-semibold text-black shadow-2xl shadow-purple-500/20 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
             >
               <span>Begin Mood Journey</span>
               <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -123,7 +138,7 @@ export default function Landing() {
         </div>
 
         {/* Interactive Live Mood Simulator */}
-        <section id="mood-preview" className="mt-20 rounded-3xl border border-white/[0.08] bg-[#07080c]/80 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl">
+        <section id="mood-preview" className="mt-20 rounded-3xl border border-purple-500/30 bg-[#05060a]/80 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl shadow-purple-950/30">
           <div className="border-b border-white/[0.07] pb-6">
             <span className="text-[11px] font-bold uppercase tracking-widest text-purple-400">
               Interactive Preview
@@ -144,10 +159,10 @@ export default function Landing() {
                 <button
                   key={m.id}
                   onClick={() => setSelectedDemoMood(m.id)}
-                  className={`rounded-full px-4 py-2 text-xs font-medium transition-all duration-200 ${
+                  className={`rounded-full px-4 py-2 text-xs font-medium transition-all duration-200 cursor-pointer ${
                     isSelected
-                      ? 'border border-purple-500 bg-purple-500/20 text-white shadow-lg shadow-purple-500/10'
-                      : 'border border-white/[0.08] bg-white/[0.03] text-white/60 hover:border-white/20 hover:text-white'
+                      ? 'border border-purple-400 bg-purple-500/25 text-white shadow-lg shadow-purple-500/30'
+                      : 'border border-white/[0.08] bg-white/[0.03] text-white/60 hover:border-purple-500/30 hover:text-white'
                   }`}
                 >
                   {m.name}
@@ -181,7 +196,7 @@ export default function Landing() {
               <div
                 key={item.id}
                 onClick={() => handleStartWithDemo(demoMoodData)}
-                className="group cursor-pointer overflow-hidden rounded-xl border border-white/[0.08] bg-[#0a0b12] p-2.5 transition-all duration-300 hover:border-purple-500/40 hover:-translate-y-1"
+                className="group cursor-pointer overflow-hidden rounded-xl border border-purple-500/25 bg-[#05060a] p-2.5 transition-all duration-300 hover:border-purple-400/60 hover:shadow-xl hover:shadow-purple-500/25 hover:-translate-y-1"
               >
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-white/5">
                   <img
@@ -212,7 +227,7 @@ export default function Landing() {
 
         {/* Feature Value Grid */}
         <section className="mt-24 grid gap-6 md:grid-cols-3">
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-7 backdrop-blur-xl">
+          <div className="rounded-2xl border border-purple-500/20 bg-white/[0.02] p-7 backdrop-blur-xl shadow-lg shadow-purple-950/20">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-300">
               <Sliders size={20} />
             </div>
@@ -222,7 +237,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-7 backdrop-blur-xl">
+          <div className="rounded-2xl border border-purple-500/20 bg-white/[0.02] p-7 backdrop-blur-xl shadow-lg shadow-purple-950/20">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
               <Sparkles size={20} />
             </div>
@@ -232,7 +247,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-7 backdrop-blur-xl">
+          <div className="rounded-2xl border border-purple-500/20 bg-white/[0.02] p-7 backdrop-blur-xl shadow-lg shadow-purple-950/20">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-300">
               <CheckCircle2 size={20} />
             </div>
@@ -258,7 +273,7 @@ export default function Landing() {
           </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            <div className="rounded-2xl border border-white/[0.07] bg-[#07080c]/90 p-5 backdrop-blur-xl">
+            <div className="rounded-2xl border border-purple-500/25 bg-[#05060a]/85 p-5 backdrop-blur-xl shadow-md shadow-purple-950/20">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-500/15 text-purple-300">
                 <Brain size={18} />
               </div>
@@ -268,7 +283,7 @@ export default function Landing() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/[0.07] bg-[#07080c]/90 p-5 backdrop-blur-xl">
+            <div className="rounded-2xl border border-purple-500/25 bg-[#05060a]/85 p-5 backdrop-blur-xl shadow-md shadow-purple-950/20">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300">
                 <Sliders size={18} />
               </div>
@@ -278,7 +293,7 @@ export default function Landing() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/[0.07] bg-[#07080c]/90 p-5 backdrop-blur-xl">
+            <div className="rounded-2xl border border-purple-500/25 bg-[#05060a]/85 p-5 backdrop-blur-xl shadow-md shadow-purple-950/20">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-pink-500/15 text-pink-300">
                 <Database size={18} />
               </div>
@@ -288,7 +303,7 @@ export default function Landing() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/[0.07] bg-[#07080c]/90 p-5 backdrop-blur-xl">
+            <div className="rounded-2xl border border-purple-500/25 bg-[#05060a]/85 p-5 backdrop-blur-xl shadow-md shadow-purple-950/20">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/15 text-amber-300">
                 <Layers size={18} />
               </div>
@@ -298,7 +313,7 @@ export default function Landing() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/[0.07] bg-[#07080c]/90 p-5 backdrop-blur-xl">
+            <div className="rounded-2xl border border-purple-500/25 bg-[#05060a]/85 p-5 backdrop-blur-xl shadow-md shadow-purple-950/20">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-300">
                 <Globe2 size={18} />
               </div>
@@ -310,7 +325,7 @@ export default function Landing() {
           </div>
 
           {/* User Preference Study Insights Box */}
-          <div className="mt-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 sm:p-6 backdrop-blur-xl">
+          <div className="mt-6 rounded-2xl border border-purple-500/20 bg-white/[0.02] p-5 sm:p-6 backdrop-blur-xl shadow-lg shadow-purple-950/20">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-purple-400/80">
@@ -324,7 +339,7 @@ export default function Landing() {
                 </p>
               </div>
               <div className="shrink-0">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/40 bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-300 shadow-sm shadow-purple-500/25">
                   <Sparkles size={12} />
                   <span>Cognitive Ease by Design</span>
                 </span>
@@ -335,10 +350,10 @@ export default function Landing() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/[0.08] bg-[#05060a] py-6 text-xs text-white/35">
+      <footer className="relative z-10 border-t border-purple-500/20 bg-[#030308] py-6 text-xs text-white/35">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Bottom-left: nav-pill-style links */}
-          <nav className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.03] p-1 shadow-inner backdrop-blur-md">
+          <nav className="flex items-center gap-1 rounded-full border border-purple-500/20 bg-white/[0.03] p-1 shadow-inner backdrop-blur-md">
             <a
               href="/about"
               className="rounded-full px-3.5 py-1.5 text-xs font-medium text-white/60 transition-all hover:text-white hover:bg-white/[0.04]"

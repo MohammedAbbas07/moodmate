@@ -127,12 +127,12 @@ export default function CinematicBackground() {
       aria-hidden="true"
     >
       {/* Base dark fill */}
-      <div className="absolute inset-0 bg-[#05060a]" />
+      <div className="absolute inset-0 bg-[#030308]" />
 
       {/* Ambient lighting — three offset spheres */}
-      <div className="absolute top-[8%] left-[18%] h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-purple-600/8 blur-[170px]" />
-      <div className="absolute top-[38%] right-[8%] h-[500px] w-[500px] rounded-full bg-indigo-600/8 blur-[160px]" />
-      <div className="absolute bottom-[-5%] left-[40%] h-[500px] w-[650px] -translate-x-1/2 rounded-full bg-fuchsia-600/5 blur-[150px]" />
+      <div className="absolute top-[8%] left-[18%] h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-purple-600/12 blur-[170px]" />
+      <div className="absolute top-[38%] right-[8%] h-[500px] w-[500px] rounded-full bg-indigo-600/12 blur-[160px]" />
+      <div className="absolute bottom-[-5%] left-[40%] h-[500px] w-[650px] -translate-x-1/2 rounded-full bg-fuchsia-600/8 blur-[150px]" />
 
       {/* Subtle micro grid */}
       <div
@@ -173,7 +173,7 @@ export default function CinematicBackground() {
                   delay: poster.delay,
                 },
               }}
-              className={`absolute aspect-[2/3] overflow-hidden rounded-xl border border-white/[0.09] bg-white/[0.02] shadow-2xl shadow-black/70 ${poster.position}`}
+              className={`absolute aspect-[2/3] overflow-hidden rounded-xl border border-purple-500/20 bg-white/[0.02] shadow-2xl shadow-black/80 ${poster.position}`}
             >
               <img
                 src={poster.image}
@@ -201,9 +201,9 @@ export default function CinematicBackground() {
       </motion.div>
 
       {/* Center content readability vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,6,10,0.35)_42%,rgba(5,6,10,0.92)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(3,3,8,0.4)_42%,rgba(3,3,8,0.96)_100%)]" />
       {/* Additional center safe zone blur */}
-      <div className="absolute left-1/2 top-1/2 h-[580px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#05060a]/70 blur-[100px]" />
+      <div className="absolute left-1/2 top-1/2 h-[580px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#030308]/75 blur-[100px]" />
     </div>
   );
 }

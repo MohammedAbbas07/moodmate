@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FileText } from 'lucide-react';
 import CinematicBackground from '../components/CinematicBackground';
 import Navbar from '../components/Navbar';
@@ -48,7 +48,7 @@ const SECTIONS = [
 
 export default function TermsAndConditions() {
   return (
-    <div className="relative min-h-screen bg-[#05060a] text-white selection:bg-purple-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#030308] text-white selection:bg-purple-500/30 selection:text-white">
       <CinematicBackground />
       <Navbar />
 
@@ -74,7 +74,7 @@ export default function TermsAndConditions() {
 
         <div className="space-y-4 mb-14">
           {SECTIONS.map((section) => (
-            <div key={section.title} className="rounded-2xl border border-white/[0.08] bg-[#0a0b12]/80 p-6 backdrop-blur-xl">
+            <div key={section.title} className="rounded-2xl border border-purple-500/25 bg-[#05060a]/80 p-6 backdrop-blur-xl shadow-lg shadow-purple-950/20">
               <h2 className="text-sm font-semibold text-white mb-3">{section.title}</h2>
               <p className="text-sm text-white/55 leading-relaxed">{section.body}</p>
             </div>

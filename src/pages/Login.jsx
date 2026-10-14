@@ -169,11 +169,11 @@ export default function Login() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between overflow-hidden">
+    <div className="relative min-h-screen bg-[#030308] text-white flex flex-col justify-between overflow-hidden">
 
       {/* Transition overlay — shown while navigating to Welcome */}
       <div
-        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#05060a]/50 backdrop-blur-md transition-opacity duration-500 ${
+        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#030308]/60 backdrop-blur-md transition-opacity duration-500 ${
           transitioning ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -186,8 +186,8 @@ export default function Login() {
 
       {/* Background ambient lighting */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-[20%] left-[10%] h-[500px] w-[500px] rounded-full bg-purple-600/15 blur-[160px]" />
-        <div className="absolute bottom-[10%] right-[10%] h-[550px] w-[550px] rounded-full bg-indigo-600/10 blur-[170px]" />
+        <div className="absolute top-[20%] left-[10%] h-[500px] w-[500px] rounded-full bg-purple-600/20 blur-[160px]" />
+        <div className="absolute bottom-[10%] right-[10%] h-[550px] w-[550px] rounded-full bg-indigo-600/15 blur-[170px]" />
       </div>
 
       {/* Top Header */}
@@ -214,7 +214,7 @@ export default function Login() {
           
           {/* Left Column: Vision & Mood Preview */}
           <div className="hidden lg:block">
-            <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-3.5 py-1 text-xs font-medium text-purple-300">
+            <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/40 bg-purple-500/15 px-3.5 py-1 text-xs font-medium text-purple-300 shadow-sm shadow-purple-500/20">
               <Sparkles size={12} />
               <span>Personalized Discovery</span>
             </div>
@@ -248,7 +248,7 @@ export default function Login() {
             </div>
 
             {/* Feature Note */}
-            <div className="mt-12 flex items-start gap-3.5 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
+            <div className="mt-12 flex items-start gap-3.5 rounded-2xl border border-purple-500/30 bg-[#05060a]/75 p-5 backdrop-blur-xl shadow-lg shadow-purple-950/20">
               <Shield size={20} className="text-purple-400 shrink-0 mt-0.5" />
               <div>
                 <h4 className="text-xs font-semibold text-white">Private & Ephemeral by Design</h4>
@@ -261,7 +261,7 @@ export default function Login() {
 
           {/* Right Column: Glass Login Card */}
           <div className="mx-auto w-full max-w-md">
-            <div className="rounded-3xl border border-white/[0.09] bg-[#0a0b12]/90 p-8 sm:p-10 backdrop-blur-2xl shadow-2xl">
+            <div className="rounded-3xl border border-purple-500/30 bg-[#05060a]/75 p-8 sm:p-10 backdrop-blur-xl shadow-2xl shadow-purple-950/30">
               
               {/* Form Heading */}
               <div>
@@ -322,7 +322,7 @@ export default function Login() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-purple-500 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-500/25 transition hover:bg-purple-600 active:scale-98"
+                  className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-purple-500 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-500/40 transition hover:bg-purple-600 hover:shadow-purple-500/60 active:scale-98 cursor-pointer"
                 >
                   <span>{isLoading ? 'Loading...' : isSignUp ? 'Create Account' : 'Sign In with Email'}</span>
                   {!isLoading && <ArrowRight size={15} />}
@@ -334,7 +334,7 @@ export default function Login() {
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-white/[0.08]" />
                 </div>
-                <span className="relative bg-[#0a0b12] px-3 text-[11px] font-medium text-white/40 uppercase tracking-wider">
+                <span className="relative rounded-full border border-purple-500/20 bg-[#05060a] px-3 py-0.5 text-[11px] font-medium text-white/50 uppercase tracking-wider">
                   or jump straight in
                 </span>
               </div>
@@ -343,7 +343,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={handleGuestLogin}
-                className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-white/[0.12] bg-white/[0.04] py-3.5 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/[0.08]"
+                className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-purple-500/25 bg-white/[0.04] py-3.5 text-sm font-medium text-white transition hover:border-purple-500/50 hover:bg-white/[0.08] hover:shadow-md hover:shadow-purple-500/20 cursor-pointer"
               >
                 <UserCheck size={16} className="text-purple-400" />
                 <span>Continue as Guest</span>

@@ -6,7 +6,7 @@ import CinematicBackground from '../components/CinematicBackground';
 
 export default function NotFound() {
   return (
-    <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#030308] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
       <CinematicBackground />
       <Navbar />
 

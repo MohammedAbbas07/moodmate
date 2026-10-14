@@ -121,6 +121,9 @@ export function MoodProvider({ children }) {
   // Methods
   const updateMoodProfile = (profile) => {
     setMoodProfile(createMoodProfile(profile));
+    // Mark that the user has set a mood profile in this browser session.
+    // The Recommendations page uses this flag to gate content display.
+    try { sessionStorage.setItem('moodmate_session_profile_set', '1'); } catch (_) {}
   };
 
   const toggleSaveItem = (item) => {

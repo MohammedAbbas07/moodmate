@@ -29,7 +29,7 @@ const TEAM = [
 
 export default function AboutUs() {
   return (
-    <div className="relative min-h-screen bg-[#05060a] text-white selection:bg-purple-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#030308] text-white selection:bg-purple-500/30 selection:text-white">
       <CinematicBackground />
       <Navbar />
 
@@ -58,7 +58,7 @@ export default function AboutUs() {
 
         {/* ── SECTION 2: Brand Story ── */}
         <section>
-          <div className="rounded-3xl border border-white/[0.08] bg-gradient-to-br from-purple-950/40 via-[#0a0b12]/80 to-indigo-950/30 p-10 backdrop-blur-xl">
+          <div className="rounded-3xl border border-purple-500/25 bg-gradient-to-br from-purple-950/40 via-[#05060a]/85 to-indigo-950/30 p-10 backdrop-blur-xl shadow-xl shadow-purple-950/20">
             <div className="flex items-start gap-4 mb-5">
               <div className="flex-shrink-0 mt-1 flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-500/20 border border-purple-500/30">
                 <Sparkles size={18} className="text-purple-400" />
@@ -118,7 +118,7 @@ export default function AboutUs() {
               {TEAM.map((member) => (
                 <div
                   key={member.name}
-                  className="rounded-3xl border border-white/[0.08] bg-[#0a0b12]/80 p-7 backdrop-blur-xl"
+                  className="rounded-3xl border border-purple-500/25 bg-[#05060a]/80 p-7 backdrop-blur-xl shadow-xl shadow-purple-950/20"
                 >
                   <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-wider mb-4 ${
                     member.accent === 'purple'

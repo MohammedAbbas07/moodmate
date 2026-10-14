@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import { Sparkles, Film, Tv, Music, Heart, Search, Compass, ArrowLeft, Globe2, Layers, Loader2 } from 'lucide-react';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import { Sparkles, Film, Tv, Music, Heart, Search, Compass, ArrowLeft, Globe2, Layers, Loader2, MessageCircle, LayoutGrid } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import CinematicBackground from '../components/CinematicBackground';
 import RecommendationCard from '../components/RecommendationCard';
@@ -12,14 +12,24 @@ import { hasCompletedMoodProfile } from '../utils/moodProfile';
 
 
 export default function Recommendations() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const tabParam = searchParams.get('tab');
   const { moodProfile, savedItems } = useMood();
   const hasProfile = hasCompletedMoodProfile(moodProfile);
+
+  // Gate: only show full page when the user set a mood profile this session.
+  // This prevents showing stale localStorage-restored recommendations from a
+  // previous visit when the user hasn't gone through the chatbot (or demo) yet.
+  const sessionProfileSet =
+    typeof sessionStorage !== 'undefined' &&
+    !!sessionStorage.getItem('moodmate_session_profile_set');
+
   const [activeTab, setActiveTab] = useState(() => (tabParam || (hasProfile ? 'for-you' : 'all'))); // 'for-you' | 'all' | 'movie' | 'series' | 'anime' | 'music' | 'saved'
   const [searchQuery, setSearchQuery] = useState('');
   const [isReady, setIsReady] = useState(false);
   const timerRef = useRef(null);
+
 
   // Sync activeTab if searchParam changes (e.g. clicking Watchlist heart while already on recommendations page)
   useEffect(() => {
@@ -146,18 +156,64 @@ export default function Recommendations() {
   const musicCount = useMemo(() => mediaCatalog.filter((item) => item.type === 'music').length, []);
 
   return (
-    <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#030308] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
       <CinematicBackground />
       <Navbar />
 
       <main className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        
+
+        {/* ── SESSION GATE ─────────────────────────────────────────────────────
+            Only show recommendations when the user has gone through the chatbot
+            (or the landing-page demo) in this browser session.
+            ─────────────────────────────────────────────────────────────────── */}
+        {!sessionProfileSet ? (
+          <div className="flex min-h-[70vh] items-center justify-center px-4 py-8">
+            <div className="rounded-3xl border border-purple-500/30 bg-[#05060a]/75 p-8 sm:p-12 backdrop-blur-xl shadow-2xl shadow-purple-950/35 max-w-xl w-full flex flex-col items-center text-center">
+              {/* Icon */}
+              <div className="flex h-20 w-20 items-center justify-center rounded-3xl border border-purple-500/40 bg-purple-500/15 shadow-[0_0_40px_6px_rgba(168,85,247,0.3)] mb-8">
+                <Sparkles size={36} className="text-purple-400" strokeWidth={1.5} />
+              </div>
+
+              <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+                Discover what feels right for you
+              </h1>
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-white/50">
+                Your recommendations are tailored to your current emotional state.
+                Chat with MoodMate or browse predefined moods to unlock personalised content.
+              </p>
+
+              {/* Two action buttons */}
+              <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
+                {/* Primary: go to chatbot */}
+                <button
+                  onClick={() => navigate('/chat')}
+                  className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-purple-500/40 transition hover:brightness-110 hover:shadow-purple-500/60 hover:scale-[1.03] active:scale-95 cursor-pointer"
+                >
+                  <MessageCircle size={16} />
+                  <span>Take the mood chatbot</span>
+                  <ArrowLeft size={14} className="rotate-180 transition-transform duration-200 group-hover:translate-x-1" />
+                </button>
+
+                {/* Secondary: landing page mood preview */}
+                <button
+                  onClick={() => navigate('/', { state: { scrollTo: 'mood-preview' } })}
+                  className="flex items-center gap-2 rounded-full border border-purple-500/30 bg-white/[0.04] px-7 py-3.5 text-sm font-medium text-white/80 transition hover:border-purple-500/50 hover:bg-white/[0.08] hover:text-white hover:shadow-md hover:shadow-purple-500/20 active:scale-95 cursor-pointer"
+                >
+                  <LayoutGrid size={15} />
+                  <span>Browse predefined moods</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
         {/* Mood Header Banner */}
-        <div className="rounded-3xl border border-white/[0.08] bg-[#07080c]/80 p-6 sm:p-8 backdrop-blur-2xl shadow-2xl">
+
+        <div className="rounded-3xl border border-purple-500/30 bg-[#05060a]/75 p-6 sm:p-8 backdrop-blur-xl shadow-2xl shadow-purple-950/25">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/40 bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-300 shadow-sm shadow-purple-500/25">
                   <Sparkles size={12} />
                   <span>{hasProfile ? `Personalized for ${displayedMoodName}` : 'Browse the catalog'}</span>
                 </span>
@@ -186,7 +242,7 @@ export default function Recommendations() {
             <div className="flex items-center gap-3 shrink-0">
               <Link
                 to="/chat"
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-medium text-white/80 hover:border-white/20 hover:text-white transition"
+                className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-white/[0.04] px-4 py-2 text-xs font-medium text-white/80 hover:border-purple-500/50 hover:text-white hover:shadow-sm hover:shadow-purple-500/20 transition"
               >
                 <ArrowLeft size={14} />
                 <span>Retake Chat</span>
@@ -199,12 +255,12 @@ export default function Recommendations() {
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           
           {/* Format Tabs: For You (Default), All, Movies, Series, Anime, Music, Saved */}
-          <div className="flex w-full md:w-auto items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none rounded-2xl border border-white/[0.07] bg-[#0a0b12]/80 p-1.5 backdrop-blur-md">
+          <div className="flex w-full md:w-auto items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none rounded-2xl border border-purple-500/25 bg-[#05060a]/75 p-1.5 backdrop-blur-xl shadow-lg shadow-purple-950/20">
             <button
               onClick={() => setActiveTab('for-you')}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
                 activeTab === 'for-you'
-                  ? 'bg-purple-500 text-white shadow-md'
+                  ? 'bg-purple-500 text-white shadow-md shadow-purple-500/40'
                   : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
@@ -216,7 +272,7 @@ export default function Recommendations() {
               onClick={() => setActiveTab('all')}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
                 activeTab === 'all'
-                  ? 'bg-purple-500 text-white shadow-md'
+                  ? 'bg-purple-500 text-white shadow-md shadow-purple-500/40'
                   : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
@@ -228,7 +284,7 @@ export default function Recommendations() {
               onClick={() => setActiveTab('movie')}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
                 activeTab === 'movie'
-                  ? 'bg-purple-500 text-white shadow-md'
+                  ? 'bg-purple-500 text-white shadow-md shadow-purple-500/40'
                   : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
@@ -240,7 +296,7 @@ export default function Recommendations() {
               onClick={() => setActiveTab('series')}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
                 activeTab === 'series'
-                  ? 'bg-purple-500 text-white shadow-md'
+                  ? 'bg-purple-500 text-white shadow-md shadow-purple-500/40'
                   : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
@@ -252,7 +308,7 @@ export default function Recommendations() {
               onClick={() => setActiveTab('anime')}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
                 activeTab === 'anime'
-                  ? 'bg-purple-500 text-white shadow-md'
+                  ? 'bg-purple-500 text-white shadow-md shadow-purple-500/40'
                   : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
@@ -264,7 +320,7 @@ export default function Recommendations() {
               onClick={() => setActiveTab('music')}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
                 activeTab === 'music'
-                  ? 'bg-purple-500 text-white shadow-md'
+                  ? 'bg-purple-500 text-white shadow-md shadow-purple-500/40'
                   : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
@@ -276,7 +332,7 @@ export default function Recommendations() {
               onClick={() => setActiveTab('saved')}
               className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all ${
                 activeTab === 'saved'
-                  ? 'bg-pink-500 text-white shadow-md'
+                  ? 'bg-pink-500 text-white shadow-md shadow-pink-500/40'
                   : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
@@ -303,7 +359,7 @@ export default function Recommendations() {
 
           {/* Loading overlay — visible while computing/rendering, fades once isReady */}
           <div
-            className={`absolute inset-0 z-20 flex flex-col items-center justify-center rounded-3xl bg-[#05060a]/80 backdrop-blur-sm transition-opacity duration-400 ${
+            className={`absolute inset-0 z-20 flex flex-col items-center justify-center rounded-3xl bg-[#030308]/80 backdrop-blur-sm transition-opacity duration-400 ${
               isReady ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
             }`}
             style={{ minHeight: '220px' }}
@@ -316,8 +372,8 @@ export default function Recommendations() {
           <div className={`transition-opacity duration-400 ${isReady ? 'opacity-100' : 'opacity-0'}`}>
           {totalFilteredCount === 0 ? (
             activeTab === 'saved' && !searchQuery ? (
-              <div className="rounded-3xl border border-white/[0.08] bg-[#0a0b12]/60 py-20 px-6 text-center backdrop-blur-xl max-w-lg mx-auto my-6 shadow-2xl">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-purple-500/10 border border-purple-500/20 text-purple-400/80 shadow-inner">
+              <div className="rounded-3xl border border-purple-500/30 bg-[#05060a]/75 py-20 px-6 text-center backdrop-blur-xl max-w-lg mx-auto my-6 shadow-2xl shadow-purple-950/30">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-purple-500/15 border border-purple-500/30 text-purple-300 shadow-md shadow-purple-500/25">
                   <Heart size={42} strokeWidth={1.5} className="text-purple-300/80" />
                 </div>
                 <h3 className="mt-6 text-xl font-bold tracking-tight text-white">Your Watchlist</h3>
@@ -327,7 +383,7 @@ export default function Recommendations() {
                 <div className="mt-8 flex justify-center">
                   <button
                     onClick={() => setActiveTab(hasProfile ? 'for-you' : 'all')}
-                    className="flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/25 transition hover:brightness-110 active:scale-95 cursor-pointer"
+                    className="flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/40 hover:shadow-purple-500/60 transition hover:brightness-110 active:scale-95 cursor-pointer"
                   >
                     <Sparkles size={16} />
                     <span>Discover Recommendations</span>
@@ -335,7 +391,7 @@ export default function Recommendations() {
                 </div>
               </div>
             ) : (
-              <div className="rounded-3xl border border-white/[0.08] bg-[#0a0b12]/60 py-16 px-6 text-center backdrop-blur-xl">
+              <div className="rounded-3xl border border-purple-500/30 bg-[#05060a]/75 py-16 px-6 text-center backdrop-blur-xl shadow-xl shadow-purple-950/20">
                 <Compass size={32} className="mx-auto text-white/30" />
                 <h3 className="mt-4 text-base font-semibold text-white">No matches found</h3>
                 <p className="mt-1 text-xs text-white/40 max-w-sm mx-auto">
@@ -346,7 +402,7 @@ export default function Recommendations() {
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="mt-4 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-purple-300 hover:bg-white/10 cursor-pointer"
+                    className="mt-4 rounded-full border border-purple-500/30 bg-white/5 px-4 py-1.5 text-xs text-purple-300 hover:border-purple-500/50 hover:bg-white/10 hover:shadow-sm hover:shadow-purple-500/20 cursor-pointer"
                   >
                     Clear Search
                   </button>
@@ -425,6 +481,8 @@ export default function Recommendations() {
           )}
           </div>
         </div>
+          </>
+        )}
 
       </main>
 
@@ -434,8 +492,9 @@ export default function Recommendations() {
 
       <ScrollDownIndicator />
 
-      {/* Feedback popup — appears 15 s after page load, once per session */}
-      <FeedbackPopup />
+      {/* Feedback popup — appears 15 s after page load, once per session.
+          Only shown when the full recommendations page is active (not the gate screen). */}
+      {sessionProfileSet && <FeedbackPopup />}
     </div>
   );
 }

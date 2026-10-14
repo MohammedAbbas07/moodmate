@@ -65,11 +65,11 @@ export default function ScrollDownIndicator({ targetId }) {
         tabIndex={-1}
         onClick={scrollToContent}
         className={`pointer-events-auto flex items-center gap-2 rounded-full px-4 py-2.5
-          border border-purple-500/40 bg-[#0a0b12]/85 backdrop-blur-md
+          border border-purple-500/50 bg-[#05060a]/90 backdrop-blur-md
           text-purple-300 text-xs font-medium
-          shadow-[0_0_18px_3px_rgba(168,85,247,0.35)]
-          hover:shadow-[0_0_24px_6px_rgba(168,85,247,0.55)]
-          hover:border-purple-400/60 hover:text-purple-200
+          shadow-[0_0_22px_4px_rgba(168,85,247,0.45)]
+          hover:shadow-[0_0_30px_8px_rgba(168,85,247,0.7)]
+          hover:border-purple-400/80 hover:text-purple-200
           transition-all duration-200 focus:outline-none cursor-pointer
           ${isVisible ? 'animate-bounce' : ''}`}
         title="Scroll to explore"

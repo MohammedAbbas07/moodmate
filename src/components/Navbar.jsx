@@ -20,12 +20,12 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/[0.07] bg-[#05060a]/80 backdrop-blur-xl transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full border-b border-purple-500/20 bg-[#030308]/85 backdrop-blur-xl transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
         
         {/* Brand Logo */}
         <Link to="/" className="group flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-300 transition-all duration-300 group-hover:scale-105 group-hover:bg-purple-500/25">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 shadow-sm shadow-purple-500/30 transition-all duration-300 group-hover:scale-105 group-hover:bg-purple-500/30 group-hover:shadow-purple-500/50">
             <Sparkles size={18} className="text-purple-400" />
           </div>
           <span className="text-xl font-bold tracking-tight text-white">
@@ -39,7 +39,7 @@ export default function Navbar() {
             to="/"
             className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
               isActive('/')
-                ? 'bg-purple-500/20 text-white shadow-sm'
+                ? 'bg-purple-500/25 text-white shadow-sm shadow-purple-500/30 border border-purple-500/30'
                 : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
             }`}
           >
@@ -49,7 +49,7 @@ export default function Navbar() {
             to="/chat"
             className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
               isActive('/chat')
-                ? 'bg-purple-500/20 text-white shadow-sm'
+                ? 'bg-purple-500/25 text-white shadow-sm shadow-purple-500/30 border border-purple-500/30'
                 : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
             }`}
           >
@@ -60,7 +60,7 @@ export default function Navbar() {
             to="/mood-analysis"
             className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
               isActive('/mood-analysis')
-                ? 'bg-purple-500/20 text-white shadow-sm'
+                ? 'bg-purple-500/25 text-white shadow-sm shadow-purple-500/30 border border-purple-500/30'
                 : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
             }`}
           >
@@ -70,7 +70,7 @@ export default function Navbar() {
             to="/recommendations"
             className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
               isActive('/recommendations')
-                ? 'bg-purple-500/20 text-white shadow-sm'
+                ? 'bg-purple-500/25 text-white shadow-sm shadow-purple-500/30 border border-purple-500/30'
                 : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
             }`}
           >
@@ -87,7 +87,7 @@ export default function Navbar() {
             <Link
               to="/mood-analysis"
               title="View your current mood analysis"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-300 transition-all hover:bg-purple-500/20 hover:border-purple-500/40"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-purple-500/40 bg-purple-500/15 px-3 py-1 text-xs font-medium text-purple-300 shadow-sm shadow-purple-500/25 transition-all hover:bg-purple-500/25 hover:border-purple-500/60 hover:shadow-purple-500/40"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
@@ -105,7 +105,7 @@ export default function Navbar() {
           >
             <Heart size={16} className={savedItems.length > 0 ? 'text-pink-400 fill-pink-400/20' : ''} />
             {savedItems.length > 0 && (
-              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-purple-500 text-[10px] font-bold text-white shadow-md">
+              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-purple-500 text-[10px] font-bold text-white shadow-md shadow-purple-500/50">
                 {savedItems.length}
               </span>
             )}
@@ -149,7 +149,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="border-t border-white/[0.08] bg-[#05060a]/95 px-6 py-5 md:hidden"
+            className="border-t border-purple-500/20 bg-[#030308]/95 px-6 py-5 md:hidden"
           >
             <div className="flex flex-col gap-3">
               <Link
@@ -196,7 +196,7 @@ export default function Navbar() {
               <Link
                 to="/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-purple-500 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-purple-500/20"
+                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-purple-500 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-purple-500/40 hover:shadow-purple-500/60 transition-shadow"
               >
                 <LogIn size={16} />
                 <span>{user?.isGuest ? 'Sign In' : 'Account Profile'}</span>

@@ -33,7 +33,7 @@ export default function Welcome() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#05060a] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#030308] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
       <CinematicBackground />
       <Navbar />
 
@@ -41,7 +41,7 @@ export default function Welcome() {
         
         {/* Welcome Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-xs font-medium text-purple-300 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/40 bg-purple-500/15 px-4 py-1.5 text-xs font-medium text-purple-300 backdrop-blur-md shadow-sm shadow-purple-500/25">
             <Sparkles size={14} className="text-purple-400" />
             <span>Welcome, {user?.name || 'Explorer'}</span>
           </div>
@@ -59,7 +59,7 @@ export default function Welcome() {
           <div className="mt-8 flex items-center justify-center">
             <button
               onClick={() => navigate('/chat')}
-              className="group flex items-center justify-center gap-3 rounded-full bg-white px-9 py-4 text-sm font-semibold text-black shadow-2xl shadow-white/10 transition-all duration-300 hover:scale-105 active:scale-95"
+              className="group flex items-center justify-center gap-3 rounded-full bg-white px-9 py-4 text-sm font-semibold text-black shadow-2xl shadow-purple-500/20 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
             >
               <MessageSquare size={17} className="text-black" />
               <span>Start Conversation with AI</span>
@@ -70,7 +70,7 @@ export default function Welcome() {
 
         {/* 3-Step Journey Architecture Cards (Secondary Context) */}
         <div className="mt-14 grid gap-5 sm:grid-cols-3">
-          <div className="rounded-2xl border border-white/[0.08] bg-[#0a0b12]/80 p-6 backdrop-blur-xl">
+          <div className="rounded-2xl border border-purple-500/25 bg-[#05060a]/75 p-6 backdrop-blur-xl shadow-lg shadow-purple-950/20">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-500/15 text-purple-300 font-bold text-xs">
               01
             </div>
@@ -80,7 +80,7 @@ export default function Welcome() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.08] bg-[#0a0b12]/80 p-6 backdrop-blur-xl">
+          <div className="rounded-2xl border border-purple-500/25 bg-[#05060a]/75 p-6 backdrop-blur-xl shadow-lg shadow-purple-950/20">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300 font-bold text-xs">
               02
             </div>
@@ -90,7 +90,7 @@ export default function Welcome() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.08] bg-[#0a0b12]/80 p-6 backdrop-blur-xl">
+          <div className="rounded-2xl border border-purple-500/25 bg-[#05060a]/75 p-6 backdrop-blur-xl shadow-lg shadow-purple-950/20">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-pink-500/15 text-pink-300 font-bold text-xs">
               03
             </div>
@@ -112,7 +112,7 @@ export default function Welcome() {
               <button
                 key={m.id}
                 onClick={() => handleInstantPick(m)}
-                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-white/70 transition hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-white"
+                className="rounded-full border border-purple-500/20 bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-white/70 transition hover:border-purple-500/50 hover:bg-purple-500/15 hover:text-white hover:shadow-sm hover:shadow-purple-500/20 cursor-pointer"
               >
                 {m.name}
               </button>

@@ -38,7 +38,7 @@ export default function RecommendationCard({ item, index = 0 }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.4) }}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0b12] shadow-xl transition-all duration-300 hover:border-purple-500/30 hover:shadow-purple-500/10 hover:-translate-y-1"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-purple-500/30 bg-[#05060a]/75 backdrop-blur-xl shadow-xl transition-all duration-300 hover:border-purple-400/60 hover:shadow-2xl hover:shadow-purple-500/25 hover:-translate-y-1"
     >
       {/* Poster Image Container */}
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-white/[0.02]">
@@ -51,14 +51,14 @@ export default function RecommendationCard({ item, index = 0 }) {
             loading="lazy"
           />
         ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-purple-950/40 to-[#05060a] p-6 text-center">
+          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-purple-950/40 to-[#030308] p-6 text-center">
             {getTypeIcon()}
             <span className="mt-2 text-xs font-semibold text-white/60">{item.title}</span>
           </div>
         )}
 
         {/* Cinematic dark gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0b12] via-[#0a0b12]/20 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#05060a] via-[#05060a]/20 to-black/30" />
 
         {/* Top Badges: Type + ⭐ X.X/5 Mood Match */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-1.5">
@@ -69,7 +69,7 @@ export default function RecommendationCard({ item, index = 0 }) {
 
           <span
             title="MoodMate 6-Factor Affective Compatibility Rating"
-            className="inline-flex items-center gap-1 rounded-full border border-purple-500/40 bg-purple-950/80 px-2.5 py-0.5 text-[10px] font-bold text-purple-200 backdrop-blur-md shadow-md"
+            className="inline-flex items-center gap-1 rounded-full border border-purple-500/50 bg-purple-950/90 px-2.5 py-0.5 text-[10px] font-bold text-purple-200 backdrop-blur-md shadow-md shadow-purple-500/30"
           >
             <Star size={10} className="fill-amber-400 text-amber-400" />
             <span>⭐ {displayScore}/5 Mood Match</span>
