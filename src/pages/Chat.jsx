@@ -8,41 +8,57 @@ import { useMood } from '../context/MoodContext';
 
 const CONVERSATION_QUESTIONS = [
   {
+    // Q1 — captures emotional/physical condition TODAY
+    type: 'state',
     stage: 'Daily State',
     question: "How has your day been treating you overall so far?",
     quickChips: ["Pretty peaceful & calm", "Exhausting and long", "Really exciting & productive", "A bit stressful and tense"]
   },
   {
+    // Q2 — captures current mental load and stress
+    type: 'state',
     stage: 'Mental Focus',
     question: "What's occupying your headspace right now—work pressure, deep thoughts, or ready to unwind?",
     quickChips: ["Overthinking & mental chatter", "Work deadlines and pressure", "Relaxing with zero stress", "Looking for creative inspiration"]
   },
   {
+    // Q3 — captures physical energy and fatigue
+    type: 'state',
     stage: 'Energy Level',
     question: "How would you describe your physical and mental energy level right now?",
     quickChips: ["High energy, ready for action", "Low battery, need gentle rest", "Steady and comfortable", "Restless & craving novelty"]
   },
   {
+    // Q4 — borderline: what the user NEEDS from content; interpreted as need/intent, not raw state
+    type: 'state',
     stage: 'Emotional Need',
     question: "What does your mind need most from entertainment today?",
     quickChips: ["Pure comfort & relief", "Deep reflection & meaning", "High-octane excitement", "Lighthearted fun & laughter"]
   },
   {
+    // Q5 — describes desired CONTENT atmosphere, NOT the user's own emotional state
+    type: 'preference',
     stage: 'Atmosphere & Vibe',
     question: "What kind of atmosphere or vibe feels right for this moment?",
     quickChips: ["Cozy solo sanctuary", "Uplifting feel-good warmth", "Intense & gripping mystery", "Nostalgic & poetic"]
   },
   {
+    // Q6 — pure format/platform preference
+    type: 'preference',
     stage: 'Format Preference',
     question: "Which multimedia format are you leaning towards right now?",
     quickChips: ["A great movie to immerse in", "A binge-worthy series", "An engaging anime", "Soothing/uplifting music"]
   },
   {
+    // Q7 — describes desired content pacing, NOT the user's energy level
+    type: 'preference',
     stage: 'Pacing & Tone',
     question: "What pacing or narrative tone fits your current attention span?",
     quickChips: ["Slow-paced & meditative", "Fast-moving & energetic", "Easygoing & low effort", "Thought-provoking & deep"]
   },
   {
+    // Q8 — pure language/region preference
+    type: 'preference',
     stage: 'Language Preference',
     question: "Which language would you prefer to explore content in today?",
     quickChips: ["English", "Hindi", "Tamil", "Telugu", "Malayalam"]
@@ -85,11 +101,13 @@ export default function Chat() {
     if (!trimmed || isTyping || conversationFinished) return;
 
     idRef.current += 1;
-    // 1. Append User Message
+    // 1. Append User Message — stamp with the current question's type so the
+    //    sentiment engine knows whether this answer describes state or preference.
     const userMsg = {
       id: idRef.current,
       sender: 'user',
-      text: trimmed
+      text: trimmed,
+      questionType: CONVERSATION_QUESTIONS[currentStep]?.type ?? 'state',
     };
 
     const nextMessages = [...messages, userMsg];
