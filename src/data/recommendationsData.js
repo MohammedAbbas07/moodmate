@@ -3,7 +3,6 @@
 // GoEmotions-inspired fine-grained emotion mapping, and MovieLens-style quality weighting.
 
 // ─────────────────────────────────────────────
-    title: 'Kumbalangi Nights',
 //
 // Factors:
 //   1. Mood Compatibility        (30%) — Primary mood tag match
@@ -187,6 +186,14 @@ export function buildStreamSearchUrl(title, provider, artist = '') {
   if (normalizedProvider.includes('youtube music')) return `https://music.youtube.com/search?q=${encodedMusicQuery}`;
   if (normalizedProvider.includes('apple')) return `https://tv.apple.com/search?q=${encodedTitle}`;
   if (normalizedProvider.includes('disney') && !normalizedProvider.includes('hotstar')) return `https://www.hotstar.com/in/search?q=${encodedTitle}`;
+  if (normalizedProvider.includes('sonyliv')) return `https://www.sonyliv.com/search?keyword=${encodedTitle}`;
+  if (normalizedProvider.includes('zee5')) return `https://www.zee5.com/search?q=${encodedTitle}`;
+  if (normalizedProvider.includes('jiocinema')) return `https://www.jiocinema.com/search?q=${encodedTitle}`;
+  if (normalizedProvider.includes('aha')) return `https://www.aha.video/search?q=${encodedTitle}`;
+  // MX Player, Manorama Max, Amazon miniTV — route to homepage (search URL patterns unverified)
+  if (normalizedProvider.replace(/\s+/g, '').includes('mxplayer')) return 'https://www.mxplayer.in';
+  if (normalizedProvider.replace(/\s+/g, '').includes('manoramamax')) return 'https://www.manoramamax.com';
+  if (normalizedProvider.includes('minitv') || normalizedProvider.includes('amazon minitv')) return 'https://www.amazon.com/minitv';
   return `https://www.google.com/search?q=${encodeURIComponent(`${title} watch online`)}`;
 }
 
@@ -1135,8 +1142,8 @@ export const mediaCatalog = [
       "low",
       "tired"
     ],
-    "streamPlatform": "Disney+",
-    "streamUrl": "https://www.disneyplus.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/iAo1hlzsPV9XpYcLQp6Ud065tGO.jpg",
     "description": "A timid magazine photo manager who lives life vicariously through daydreams embarks on a true-life adventure when a negative goes missing."
   },
@@ -1388,7 +1395,7 @@ export const mediaCatalog = [
     "id": "mov-8",
     "type": "movie",
     "title": "96",
-    "year": "2025",
+    "year": "2018",
     "duration": "2h 38m",
     "rating": "TV-14",
     "director": "C. Prem Kumar",
@@ -2214,41 +2221,6 @@ export const mediaCatalog = [
     "streamUrl": "https://open.spotify.com/track/3AJwUDP919kvQ9QcozQPxg"
   },
   {
-    "id": "mov-hindi-1",
-    "title": "3 Idiots",
-    "type": "movie",
-    "language": "Hindi",
-    "genres": [
-      "Drama",
-      "Comedy",
-      "Romance"
-    ],
-    "mood": [
-      "happy"
-    ],
-    "moodTags": [
-      "happy"
-    ],
-    "artist": "",
-    "director": "MoodMate Film Collective",
-    "description": "Rascal. Joker. Dreamer. Genius... You've never met a college student quite like \"Rancho.\" From the moment he arrives at India's most prestigious university, Rancho's outlandish schemes turn the campus upside down—along with the lives of his two newfound best friends. Together, they make life miserable for \"Virus,\" the school’s uptight and heartless dean. But when Rancho catches the eye of the dean's daughter, Virus sets his sights on flunking out the \"3 idiots\" once and for all.",
-    "synopsis": "Rascal. Joker. Dreamer. Genius... You've never met a college student quite like \"Rancho.\" From the moment he arrives at India's most prestigious university, Rancho's outlandish schemes turn the campus upside down—along with the lives of his two newfound best friends. Together, they make life miserable for \"Virus,\" the school’s uptight and heartless dean. But when Rancho catches the eye of the dean's daughter, Virus sets his sights on flunking out the \"3 idiots\" once and for all.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/66A9MqXOyVFCssoloscw79z8Tew.jpg",
-    "image": "https://image.tmdb.org/t/p/w500/66A9MqXOyVFCssoloscw79z8Tew.jpg",
-    "rating": 7.9,
-    "releaseYear": 2015,
-    "year": "2009",
-    "availableLanguages": [
-      "Hindi",
-      "English"
-    ],
-    "valence": 0.9,
-    "energy": 0.72,
-    "baseQuality": 0.87
-  },
-  {
     "id": "ser-hindi-1",
     "title": "Scam 1992",
     "type": "series",
@@ -2259,17 +2231,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
-    "description": "Panchayat is a comedy-drama, which captures the journey of an engineering graduate Abhishek, who for lack of a better job option joins as secretary of a panchayat office in a remote village of Uttar Pradesh. Stuck between crazy villagers and a difficult village lifestyle Abhishek starts his job with the sole motivation of getting out of there as soon as possible, for which he even prepares for CAT.",
-    "synopsis": "Panchayat is a comedy-drama, which captures the journey of an engineering graduate Abhishek, who for lack of a better job option joins as secretary of a panchayat office in a remote village of Uttar Pradesh. Stuck between crazy villagers and a difficult village lifestyle Abhishek starts his job with the sole motivation of getting out of there as soon as possible, for which he even prepares for CAT.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "description": "The rise and fall of stockbroker Harshad Mehta, who exploited banking loopholes to dominate the Indian stock market in the early 1990s.",
+    "synopsis": "The rise and fall of stockbroker Harshad Mehta, who exploited banking loopholes to dominate the Indian stock market in the early 1990s.",
+    "streamPlatform": "SonyLIV",
+    "streamUrl": "https://www.sonyliv.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/xrfvAhrMdT6Uwg5fyTyQAZBYyiu.jpg",
     "image": "https://image.tmdb.org/t/p/w500/xrfvAhrMdT6Uwg5fyTyQAZBYyiu.jpg",
     "rating": 7.9,
@@ -2294,17 +2266,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "",
     "description": "Doraemon: Nobita’s New Adventure is animation content in Hindi. A bright, feel-good pick designed to keep the smile going.",
     "synopsis": "Doraemon: Nobita’s New Adventure is animation content in Hindi. A bright, feel-good pick designed to keep the smile going.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "JioCinema",
+    "streamUrl": "https://www.jiocinema.com",
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 7.9,
@@ -2329,10 +2301,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "Arijit Singh",
     "director": "",
@@ -2364,17 +2336,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "A notorious gangster Vedha surrenders himself to encounter specialist Vikram whom he challenges every step of the way by narrating his life events in the form of riddles that needs to be solved in order to capture him.",
     "synopsis": "A notorious gangster Vedha surrenders himself to encounter specialist Vikram whom he challenges every step of the way by narrating his life events in the form of riddles that needs to be solved in order to capture him.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/ob9YxdzRu5lfKgz0PNrlL45dorf.jpg",
     "image": "https://image.tmdb.org/t/p/w500/ob9YxdzRu5lfKgz0PNrlL45dorf.jpg",
     "rating": 7.9,
@@ -2399,17 +2371,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "A minor girl goes missing in a small town in Tamilnadu and an investigation follows. A sub inspector investigating a missing girl's case in a uncovers some shocking revelations and dirty truths those threaten to shake up the cultural societal fabric.",
     "synopsis": "A minor girl goes missing in a small town in Tamilnadu and an investigation follows. A sub inspector investigating a missing girl's case in a uncovers some shocking revelations and dirty truths those threaten to shake up the cultural societal fabric.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/z6IJi7xmAMmKdbzSnwguIXLIVjN.jpg",
     "image": "https://image.tmdb.org/t/p/w500/z6IJi7xmAMmKdbzSnwguIXLIVjN.jpg",
     "rating": 7.9,
@@ -2434,17 +2406,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "",
     "description": "Doraemon: Nobita’s Sky Utopia is animation content in Tamil. A bright, feel-good pick designed to keep the smile going.",
     "synopsis": "Doraemon: Nobita’s Sky Utopia is animation content in Tamil. A bright, feel-good pick designed to keep the smile going.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "JioCinema",
+    "streamUrl": "https://www.jiocinema.com",
     "thumbnail": "https://m.media-amazon.com/images/M/MV5BNGU1ZGNkYzgtZTJhOC00ZjkyLTgzMWEtOTNiODMzODA3OTIwXkEyXkFqcGc@._V1_.jpg",
     "image": "https://m.media-amazon.com/images/M/MV5BNGU1ZGNkYzgtZTJhOC00ZjkyLTgzMWEtOTNiODMzODA3OTIwXkEyXkFqcGc@._V1_.jpg",
     "rating": 7.9,
@@ -2469,10 +2441,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "Anirudh Ravichander",
     "director": "",
@@ -2504,10 +2476,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -2538,15 +2510,15 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
-    "description": "Ted Lasso, an American football coach, moves to England when he's hired to manage a soccer team—despite having no experience. With cynical players and a doubtful town, will he get them to see the Ted Lasso Way?",
-    "synopsis": "Ted Lasso, an American football coach, moves to England when he's hired to manage a soccer team—despite having no experience. With cynical players and a doubtful town, will he get them to see the Ted Lasso Way?",
+    "description": "A high-school chemistry teacher diagnosed with terminal cancer turns to manufacturing methamphetamine to secure his family's future.",
+    "synopsis": "A high-school chemistry teacher diagnosed with terminal cancer turns to manufacturing methamphetamine to secure his family's future.",
     "streamPlatform": "Netflix",
     "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/uRHsiw1wLxPHFXkkv4Ix1s0O6f4.jpg",
@@ -2572,10 +2544,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "",
@@ -2606,10 +2578,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -2640,17 +2612,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "A fun roller coaster ride about three young people, Aju, Divya and Kuttan who are cousins, reach Bangalore to dream, discover & explore!",
     "synopsis": "A fun roller coaster ride about three young people, Aju, Divya and Kuttan who are cousins, reach Bangalore to dream, discover & explore!",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/iFMyZw1DTGvZ8hPa0eTseSFiRT1.jpg",
     "image": "https://image.tmdb.org/t/p/w500/iFMyZw1DTGvZ8hPa0eTseSFiRT1.jpg",
     "rating": 8.3,
@@ -2675,17 +2647,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Malavika, who comes to the village of Perilloor to find love with her boyfriend Sreekuttan, unexpectedly ends up becoming the village Panchayat President against her will. Later, her life goes upside down along with the problems stirred by the wayward people of Perilloor Panchayath.",
     "synopsis": "Malavika, who comes to the village of Perilloor to find love with her boyfriend Sreekuttan, unexpectedly ends up becoming the village Panchayat President against her will. Later, her life goes upside down along with the problems stirred by the wayward people of Perilloor Panchayath.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/zuQRHydJ1Xojty6EHhWRMNT7ooO.jpg",
     "image": "https://image.tmdb.org/t/p/w500/zuQRHydJ1Xojty6EHhWRMNT7ooO.jpg",
     "rating": 8.3,
@@ -2710,17 +2682,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "",
     "description": "Doraemon: Nobita’s Little Star Wars is animation content in Malayalam. A bright, feel-good pick designed to keep the smile going.",
     "synopsis": "Doraemon: Nobita’s Little Star Wars is animation content in Malayalam. A bright, feel-good pick designed to keep the smile going.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "JioCinema",
+    "streamUrl": "https://www.jiocinema.com",
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.3,
@@ -2745,10 +2717,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "Sushin Shyam",
     "director": "",
@@ -2780,22 +2752,22 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Sathyam is in love with Savitri, a simple woman, and wishes to marry her. However, when Sathyam's mother demands a huge dowry from Savitri's father, the latter cancels the marriage.",
     "synopsis": "Sathyam is in love with Savitri, a simple woman, and wishes to marry her. However, when Sathyam's mother demands a huge dowry from Savitri's father, the latter cancels the marriage.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Sun NXT",
+    "streamUrl": "https://www.sunnxt.com",
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 7.7,
-    "releaseYear": 2013,
-    "year": "1983",
+    "releaseYear": 2016,
+    "year": "2016",
     "availableLanguages": [
       "Telugu",
       "English"
@@ -2815,17 +2787,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "A new generation of love stories, the love and fascination between the lovers, the dynamics of their relationships, their funny conversations and their conflicts.",
     "synopsis": "A new generation of love stories, the love and fascination between the lovers, the dynamics of their relationships, their funny conversations and their conflicts.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Prime Video",
+    "streamUrl": "https://www.primevideo.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/t92IeHAebFvYzzw089lemtrqEio.jpg",
     "image": "https://image.tmdb.org/t/p/w500/t92IeHAebFvYzzw089lemtrqEio.jpg",
     "rating": 7.7,
@@ -2850,17 +2822,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "",
     "director": "",
     "description": "Doraemon: Nobita’s Treasure Island is animation content in Telugu. A bright, feel-good pick designed to keep the smile going.",
     "synopsis": "Doraemon: Nobita’s Treasure Island is animation content in Telugu. A bright, feel-good pick designed to keep the smile going.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "JioCinema",
+    "streamUrl": "https://www.jiocinema.com",
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 7.7,
@@ -2885,10 +2857,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "happy"
+      "upbeat"
     ],
     "moodTags": [
-      "happy"
+      "upbeat"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -2920,57 +2892,22 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "When Heterosis - a mysterious virus that turns gay men straight sweeps through the Parisian gay scene, Jim, the six packed sovereign of the Gym Queens, goes from Pride royalty to social outcast. With only Lucien, a freshly-out twink with more heart than abs, still by his side, Jim must race to find a cure before the disease erases the community that once worshipped him.",
     "synopsis": "When Heterosis - a mysterious virus that turns gay men straight sweeps through the Parisian gay scene, Jim, the six packed sovereign of the Gym Queens, goes from Pride royalty to social outcast. With only Lucien, a freshly-out twink with more heart than abs, still by his side, Jim must race to find a cure before the disease erases the community that once worshipped him.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/nvmGrOzolKlW1z90rLudSjPm9cG.jpg",
     "image": "https://image.tmdb.org/t/p/w500/nvmGrOzolKlW1z90rLudSjPm9cG.jpg",
     "rating": 8,
-    "releaseYear": 2018,
-    "year": "2026",
-    "availableLanguages": [
-      "Hindi",
-      "English"
-    ],
-    "valence": 0.28,
-    "energy": 0.3,
-    "baseQuality": 0.8799999999999999
-  },
-  {
-    "id": "ser-hindi-1-b",
-    "type": "series",
-    "language": "Hindi",
-    "title": "Scam 1992",
-    "genres": [
-      "Drama",
-      "Comedy",
-      "Slice of Life"
-    ],
-    "mood": [
-      "sad"
-    ],
-    "moodTags": [
-      "sad"
-    ],
-    "artist": "",
-    "director": "MoodMate Series Studio",
-    "description": "A widowed fire chief tries to raise his four children with help from his father-in-law.",
-    "synopsis": "A widowed fire chief tries to raise his four children with help from his father-in-law.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/vCtEwgPHBjwMgehFyGnIlaUXJx6.jpg",
-    "image": "https://image.tmdb.org/t/p/w500/vCtEwgPHBjwMgehFyGnIlaUXJx6.jpg",
-    "rating": 8,
-    "releaseYear": 2018,
-    "year": "1990",
+    "releaseYear": 2001,
+    "year": "2001",
     "availableLanguages": [
       "Hindi",
       "English"
@@ -2990,17 +2927,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "",
     "description": "Follow Liko and Roy as they unravel the mysteries that surround them and encounter Friede, Captain Pikachu, Amethio, and others during their exciting adventures!",
     "synopsis": "Follow Liko and Roy as they unravel the mysteries that surround them and encounter Friede, Captain Pikachu, Amethio, and others during their exciting adventures!",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/amemXW39lMbNBJFRMJ5W7q9mLP2.jpg",
     "image": "https://image.tmdb.org/t/p/w500/amemXW39lMbNBJFRMJ5W7q9mLP2.jpg",
     "rating": 8,
@@ -3025,10 +2962,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "Arijit Singh",
     "director": "",
@@ -3060,54 +2997,19 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Maayandi, the only farmer in a village that has abandoned farming, is charged with a petty case that leads to his imprisonment.",
     "synopsis": "Maayandi, the only farmer in a village that has abandoned farming, is charged with a petty case that leads to his imprisonment.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "SonyLIV",
+    "streamUrl": "https://www.sonyliv.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/8TNnEojAEc8Kt6HMWgQNRPcL9J3.jpg",
     "image": "https://image.tmdb.org/t/p/w500/8TNnEojAEc8Kt6HMWgQNRPcL9J3.jpg",
-    "rating": 8,
-    "releaseYear": 2018,
-    "year": "2022",
-    "availableLanguages": [
-      "Tamil",
-      "English"
-    ],
-    "valence": 0.28,
-    "energy": 0.3,
-    "baseQuality": 0.8799999999999999
-  },
-  {
-    "id": "ser-tamil-1-b",
-    "type": "series",
-    "language": "Tamil",
-    "title": "Ayali",
-    "genres": [
-      "Drama",
-      "Comedy",
-      "Slice of Life"
-    ],
-    "mood": [
-      "sad"
-    ],
-    "moodTags": [
-      "sad"
-    ],
-    "artist": "",
-    "director": "MoodMate Series Studio",
-    "description": "Vivek, a diligent cop, takes charge of the investigation of the murder of a beautiful young girl, Velonie. The rumours about her that spring up post her death threatens to irrevocably damage Velonie's image, Vivek must wade through a web of half-truths and confusing leads to solve the case.",
-    "synopsis": "Vivek, a diligent cop, takes charge of the investigation of the murder of a beautiful young girl, Velonie. The rumours about her that spring up post her death threatens to irrevocably damage Velonie's image, Vivek must wade through a web of half-truths and confusing leads to solve the case.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/2EgR5kgv4yHbJpR3GutxzbGd4rw.jpg",
-    "image": "https://image.tmdb.org/t/p/w500/2EgR5kgv4yHbJpR3GutxzbGd4rw.jpg",
     "rating": 8,
     "releaseYear": 2018,
     "year": "2022",
@@ -3130,17 +3032,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "",
     "description": "Join Ash accompanied by his partner Pikachu, as he travels through many regions, meets new friends and faces new challenges on his quest to become a Pokémon Master.",
     "synopsis": "Join Ash accompanied by his partner Pikachu, as he travels through many regions, meets new friends and faces new challenges on his quest to become a Pokémon Master.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/lP4zwr0F7hWTbAFltfoFTc2AxRG.jpg",
     "image": "https://image.tmdb.org/t/p/w500/lP4zwr0F7hWTbAFltfoFTc2AxRG.jpg",
     "rating": 8,
@@ -3165,10 +3067,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "Anirudh Ravichander",
     "director": "",
@@ -3200,56 +3102,22 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "A family loaded with quirky, colorful characters piles into an old van and road trips to California for little Olive to compete in a beauty pageant.",
     "synopsis": "A family loaded with quirky, colorful characters piles into an old van and road trips to California for little Olive to compete in a beauty pageant.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/niNdhTpPHSgw22tK0PLjQMV640v.jpg",
     "image": "https://image.tmdb.org/t/p/w500/niNdhTpPHSgw22tK0PLjQMV640v.jpg",
     "rating": 7.8,
     "releaseYear": 2016,
     "year": "2006",
-    "availableLanguages": [
-      "English"
-    ],
-    "valence": 0.28,
-    "energy": 0.3,
-    "baseQuality": 0.8999999999999999
-  },
-  {
-    "id": "ser-eng-2",
-    "title": "Schitt's Creek",
-    "type": "series",
-    "language": "English",
-    "genres": [
-      "Drama",
-      "Comedy",
-      "Slice of Life"
-    ],
-    "mood": [
-      "sad"
-    ],
-    "moodTags": [
-      "sad"
-    ],
-    "artist": "",
-    "director": "MoodMate Series Studio",
-    "description": "Formerly filthy rich video store magnate Johnny Rose, his soap star wife Moira, and their two kids, über-hipster son David and socialite daughter Alexis, suddenly find themselves broke and forced to live in Schitt's Creek, a small depressing town they once bought as a joke.",
-    "synopsis": "Formerly filthy rich video store magnate Johnny Rose, his soap star wife Moira, and their two kids, über-hipster son David and socialite daughter Alexis, suddenly find themselves broke and forced to live in Schitt's Creek, a small depressing town they once bought as a joke.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/iRfSzrPS5VYWQv7KVSEg2BZZL6C.jpg",
-    "image": "https://image.tmdb.org/t/p/w500/iRfSzrPS5VYWQv7KVSEg2BZZL6C.jpg",
-    "rating": 7.8,
-    "releaseYear": 2016,
-    "year": "2015",
     "availableLanguages": [
       "English"
     ],
@@ -3268,10 +3136,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "",
@@ -3302,10 +3170,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -3336,17 +3204,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "When his father refuses to support his choice of a career, an aspiring chef tries to fulfil his dream by helping his grandfather run his small eatery.",
     "synopsis": "When his father refuses to support his choice of a career, an aspiring chef tries to fulfil his dream by helping his grandfather run his small eatery.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/88QYspKRArRutF3t0Bzj0JYFlcI.jpg",
     "image": "https://image.tmdb.org/t/p/w500/88QYspKRArRutF3t0Bzj0JYFlcI.jpg",
     "rating": 8.4,
@@ -3371,17 +3239,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "When marital discord becomes everyone's business and parents get way too involved in the \"peace talks,\" family drama can become family trauma.",
     "synopsis": "When marital discord becomes everyone's business and parents get way too involved in the \"peace talks,\" family drama can become family trauma.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/hUOiNi5uFmDNOYLn2hCrgtSwNPA.jpg",
     "image": "https://image.tmdb.org/t/p/w500/hUOiNi5uFmDNOYLn2hCrgtSwNPA.jpg",
     "rating": 8.4,
@@ -3406,17 +3274,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "",
     "description": "Join Ash accompanied by his partner Pikachu, as he travels through many regions, meets new friends and faces new challenges on his quest to become a Pokémon Master.",
     "synopsis": "Join Ash accompanied by his partner Pikachu, as he travels through many regions, meets new friends and faces new challenges on his quest to become a Pokémon Master.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/lP4zwr0F7hWTbAFltfoFTc2AxRG.jpg",
     "image": "https://image.tmdb.org/t/p/w500/lP4zwr0F7hWTbAFltfoFTc2AxRG.jpg",
     "rating": 8.4,
@@ -3441,10 +3309,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "Sushin Shyam",
     "director": "",
@@ -3476,17 +3344,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "A musical biopic of the Four Seasons—the rise, the tough times and personal clashes, and the ultimate triumph of a group of friends whose music became symbolic of a generation. Far from a mere tribute concert, it gets to the heart of the relationships at the centre of the group, with a special focus on frontman Frankie Valli, the small kid with the big falsetto.",
     "synopsis": "A musical biopic of the Four Seasons—the rise, the tough times and personal clashes, and the ultimate triumph of a group of friends whose music became symbolic of a generation. Far from a mere tribute concert, it gets to the heart of the relationships at the centre of the group, with a special focus on frontman Frankie Valli, the small kid with the big falsetto.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/kz956Y83YtT6vTyg0Q40mzRe2UM.jpg",
     "image": "https://image.tmdb.org/t/p/w500/kz956Y83YtT6vTyg0Q40mzRe2UM.jpg",
     "rating": 7.8,
@@ -3511,17 +3379,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Masti's weaves a riveting tale as six people from three contrasting worlds of various social statures mingle whilst setting off on merry misadventures and discovering love and friendship as they navigate through multiple pitfalls of work and life.",
     "synopsis": "Masti's weaves a riveting tale as six people from three contrasting worlds of various social statures mingle whilst setting off on merry misadventures and discovering love and friendship as they navigate through multiple pitfalls of work and life.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "aha",
+    "streamUrl": "https://www.aha.video",
     "thumbnail": "https://image.tmdb.org/t/p/w500/fAa0k4YZOtUdvEX0x4XsrfEW2Es.jpg",
     "image": "https://image.tmdb.org/t/p/w500/fAa0k4YZOtUdvEX0x4XsrfEW2Es.jpg",
     "rating": 7.8,
@@ -3546,17 +3414,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "",
     "director": "",
     "description": "Follow Liko and Roy as they unravel the mysteries that surround them and encounter Friede, Captain Pikachu, Amethio, and others during their exciting adventures!",
     "synopsis": "Follow Liko and Roy as they unravel the mysteries that surround them and encounter Friede, Captain Pikachu, Amethio, and others during their exciting adventures!",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/amemXW39lMbNBJFRMJ5W7q9mLP2.jpg",
     "image": "https://image.tmdb.org/t/p/w500/amemXW39lMbNBJFRMJ5W7q9mLP2.jpg",
     "rating": 7.8,
@@ -3581,10 +3449,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "sad"
+      "low"
     ],
     "moodTags": [
-      "sad"
+      "low"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -3625,8 +3493,8 @@ export const mediaCatalog = [
     "director": "MoodMate Film Collective",
     "description": "Ishaan Awasthi is an eight-year-old whose world is filled with wonders that no one else seems to appreciate. Colours, fish, dogs, and kites don't seem important to the adults, who are much more interested in things like homework, marks, and neatness. Ishaan cannot seem to get anything right in class; he is then sent to boarding school, where his life changes forever.",
     "synopsis": "Ishaan Awasthi is an eight-year-old whose world is filled with wonders that no one else seems to appreciate. Colours, fish, dogs, and kites don't seem important to the adults, who are much more interested in things like homework, marks, and neatness. Ishaan cannot seem to get anything right in class; he is then sent to boarding school, where his life changes forever.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/puHRt6Raovm5ujGCdwLWvRv4NHU.jpg",
     "image": "https://image.tmdb.org/t/p/w500/puHRt6Raovm5ujGCdwLWvRv4NHU.jpg",
     "rating": 8.1,
@@ -3800,8 +3668,8 @@ export const mediaCatalog = [
     "director": "MoodMate Series Studio",
     "description": "The series consists of hard-core police investigation stories dealing with investigation, detection and suspense.",
     "synopsis": "The series consists of hard-core police investigation stories dealing with investigation, detection and suspense.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "SonyLIV",
+    "streamUrl": "https://www.sonyliv.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/qPucGcNBxVMVuBY5sgdvYLHURQD.jpg",
     "image": "https://image.tmdb.org/t/p/w500/qPucGcNBxVMVuBY5sgdvYLHURQD.jpg",
     "rating": 8.1,
@@ -3886,74 +3754,6 @@ export const mediaCatalog = [
     "baseQuality": 0.8899999999999999
   },
   {
-    "id": "mov-eng-3",
-    "title": "The Secret Life of Walter Mitty",
-    "type": "movie",
-    "language": "English",
-    "genres": [
-      "Drama",
-      "Comedy",
-      "Romance"
-    ],
-    "mood": [
-      "calm"
-    ],
-    "moodTags": [
-      "calm"
-    ],
-    "artist": "",
-    "director": "MoodMate Film Collective",
-    "description": "A timid magazine photo manager who lives life vicariously through daydreams embarks on a true-life adventure when a negative goes missing.",
-    "synopsis": "A timid magazine photo manager who lives life vicariously through daydreams embarks on a true-life adventure when a negative goes missing.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/iAo1hlzsPV9XpYcLQp6Ud065tGO.jpg",
-    "image": "https://image.tmdb.org/t/p/w500/iAo1hlzsPV9XpYcLQp6Ud065tGO.jpg",
-    "rating": 7.9,
-    "releaseYear": 2019,
-    "year": "2013",
-    "availableLanguages": [
-      "English"
-    ],
-    "valence": 0.72,
-    "energy": 0.25,
-    "baseQuality": 0.9099999999999999
-  },
-  {
-    "id": "ser-eng-3",
-    "title": "The Bear",
-    "type": "series",
-    "language": "English",
-    "genres": [
-      "Drama",
-      "Comedy",
-      "Slice of Life"
-    ],
-    "mood": [
-      "calm"
-    ],
-    "moodTags": [
-      "calm"
-    ],
-    "artist": "",
-    "director": "MoodMate Series Studio",
-    "description": "Carmy, a young fine-dining chef, comes home to Chicago to run his family sandwich shop. As he fights to transform the shop and himself, he works alongside a rough-around-the-edges crew that ultimately reveal themselves as his chosen family.",
-    "synopsis": "Carmy, a young fine-dining chef, comes home to Chicago to run his family sandwich shop. As he fights to transform the shop and himself, he works alongside a rough-around-the-edges crew that ultimately reveal themselves as his chosen family.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg",
-    "image": "https://image.tmdb.org/t/p/w500/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg",
-    "rating": 7.9,
-    "releaseYear": 2019,
-    "year": "2022",
-    "availableLanguages": [
-      "English"
-    ],
-    "valence": 0.72,
-    "energy": 0.25,
-    "baseQuality": 0.9099999999999999
-  },
-  {
     "id": "ani-eng-3",
     "title": "Spy x Family",
     "type": "anime",
@@ -3988,41 +3788,6 @@ export const mediaCatalog = [
     "baseQuality": 0.9099999999999999
   },
   {
-    "id": "mov-malayalam-3",
-    "title": "Kumbalangi Nights",
-    "type": "movie",
-    "language": "Malayalam",
-    "genres": [
-      "Drama",
-      "Comedy",
-      "Romance"
-    ],
-    "mood": [
-      "calm"
-    ],
-    "moodTags": [
-      "calm"
-    ],
-    "artist": "",
-    "director": "MoodMate Film Collective",
-    "description": "Four brothers living in the fishing hamlet of Kumbalangi share a love-hate relationship with each other. Their relationship progresses when Saji, Boney and Franky decide to help Bobby stand by his love.",
-    "synopsis": "Four brothers living in the fishing hamlet of Kumbalangi share a love-hate relationship with each other. Their relationship progresses when Saji, Boney and Franky decide to help Bobby stand by his love.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/lJ3RvIirE2C7gdBKvPRaoQ3iCo2.jpg",
-    "image": "https://image.tmdb.org/t/p/w500/lJ3RvIirE2C7gdBKvPRaoQ3iCo2.jpg",
-    "rating": 8.5,
-    "releaseYear": 2010,
-    "year": "2019",
-    "availableLanguages": [
-      "Malayalam",
-      "English"
-    ],
-    "valence": 0.72,
-    "energy": 0.25,
-    "baseQuality": 0.9299999999999999
-  },
-  {
     "id": "ser-malayalam-3",
     "title": "Maharani",
     "type": "series",
@@ -4042,8 +3807,8 @@ export const mediaCatalog = [
     "director": "MoodMate Series Studio",
     "description": "A political drama set in Bihar of 1990's, this story shows how an illiterate woman handles the state as Chief Minister. Rani Bharti's life takes an interesting turn when her husband Bheem Singh Bharti, announces her as the next chief minister of Bihar. With casteism and traditional satraps in the background, will Rani survive this turn of events?",
     "synopsis": "A political drama set in Bihar of 1990's, this story shows how an illiterate woman handles the state as Chief Minister. Rani Bharti's life takes an interesting turn when her husband Bheem Singh Bharti, announces her as the next chief minister of Bihar. With casteism and traditional satraps in the background, will Rani survive this turn of events?",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "SonyLIV",
+    "streamUrl": "https://www.sonyliv.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/g3ublqmXx9SH8ksY61OPkZRoN3I.jpg",
     "image": "https://image.tmdb.org/t/p/w500/g3ublqmXx9SH8ksY61OPkZRoN3I.jpg",
     "rating": 8.5,
@@ -4147,8 +3912,8 @@ export const mediaCatalog = [
     "director": "MoodMate Film Collective",
     "description": "From a schoolboy’s crush to a middle-aged bachelor’s office romance, four love stories spanning age, religion and status unfold in a small Indian town.",
     "synopsis": "From a schoolboy’s crush to a middle-aged bachelor’s office romance, four love stories spanning age, religion and status unfold in a small Indian town.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/8bgyfPih4bORxtnFCwinqVElkYg.jpg",
     "image": "https://image.tmdb.org/t/p/w500/8bgyfPih4bORxtnFCwinqVElkYg.jpg",
     "rating": 7.9,
@@ -4182,8 +3947,8 @@ export const mediaCatalog = [
     "director": "MoodMate Series Studio",
     "description": "A three-year long-distance relationship between Phani and Anu takes an unexpected twist when he asks her to marry him. While their journey has many highs, lows and bittersweet experiences, will this bumpy ride bring them closer?\n\nThis the official remake of Permanent Roommates (2014), a popular YouTube series produced by The Viral Factory.",
     "synopsis": "A three-year long-distance relationship between Phani and Anu takes an unexpected twist when he asks her to marry him. While their journey has many highs, lows and bittersweet experiences, will this bumpy ride bring them closer?\n\nThis the official remake of Permanent Roommates (2014), a popular YouTube series produced by The Viral Factory.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "aha",
+    "streamUrl": "https://www.aha.video",
     "thumbnail": "https://image.tmdb.org/t/p/w500/9m2UD6rornPatAbcmn3XOnAKAPm.jpg",
     "image": "https://image.tmdb.org/t/p/w500/9m2UD6rornPatAbcmn3XOnAKAPm.jpg",
     "rating": 7.9,
@@ -4278,10 +4043,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -4313,17 +4078,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Set in quaint by-lanes in the heart of India, Gullak is a collection of disarming and relatable tales of the Mishra family.",
     "synopsis": "Set in quaint by-lanes in the heart of India, Gullak is a collection of disarming and relatable tales of the Mishra family.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "SonyLIV",
+    "streamUrl": "https://www.sonyliv.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/arn3mvRYSrEqO7vaKbH8QxM8EEK.jpg",
     "image": "https://image.tmdb.org/t/p/w500/arn3mvRYSrEqO7vaKbH8QxM8EEK.jpg",
     "rating": 8.2,
@@ -4348,10 +4113,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "",
@@ -4383,10 +4148,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "Arijit Singh",
     "director": "",
@@ -4418,17 +4183,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "A budding director endeavors to research a merciless gangster for making a film on gangsterism. But his secret attempts to conduct the research fail when he gets caught for snooping.",
     "synopsis": "A budding director endeavors to research a merciless gangster for making a film on gangsterism. But his secret attempts to conduct the research fail when he gets caught for snooping.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/oDcQE70RYc78iBYgHRknl64QKTu.jpg",
     "image": "https://image.tmdb.org/t/p/w500/oDcQE70RYc78iBYgHRknl64QKTu.jpg",
     "rating": 8.2,
@@ -4453,17 +4218,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "\"Shopping Queen\" is a styling documentary in which five women compete against each other on five consecutive days each week to become the woman with the best style and the best sense of fashion.",
     "synopsis": "\"Shopping Queen\" is a styling documentary in which five women compete against each other on five consecutive days each week to become the woman with the best style and the best sense of fashion.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "MX Player",
+    "streamUrl": "https://www.mxplayer.in",
     "thumbnail": "https://image.tmdb.org/t/p/w500/ucE44IzwL20BQwsCSz37vyWYtmT.jpg",
     "image": "https://image.tmdb.org/t/p/w500/ucE44IzwL20BQwsCSz37vyWYtmT.jpg",
     "rating": 8.2,
@@ -4488,10 +4253,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "",
@@ -4523,10 +4288,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "Anirudh Ravichander",
     "director": "",
@@ -4558,17 +4323,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive.",
     "synopsis": "During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/fASz8A0yFE3QB6LgGoOfwvFSseV.jpg",
     "image": "https://image.tmdb.org/t/p/w500/fASz8A0yFE3QB6LgGoOfwvFSseV.jpg",
     "rating": 8,
@@ -4592,17 +4357,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Three strangers share an obsession with true crime and suddenly find themselves wrapped up in one.",
     "synopsis": "Three strangers share an obsession with true crime and suddenly find themselves wrapped up in one.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/1yjFVQZuW8aofZ5Cgol8iImsVFp.jpg",
     "image": "https://image.tmdb.org/t/p/w500/1yjFVQZuW8aofZ5Cgol8iImsVFp.jpg",
     "rating": 8,
@@ -4626,10 +4391,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "",
@@ -4660,10 +4425,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -4694,17 +4459,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Prasad and Sreeja are a couple planning to set up a new life in Kasargod. On a bus journey they end up being robbed by a thief also named Prasad and this lands them up in a police station.",
     "synopsis": "Prasad and Sreeja are a couple planning to set up a new life in Kasargod. On a bus journey they end up being robbed by a thief also named Prasad and this lands them up in a police station.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/ki1EguwPuXM1t4UTDuaBqD8BLJi.jpg",
     "image": "https://image.tmdb.org/t/p/w500/ki1EguwPuXM1t4UTDuaBqD8BLJi.jpg",
     "rating": 8.6,
@@ -4729,17 +4494,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Jaya Jaya Jaya Jaya Hey Stories is drama content in Malayalam. A lively, high-momentum pick for turning energy into fun.",
     "synopsis": "Jaya Jaya Jaya Jaya Hey Stories is drama content in Malayalam. A lively, high-momentum pick for turning energy into fun.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.6,
@@ -4764,10 +4529,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "",
@@ -4799,10 +4564,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "Sushin Shyam",
     "director": "",
@@ -4834,10 +4599,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -4869,17 +4634,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "A serial killer is targeting police officers in Hyderabad. A female cop in charge of the Special Investigation Team and a forensic expert race against time to find the culprit.",
     "synopsis": "A serial killer is targeting police officers in Hyderabad. A female cop in charge of the Special Investigation Team and a forensic expert race against time to find the culprit.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/9JWBdtWfx6S7vmCq77mDvd173ul.jpg",
     "image": "https://image.tmdb.org/t/p/w500/9JWBdtWfx6S7vmCq77mDvd173ul.jpg",
     "rating": 8,
@@ -4904,10 +4669,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "",
     "director": "",
@@ -4939,10 +4704,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energetic"
+      "excited"
     ],
     "moodTags": [
-      "energetic"
+      "excited"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -5018,8 +4783,8 @@ export const mediaCatalog = [
     "director": "MoodMate Series Studio",
     "description": "Spanning three crucial decades (1940-60s) in the history of India, the story chronicles the life of three great men responsible for launching India's space and nuclear programs respectively: Dr. Homi J. Bhabha, the architect of India's Nuclear Programme, Dr. Vikram Sarabhai, universally acknowledged as the Father of the Indian Space Programme and Dr. A.P.J. Abdul Kalam, the pioneer of modern Indian aerospace and nuclear technology. The season traces the journey of Bhabha and Sarabhai coming to terms with the challenges facing a young, independent nation and their friendship, sacrifice and determination.",
     "synopsis": "Spanning three crucial decades (1940-60s) in the history of India, the story chronicles the life of three great men responsible for launching India's space and nuclear programs respectively: Dr. Homi J. Bhabha, the architect of India's Nuclear Programme, Dr. Vikram Sarabhai, universally acknowledged as the Father of the Indian Space Programme and Dr. A.P.J. Abdul Kalam, the pioneer of modern Indian aerospace and nuclear technology. The season traces the journey of Bhabha and Sarabhai coming to terms with the challenges facing a young, independent nation and their friendship, sacrifice and determination.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "SonyLIV",
+    "streamUrl": "https://www.sonyliv.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/esNv5JwxVsvu6vZE7bTVeu0mLaA.jpg",
     "image": "https://image.tmdb.org/t/p/w500/esNv5JwxVsvu6vZE7bTVeu0mLaA.jpg",
     "rating": 8.3,
@@ -5123,13 +4888,13 @@ export const mediaCatalog = [
     "director": "MoodMate Film Collective",
     "description": "As a young boy Raja turns to a life of crime after the death of his mother. Years  later Raja, now a hardened thief, uses a marriage as an escape ploy but shortly after he is caught.",
     "synopsis": "As a young boy Raja turns to a life of crime after the death of his mother. Years  later Raja, now a hardened thief, uses a marriage as an escape ploy but shortly after he is caught.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/56k4rVgfku7s87yXshtAqKOtbyk.jpg",
     "image": "https://image.tmdb.org/t/p/w500/56k4rVgfku7s87yXshtAqKOtbyk.jpg",
     "rating": 8.3,
-    "releaseYear": 2012,
-    "year": "1973",
+    "releaseYear": 2013,
+    "year": "2013",
     "availableLanguages": [
       "Tamil",
       "English"
@@ -5158,8 +4923,8 @@ export const mediaCatalog = [
     "director": "MoodMate Series Studio",
     "description": "Based on horrifying true incidents that happened between 1985 - 1995 in Chennai, still remembered as 'Once upon a time in Madras'.",
     "synopsis": "Based on horrifying true incidents that happened between 1985 - 1995 in Chennai, still remembered as 'Once upon a time in Madras'.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/p8QH55ZOAMhV5uyct5fFntoBtba.jpg",
     "image": "https://image.tmdb.org/t/p/w500/p8QH55ZOAMhV5uyct5fFntoBtba.jpg",
     "rating": 8.3,
@@ -5263,8 +5028,8 @@ export const mediaCatalog = [
     "director": "MoodMate Film Collective",
     "description": "The night after another unsatisfactory New Year's party, Tim's father reveals to him that the men in their family have the ability to travel through time. They can't change history, but they can change what happens and has happened in their own lives. Thus begins the start of a lesson in learning to appreciate life itself as it is, as it comes, and most importantly, the people living alongside us.",
     "synopsis": "The night after another unsatisfactory New Year's party, Tim's father reveals to him that the men in their family have the ability to travel through time. They can't change history, but they can change what happens and has happened in their own lives. Thus begins the start of a lesson in learning to appreciate life itself as it is, as it comes, and most importantly, the people living alongside us.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "JioCinema",
+    "streamUrl": "https://www.jiocinema.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/ls6zswrOZVhCXQBh96DlbnLBajM.jpg",
     "image": "https://image.tmdb.org/t/p/w500/ls6zswrOZVhCXQBh96DlbnLBajM.jpg",
     "rating": 8.1,
@@ -5399,8 +5164,8 @@ export const mediaCatalog = [
     "director": "MoodMate Film Collective",
     "description": "A tailor gains special powers after being struck by lightning but must take down an unexpected foe if he is to become the superhero his hometown in Kerala needs.",
     "synopsis": "A tailor gains special powers after being struck by lightning but must take down an unexpected foe if he is to become the superhero his hometown in Kerala needs.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/efetKFDyptrRpoHBb103Tg3Auw5.jpg",
     "image": "https://image.tmdb.org/t/p/w500/efetKFDyptrRpoHBb103Tg3Auw5.jpg",
     "rating": 8.7,
@@ -5434,8 +5199,8 @@ export const mediaCatalog = [
     "director": "MoodMate Series Studio",
     "description": "A sex worker's mysterious and gruesome murder in a suburban lodge called \"Grand Tourist Home\" baffles the police as the only lead they have is a fake address.",
     "synopsis": "A sex worker's mysterious and gruesome murder in a suburban lodge called \"Grand Tourist Home\" baffles the police as the only lead they have is a fake address.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/eM2gQTFRoMAaJ3AjGiB10LZU8n6.jpg",
     "image": "https://image.tmdb.org/t/p/w500/eM2gQTFRoMAaJ3AjGiB10LZU8n6.jpg",
     "rating": 8.7,
@@ -5539,8 +5304,8 @@ export const mediaCatalog = [
     "director": "MoodMate Film Collective",
     "description": "After growing up enduring criticism from his father, a young man finds his world shaken upon learning he was switched at birth with a millionaire's son.",
     "synopsis": "After growing up enduring criticism from his father, a young man finds his world shaken upon learning he was switched at birth with a millionaire's son.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/2rzORJaegE2bbKNVkQXbZCeV0BP.jpg",
     "image": "https://image.tmdb.org/t/p/w500/2rzORJaegE2bbKNVkQXbZCeV0BP.jpg",
     "rating": 8.1,
@@ -5574,8 +5339,8 @@ export const mediaCatalog = [
     "director": "MoodMate Series Studio",
     "description": "Revolves around three frustrated husbands who meet by chance and how their rants over their marital problems set off a series of crazy events.",
     "synopsis": "Revolves around three frustrated husbands who meet by chance and how their rants over their marital problems set off a series of crazy events.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/5uyNd8UjItEU2M5W0YKULaxzWFm.jpg",
     "image": "https://image.tmdb.org/t/p/w500/5uyNd8UjItEU2M5W0YKULaxzWFm.jpg",
     "rating": 8.1,
@@ -5670,17 +5435,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Returning home to visit their ill grandfather, two estranged brothers must confront their unresolved rivalry while their parents’ marriage frays.",
     "synopsis": "Returning home to visit their ill grandfather, two estranged brothers must confront their unresolved rivalry while their parents’ marriage frays.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/oPdcOInH8TqR5udDTDPiDuLSN90.jpg",
     "image": "https://image.tmdb.org/t/p/w500/oPdcOInH8TqR5udDTDPiDuLSN90.jpg",
     "rating": 8.4,
@@ -5705,17 +5470,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "The story of two wedding planners in Delhi, where tradition jostles with modern aspirations against the backdrop of big fat Indian weddings revealing many secrets and lies.",
     "synopsis": "The story of two wedding planners in Delhi, where tradition jostles with modern aspirations against the backdrop of big fat Indian weddings revealing many secrets and lies.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Prime Video",
+    "streamUrl": "https://www.primevideo.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/leBOnbO2aLyfhMEdgO9tMlwcCY.jpg",
     "image": "https://image.tmdb.org/t/p/w500/leBOnbO2aLyfhMEdgO9tMlwcCY.jpg",
     "rating": 8.4,
@@ -5740,10 +5505,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "",
@@ -5775,10 +5540,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "Arijit Singh",
     "director": "",
@@ -5810,10 +5575,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -5845,17 +5610,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "A celebrated crime novelist suffering from Alzheimer's is found at a murder scene with no memory of what happened. Now, it is up to his daughter to save him.",
     "synopsis": "A celebrated crime novelist suffering from Alzheimer's is found at a murder scene with no memory of what happened. Now, it is up to his daughter to save him.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/l93GSW1EO7qO6bPUp5qHCDkfyOT.jpg",
     "image": "https://image.tmdb.org/t/p/w500/l93GSW1EO7qO6bPUp5qHCDkfyOT.jpg",
     "rating": 8.4,
@@ -5880,10 +5645,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "",
@@ -5894,8 +5659,8 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.4,
-    "releaseYear": 2015,
-    "year": "1992",
+    "releaseYear": 2016,
+    "year": "2016",
     "availableLanguages": [
       "Tamil",
       "English"
@@ -5915,10 +5680,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "Anirudh Ravichander",
     "director": "",
@@ -5950,10 +5715,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -5984,10 +5749,10 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
@@ -6018,10 +5783,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "",
@@ -6052,10 +5817,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -6086,17 +5851,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Three stages in George's life, and three girls he encounters in each stage.",
     "synopsis": "Three stages in George's life, and three girls he encounters in each stage.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/wfMgsfDrtouYOM6MbrkHtU96Xij.jpg",
     "image": "https://image.tmdb.org/t/p/w500/wfMgsfDrtouYOM6MbrkHtU96Xij.jpg",
     "rating": 8.8,
@@ -6121,17 +5886,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Enter a cradle of mysteries where a man with a dark past manipulates multiple lives through a series of cryptic letters and deadly games.",
     "synopsis": "Enter a cradle of mysteries where a man with a dark past manipulates multiple lives through a series of cryptic letters and deadly games.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/j9EdxlAReZ27m29kTP0cqaQOeoe.jpg",
     "image": "https://image.tmdb.org/t/p/w500/j9EdxlAReZ27m29kTP0cqaQOeoe.jpg",
     "rating": 8.8,
@@ -6156,10 +5921,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "",
@@ -6191,10 +5956,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "Sushin Shyam",
     "director": "",
@@ -6226,10 +5991,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -6261,17 +6026,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Three prisoners on run try to rob three banks. They are well-prepared and know how to run away with the booty. Is someone handling them from behind the screens?",
     "synopsis": "Three prisoners on run try to rob three banks. They are well-prepared and know how to run away with the booty. Is someone handling them from behind the screens?",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/4lqTfrlQWakAHbPbF5c84pl07Us.jpg",
     "image": "https://image.tmdb.org/t/p/w500/4lqTfrlQWakAHbPbF5c84pl07Us.jpg",
     "rating": 8.2,
@@ -6296,10 +6061,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "",
     "director": "",
@@ -6310,8 +6075,8 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.2,
-    "releaseYear": 2013,
-    "year": "1992",
+    "releaseYear": 2016,
+    "year": "2016",
     "availableLanguages": [
       "Telugu",
       "English"
@@ -6331,10 +6096,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "peaceful"
+      "calm"
     ],
     "moodTags": [
-      "peaceful"
+      "calm"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -6366,17 +6131,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Meeting while on vacation, Ved and Tara sense a connection but vow to keep their real identities a secret. Years later, their paths cross again.",
     "synopsis": "Meeting while on vacation, Ved and Tara sense a connection but vow to keep their real identities a secret. Years later, their paths cross again.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/8Ktf15qGVFYQ6CdBtBgCDM96UMC.jpg",
     "image": "https://image.tmdb.org/t/p/w500/8Ktf15qGVFYQ6CdBtBgCDM96UMC.jpg",
     "rating": 8.5,
@@ -6401,17 +6166,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Aspirants is a story of 3 friends - Abhilash, SK, and Guri. The story takes place in the past and the present where the past captures the struggle and the drama behind the making of UPSC CSE aspirants in Old Rajinder Nagar of Delhi, while the present talks about the aftermath. It is the story of three UPSC aspirants journey.",
     "synopsis": "Aspirants is a story of 3 friends - Abhilash, SK, and Guri. The story takes place in the past and the present where the past captures the struggle and the drama behind the making of UPSC CSE aspirants in Old Rajinder Nagar of Delhi, while the present talks about the aftermath. It is the story of three UPSC aspirants journey.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Prime Video",
+    "streamUrl": "https://www.primevideo.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/lG8wK40jH4EX6dbVFI1fzw2E96N.jpg",
     "image": "https://image.tmdb.org/t/p/w500/lG8wK40jH4EX6dbVFI1fzw2E96N.jpg",
     "rating": 8.5,
@@ -6436,10 +6201,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "",
@@ -6450,8 +6215,8 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.5,
-    "releaseYear": 2018,
-    "year": "1992",
+    "releaseYear": 2016,
+    "year": "2016",
     "availableLanguages": [
       "Hindi",
       "English"
@@ -6471,10 +6236,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "Arijit Singh",
     "director": "",
@@ -6506,17 +6271,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Dilli, a convicted criminal, is out on parole to meet his daughter. However, a drug bust sets him off on a mission to save the life of police officers.",
     "synopsis": "Dilli, a convicted criminal, is out on parole to meet his daughter. However, a drug bust sets him off on a mission to save the life of police officers.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/hOF9CgPsy9aLr5GJEBESC8MEXFy.jpg",
     "image": "https://image.tmdb.org/t/p/w500/hOF9CgPsy9aLr5GJEBESC8MEXFy.jpg",
     "rating": 8.5,
@@ -6541,17 +6306,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "The anthology series showcases how a single social media post, instigated by negative emotions, can change one's life forever.",
     "synopsis": "The anthology series showcases how a single social media post, instigated by negative emotions, can change one's life forever.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/59gW9zlmso1wNBJOynFGnwetsxW.jpg",
     "image": "https://image.tmdb.org/t/p/w500/59gW9zlmso1wNBJOynFGnwetsxW.jpg",
     "rating": 8.5,
@@ -6576,10 +6341,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "",
@@ -6611,10 +6376,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "Anirudh Ravichander",
     "director": "",
@@ -6646,10 +6411,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -6680,10 +6445,10 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
@@ -6714,10 +6479,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "",
@@ -6748,10 +6513,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -6782,10 +6547,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -6817,17 +6582,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "The Village is a BBC television drama created and written by Peter Moffat. Consisting of two six-episode series—the project intended as a 42-hour televised epic—the first series covers 1914 to 1920; the second continued the story into the 1920s. However, it was not commissioned for a third series. An epic drama charting the turbulent times experienced by one English village throughout the 20th century; births, deaths, political events and rebellions are among the events that occur during the time.\n\nBert Middleton lives across the entire 100-year period, and his story from boyhood to old age forms the crux of the story, seen via flashbacks as Bert is interviewed in the present day by a documentarian working on a project about the second eldest man in the United Kingdom and his village.",
     "synopsis": "The Village is a BBC television drama created and written by Peter Moffat. Consisting of two six-episode series—the project intended as a 42-hour televised epic—the first series covers 1914 to 1920; the second continued the story into the 1920s. However, it was not commissioned for a third series. An epic drama charting the turbulent times experienced by one English village throughout the 20th century; births, deaths, political events and rebellions are among the events that occur during the time.\n\nBert Middleton lives across the entire 100-year period, and his story from boyhood to old age forms the crux of the story, seen via flashbacks as Bert is interviewed in the present day by a documentarian working on a project about the second eldest man in the United Kingdom and his village.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Prime Video",
+    "streamUrl": "https://www.primevideo.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/ojTX0B5o5yI2mKkLyyTxaKoPvWL.jpg",
     "image": "https://image.tmdb.org/t/p/w500/ojTX0B5o5yI2mKkLyyTxaKoPvWL.jpg",
     "rating": 8.9,
@@ -6852,10 +6617,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "",
@@ -6866,8 +6631,8 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.9,
-    "releaseYear": 2022,
-    "year": "1992",
+    "releaseYear": 2016,
+    "year": "2016",
     "availableLanguages": [
       "Malayalam",
       "English"
@@ -6887,10 +6652,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "Sushin Shyam",
     "director": "",
@@ -6922,10 +6687,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -6957,17 +6722,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Journalist Sagar's life turns thrilling as he unravels dark secrets behind newspaper clippings predicting tragedies. He becomes a murder suspect, racing against time to clear his name and solve the enigma and faces dangerous twists. Suspense builds in this roller-coaster ride.",
     "synopsis": "Journalist Sagar's life turns thrilling as he unravels dark secrets behind newspaper clippings predicting tragedies. He becomes a murder suspect, racing against time to clear his name and solve the enigma and faces dangerous twists. Suspense builds in this roller-coaster ride.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Prime Video",
+    "streamUrl": "https://www.primevideo.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/jMegWqCj8z58na8RG8ytlPJ7gGm.jpg",
     "image": "https://image.tmdb.org/t/p/w500/jMegWqCj8z58na8RG8ytlPJ7gGm.jpg",
     "rating": 8.3,
@@ -6992,10 +6757,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "",
     "director": "",
@@ -7027,10 +6792,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "melancholic"
+      "low"
     ],
     "moodTags": [
-      "melancholic"
+      "low"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -7062,17 +6827,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Dangal is an extraordinary true story based on the life of Mahavir Singh and his two daughters, Geeta and Babita Phogat. The film traces the inspirational journey of a father who trains his daughters to become world class wrestlers.",
     "synopsis": "Dangal is an extraordinary true story based on the life of Mahavir Singh and his two daughters, Geeta and Babita Phogat. The film traces the inspirational journey of a father who trains his daughters to become world class wrestlers.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/cJRPOLEexI7qp2DKtFfCh7YaaUG.jpg",
     "image": "https://image.tmdb.org/t/p/w500/cJRPOLEexI7qp2DKtFfCh7YaaUG.jpg",
     "rating": 8.6,
@@ -7097,17 +6862,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "A couple, who were in a long distance relationship for 3 years, face the prospect of getting married.",
     "synopsis": "A couple, who were in a long distance relationship for 3 years, face the prospect of getting married.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Prime Video",
+    "streamUrl": "https://www.primevideo.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/ftSOeY2zUidSh5q3uhmpbgwDqvd.jpg",
     "image": "https://image.tmdb.org/t/p/w500/ftSOeY2zUidSh5q3uhmpbgwDqvd.jpg",
     "rating": 8.6,
@@ -7132,17 +6897,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "",
     "description": "The company of the stage \"the secret of Sen and Chihiro\" gathered together in Tokyo again. The new cast is also added, and it challenges the first overseas performance at the London Colosseum in the theater and the sacred end in west end. The company that arrived in London is soon baptized. Theater is narrow compared to Japan, and audience seats are wide. The set is also rebuilt, and the performance and the performance of the theater are changed. And the biggest problem is the difference between the wall and the way of working between English staff. From the first day of the practice, trouble attacks without permission. Training in London was the beginning of the disturbance.",
     "synopsis": "The company of the stage \"the secret of Sen and Chihiro\" gathered together in Tokyo again. The new cast is also added, and it challenges the first overseas performance at the London Colosseum in the theater and the sacred end in west end. The company that arrived in London is soon baptized. Theater is narrow compared to Japan, and audience seats are wide. The set is also rebuilt, and the performance and the performance of the theater are changed. And the biggest problem is the difference between the wall and the way of working between English staff. From the first day of the practice, trouble attacks without permission. Training in London was the beginning of the disturbance.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/8uajlTh0Gg2mTn3pu3KClBVzf5A.jpg",
     "image": "https://image.tmdb.org/t/p/w500/8uajlTh0Gg2mTn3pu3KClBVzf5A.jpg",
     "rating": 8.6,
@@ -7167,10 +6932,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "Arijit Singh",
     "director": "",
@@ -7202,17 +6967,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Arjun is conveniently married to his best friend Anu and their marriage turns out to be a nightmare since he is not really in love with her. When things get tough Arjun gets a second chance in life that could change his path and perspective altogether.",
     "synopsis": "Arjun is conveniently married to his best friend Anu and their marriage turns out to be a nightmare since he is not really in love with her. When things get tough Arjun gets a second chance in life that could change his path and perspective altogether.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/wuQwtFEm4DlzK3EnZ5VWefVXZvG.jpg",
     "image": "https://image.tmdb.org/t/p/w500/wuQwtFEm4DlzK3EnZ5VWefVXZvG.jpg",
     "rating": 8.6,
@@ -7237,17 +7002,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Paper Rocket is drama content in Tamil. A propulsive favorite for channeling momentum into celebration.",
     "synopsis": "Paper Rocket is drama content in Tamil. A propulsive favorite for channeling momentum into celebration.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/7rXoG3lKijD2Jn7aYNQJ3kXsdvb.jpg",
     "image": "https://image.tmdb.org/t/p/w500/7rXoG3lKijD2Jn7aYNQJ3kXsdvb.jpg",
     "rating": 8.6,
@@ -7272,10 +7037,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "",
@@ -7307,10 +7072,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "Anirudh Ravichander",
     "director": "",
@@ -7332,40 +7097,6 @@ export const mediaCatalog = [
     "baseQuality": 0.94
   },
   {
-    "id": "mov-eng-8",
-    "title": "Paddington 2",
-    "type": "movie",
-    "language": "English",
-    "genres": [
-      "Drama",
-      "Comedy",
-      "Romance"
-    ],
-    "mood": [
-      "energized"
-    ],
-    "moodTags": [
-      "energized"
-    ],
-    "artist": "",
-    "director": "MoodMate Film Collective",
-    "description": "Paddington, now happily settled with the Browns, picks up a series of odd jobs to buy the perfect present for his Aunt Lucy, but it is stolen.",
-    "synopsis": "Paddington, now happily settled with the Browns, picks up a series of odd jobs to buy the perfect present for his Aunt Lucy, but it is stolen.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
-    "thumbnail": "https://image.tmdb.org/t/p/w500/1OJ9vkD5xPt3skC6KguyXAgagRZ.jpg",
-    "image": "https://image.tmdb.org/t/p/w500/1OJ9vkD5xPt3skC6KguyXAgagRZ.jpg",
-    "rating": 8.4,
-    "releaseYear": 2019,
-    "year": "2017",
-    "availableLanguages": [
-      "English"
-    ],
-    "valence": 0.88,
-    "energy": 0.96,
-    "baseQuality": 0.96
-  },
-  {
     "id": "ser-eng-8",
     "title": "Brooklyn Nine-Nine",
     "type": "series",
@@ -7376,10 +7107,10 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
@@ -7410,17 +7141,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "",
     "description": "The war is over, and Violet Evergarden needs a job. Scarred and emotionless, she takes a job as a letter writer to understand herself and her past.",
     "synopsis": "The war is over, and Violet Evergarden needs a job. Scarred and emotionless, she takes a job as a letter writer to understand herself and her past.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/61EwFPqc0r1uJo6la49J55F8bQ8.jpg",
     "image": "https://image.tmdb.org/t/p/w500/61EwFPqc0r1uJo6la49J55F8bQ8.jpg",
     "rating": 8.4,
@@ -7444,10 +7175,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -7478,17 +7209,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Jayabharathi who was denied every simple joy in life while growing up just because she is a girl/woman is married to Rajesh, a male chauvinist, short-tempered and selfish person. On suffering domestic violence, she doesn't get any support. She then decides to fight back!",
     "synopsis": "Jayabharathi who was denied every simple joy in life while growing up just because she is a girl/woman is married to Rajesh, a male chauvinist, short-tempered and selfish person. On suffering domestic violence, she doesn't get any support. She then decides to fight back!",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/lAc6mHHJxmiAbkxrF0TipvRRZW7.jpg",
     "image": "https://image.tmdb.org/t/p/w500/lAc6mHHJxmiAbkxrF0TipvRRZW7.jpg",
     "rating": 9,
@@ -7513,17 +7244,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Oru Kattil Oru Muri is drama content in Malayalam. A propulsive favorite for channeling momentum into celebration.",
     "synopsis": "Oru Kattil Oru Muri is drama content in Malayalam. A propulsive favorite for channeling momentum into celebration.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Manorama Max",
+    "streamUrl": "https://www.manoramamax.com",
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 9,
@@ -7548,17 +7279,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "",
     "description": "The company of the stage \"the secret of Sen and Chihiro\" gathered together in Tokyo again. The new cast is also added, and it challenges the first overseas performance at the London Colosseum in the theater and the sacred end in west end. The company that arrived in London is soon baptized. Theater is narrow compared to Japan, and audience seats are wide. The set is also rebuilt, and the performance and the performance of the theater are changed. And the biggest problem is the difference between the wall and the way of working between English staff. From the first day of the practice, trouble attacks without permission. Training in London was the beginning of the disturbance.",
     "synopsis": "The company of the stage \"the secret of Sen and Chihiro\" gathered together in Tokyo again. The new cast is also added, and it challenges the first overseas performance at the London Colosseum in the theater and the sacred end in west end. The company that arrived in London is soon baptized. Theater is narrow compared to Japan, and audience seats are wide. The set is also rebuilt, and the performance and the performance of the theater are changed. And the biggest problem is the difference between the wall and the way of working between English staff. From the first day of the practice, trouble attacks without permission. Training in London was the beginning of the disturbance.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/8uajlTh0Gg2mTn3pu3KClBVzf5A.jpg",
     "image": "https://image.tmdb.org/t/p/w500/8uajlTh0Gg2mTn3pu3KClBVzf5A.jpg",
     "rating": 9,
@@ -7583,10 +7314,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "Sushin Shyam",
     "director": "",
@@ -7618,17 +7349,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "A fictional history of two legendary revolutionaries' journey away from home before they began fighting for their country in the 1920s.",
     "synopsis": "A fictional history of two legendary revolutionaries' journey away from home before they began fighting for their country in the 1920s.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/u0XUBNQWlOvrh0Gd97ARGpIkL0.jpg",
     "image": "https://image.tmdb.org/t/p/w500/u0XUBNQWlOvrh0Gd97ARGpIkL0.jpg",
     "rating": 8.4,
@@ -7653,17 +7384,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "With their old hideout and bosses wiped out, the surviving Dusters make a secret agreement with the Ranger Force to engage in the weekly Sunday Showdown - one where they will always be defeated. Tired of this charade, Fighter D finally steps up to make a change once and for all!",
     "synopsis": "With their old hideout and bosses wiped out, the surviving Dusters make a secret agreement with the Ranger Force to engage in the weekly Sunday Showdown - one where they will always be defeated. Tired of this charade, Fighter D finally steps up to make a change once and for all!",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/1xLqRhNM41Xv0UZRZsHBhsnB1lx.jpg",
     "image": "https://image.tmdb.org/t/p/w500/1xLqRhNM41Xv0UZRZsHBhsnB1lx.jpg",
     "rating": 8.4,
@@ -7688,10 +7419,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "",
     "director": "",
@@ -7723,10 +7454,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "energized"
+      "excited"
     ],
     "moodTags": [
-      "energized"
+      "excited"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -7758,17 +7489,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "On a trekking trip, an introverted Naina falls for a charming ex-classmate, whose thirst for adventure drives them apart. Years later, their paths cross again.",
     "synopsis": "On a trekking trip, an introverted Naina falls for a charming ex-classmate, whose thirst for adventure drives them apart. Years later, their paths cross again.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/em39H81XLCDgXsI7V4IcBZseEO6.jpg",
     "image": "https://image.tmdb.org/t/p/w500/em39H81XLCDgXsI7V4IcBZseEO6.jpg",
     "rating": 8.7,
@@ -7793,17 +7524,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Divorced, jobless, hopeless. Three siblings plan a road trip together. Chandan, Chanchal & Chitvan. Together they start a hilarious journey, to find themselves and their relations.",
     "synopsis": "Divorced, jobless, hopeless. Three siblings plan a road trip together. Chandan, Chanchal & Chitvan. Together they start a hilarious journey, to find themselves and their relations.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/nnW7gEhZB3CcJkRgWgoQTfPDaIO.jpg",
     "image": "https://image.tmdb.org/t/p/w500/nnW7gEhZB3CcJkRgWgoQTfPDaIO.jpg",
     "rating": 8.7,
@@ -7828,10 +7559,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "",
@@ -7863,10 +7594,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "Arijit Singh",
     "director": "",
@@ -7898,17 +7629,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "A kind and respected village landlord acquires a vintage Premier Padmini car from his friend and cherishes it more than anything else. Over time, the entire village grows attached to the car, forming an emotional bond with it. His wife, however, refuses to ride in it until he learns to drive, so he decides to surprise her with a ride on their wedding anniversary. But before he can fulfill his promise, the car is taken away due to unforeseen circumstances. Will they ever get it back? A deeply emotional tale of love, nostalgia, and the heartfelt connection between an elderly couple and their cherished car.",
     "synopsis": "A kind and respected village landlord acquires a vintage Premier Padmini car from his friend and cherishes it more than anything else. Over time, the entire village grows attached to the car, forming an emotional bond with it. His wife, however, refuses to ride in it until he learns to drive, so he decides to surprise her with a ride on their wedding anniversary. But before he can fulfill his promise, the car is taken away due to unforeseen circumstances. Will they ever get it back? A deeply emotional tale of love, nostalgia, and the heartfelt connection between an elderly couple and their cherished car.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Sun NXT",
+    "streamUrl": "https://www.sunnxt.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/ttmmm9CwXX137XcdSZV1X8VLIQO.jpg",
     "image": "https://image.tmdb.org/t/p/w500/ttmmm9CwXX137XcdSZV1X8VLIQO.jpg",
     "rating": 8.7,
@@ -7933,17 +7664,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Bala - an average IT guy, is forced to host 4 random time travellers who land up in his new house until they find their way back. But will they ever leave?",
     "synopsis": "Bala - an average IT guy, is forced to host 4 random time travellers who land up in his new house until they find their way back. But will they ever leave?",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Prime Video",
+    "streamUrl": "https://www.primevideo.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/3LabFHWsP0Ofh619ssiosEhGJOB.jpg",
     "image": "https://image.tmdb.org/t/p/w500/3LabFHWsP0Ofh619ssiosEhGJOB.jpg",
     "rating": 8.7,
@@ -7968,10 +7699,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "",
@@ -8003,10 +7734,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "Anirudh Ravichander",
     "director": "",
@@ -8038,10 +7769,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -8072,10 +7803,10 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
@@ -8106,17 +7837,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "",
     "description": "Kiki's Delivery Service is animation content in English. A grounding selection with enough warmth to settle a busy mind.",
     "synopsis": "Kiki's Delivery Service is animation content in English. A grounding selection with enough warmth to settle a busy mind.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/en/0/07/Kiki%27s_Delivery_Service_%28Movie%29.jpg",
     "image": "https://upload.wikimedia.org/wikipedia/en/0/07/Kiki%27s_Delivery_Service_%28Movie%29.jpg",
     "rating": 8.5,
@@ -8140,10 +7871,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -8174,17 +7905,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "When a soccer club manager brings one of his injured foreign players home to recuperate, they form an unlikely bond despite their cultural differences.",
     "synopsis": "When a soccer club manager brings one of his injured foreign players home to recuperate, they form an unlikely bond despite their cultural differences.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/53yLPoLX8c9nAGLfmnNdF01zrNc.jpg",
     "image": "https://image.tmdb.org/t/p/w500/53yLPoLX8c9nAGLfmnNdF01zrNc.jpg",
     "rating": 9.1,
@@ -8209,17 +7940,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Vinod is ready to build his dream house. But is he ready to face the hurdles in his path?",
     "synopsis": "Vinod is ready to build his dream house. But is he ready to face the hurdles in his path?",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/z7MIw0qDpN038SYQiuvrL11QS7W.jpg",
     "image": "https://image.tmdb.org/t/p/w500/z7MIw0qDpN038SYQiuvrL11QS7W.jpg",
     "rating": 9.1,
@@ -8244,10 +7975,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "",
@@ -8279,10 +8010,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "Sushin Shyam",
     "director": "",
@@ -8314,17 +8045,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Two young people embark on a winding and rocky path to love after meeting at a wedding.",
     "synopsis": "Two young people embark on a winding and rocky path to love after meeting at a wedding.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/cvpwHdJuUzm544lvleBIAxGdzBB.jpg",
     "image": "https://image.tmdb.org/t/p/w500/cvpwHdJuUzm544lvleBIAxGdzBB.jpg",
     "rating": 8.5,
@@ -8349,17 +8080,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Srimathi is a 30 year old unmarried woman, with a dead end job, a dysfunctional family and a goal to win back her ancestral house. For that, she needs to raise a lot of money in a short period of time. Seeing a business oppurtunity, she decides to start a bar in her village. This is the journey of Srimathi, battling various societal and moral obstacles along the way.",
     "synopsis": "Srimathi is a 30 year old unmarried woman, with a dead end job, a dysfunctional family and a goal to win back her ancestral house. For that, she needs to raise a lot of money in a short period of time. Seeing a business oppurtunity, she decides to start a bar in her village. This is the journey of Srimathi, battling various societal and moral obstacles along the way.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Prime Video",
+    "streamUrl": "https://www.primevideo.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/2008kVjRqNpzeY9dsM9bEuoZ0o5.jpg",
     "image": "https://image.tmdb.org/t/p/w500/2008kVjRqNpzeY9dsM9bEuoZ0o5.jpg",
     "rating": 8.5,
@@ -8384,10 +8115,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "",
     "director": "",
@@ -8419,10 +8150,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "anxious"
+      "stressed"
     ],
     "moodTags": [
-      "anxious"
+      "stressed"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -8454,10 +8185,10 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
@@ -8489,17 +8220,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Set in the summer of 1998 it is a story about conflicting emotions towards family members from the eyes of a twelve year old.",
     "synopsis": "Set in the summer of 1998 it is a story about conflicting emotions towards family members from the eyes of a twelve year old.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "Amazon miniTV",
+    "streamUrl": "https://www.amazon.com/minitv",
     "thumbnail": "https://image.tmdb.org/t/p/w500/7F33yqUYIzmFQwDibEjPoJxxTXg.jpg",
     "image": "https://image.tmdb.org/t/p/w500/7F33yqUYIzmFQwDibEjPoJxxTXg.jpg",
     "rating": 8.8,
@@ -8524,10 +8255,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "",
@@ -8559,10 +8290,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "Arijit Singh",
     "director": "",
@@ -8594,17 +8325,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "A clash of ideologies. One stands for the people, the other feeds on control. Their paths collided once before. Years later, a child’s silent fear ignites the past, drawing a former police officer into a battle far bigger than personal revenge.",
     "synopsis": "A clash of ideologies. One stands for the people, the other feeds on control. Their paths collided once before. Years later, a child’s silent fear ignites the past, drawing a former police officer into a battle far bigger than personal revenge.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/jt8pfSIdi47YpFMMWVRr8w5u2S0.jpg",
     "image": "https://image.tmdb.org/t/p/w500/jt8pfSIdi47YpFMMWVRr8w5u2S0.jpg",
     "rating": 8.8,
@@ -8629,17 +8360,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "An anthology of five stories that follow characters who experience supernatural occurrences through material objects around them.",
     "synopsis": "An anthology of five stories that follow characters who experience supernatural occurrences through material objects around them.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "SonyLIV",
+    "streamUrl": "https://www.sonyliv.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/rSaj5DGkflhz0HjT0kHbzMC0Zz9.jpg",
     "image": "https://image.tmdb.org/t/p/w500/rSaj5DGkflhz0HjT0kHbzMC0Zz9.jpg",
     "rating": 8.8,
@@ -8664,10 +8395,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "",
@@ -8699,10 +8430,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "Anirudh Ravichander",
     "director": "",
@@ -8734,17 +8465,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "The Grand Budapest Hotel tells of a legendary concierge at a famous European hotel between the wars and his friendship with a young employee who becomes his trusted protégé. The story involves the theft and recovery of a priceless Renaissance painting, the battle for an enormous family fortune and the slow and then sudden upheavals that transformed Europe during the first half of the 20th century.",
     "synopsis": "The Grand Budapest Hotel tells of a legendary concierge at a famous European hotel between the wars and his friendship with a young employee who becomes his trusted protégé. The story involves the theft and recovery of a priceless Renaissance painting, the battle for an enormous family fortune and the slow and then sudden upheavals that transformed Europe during the first half of the 20th century.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
     "image": "https://image.tmdb.org/t/p/w500/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
     "rating": 8.6,
@@ -8768,10 +8499,10 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
@@ -8802,17 +8533,17 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "",
     "description": "Two sisters move to the country with their father in order to be closer to their hospitalized mother, and discover the surrounding trees are inhabited by Totoros, magical spirits of the forest. When the youngest runs away from home, the older sister seeks help from the spirits to find her.",
     "synopsis": "Two sisters move to the country with their father in order to be closer to their hospitalized mother, and discover the surrounding trees are inhabited by Totoros, magical spirits of the forest. When the youngest runs away from home, the older sister seeks help from the spirits to find her.",
-    "streamPlatform": "Crunchyroll",
-    "streamUrl": "https://www.crunchyroll.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg",
     "image": "https://image.tmdb.org/t/p/w500/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg",
     "rating": 8.6,
@@ -8836,10 +8567,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -8870,17 +8601,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Bhaskara, a conservative villager, hates the idea of his son relocating to Russia for a job. However, when his son brings a robot to care for him, he develops an unlikely bond with the machine.",
     "synopsis": "Bhaskara, a conservative villager, hates the idea of his son relocating to Russia for a job. However, when his son brings a robot to care for him, he develops an unlikely bond with the machine.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Disney+ Hotstar",
+    "streamUrl": "https://www.hotstar.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/hoWaxpwu8X0FwYETxGLQeAinix7.jpg",
     "image": "https://image.tmdb.org/t/p/w500/hoWaxpwu8X0FwYETxGLQeAinix7.jpg",
     "rating": 9.2,
@@ -8905,17 +8636,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Eight legendary filmmakers collaborate with 9 superstars, breathing life into the timeless stories of author M.T. Vasudevan Nair. Based in Kerala, these stories explore the nuances of human nature.",
     "synopsis": "Eight legendary filmmakers collaborate with 9 superstars, breathing life into the timeless stories of author M.T. Vasudevan Nair. Based in Kerala, these stories explore the nuances of human nature.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/z7IzYTN5oUFX42D8N7D3QEy5eEa.jpg",
     "image": "https://image.tmdb.org/t/p/w500/z7IzYTN5oUFX42D8N7D3QEy5eEa.jpg",
     "rating": 9.2,
@@ -8940,10 +8671,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "",
@@ -8975,10 +8706,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "Sushin Shyam",
     "director": "",
@@ -9010,17 +8741,17 @@ export const mediaCatalog = [
       "Romance"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Film Collective",
     "description": "Part romantic comedy, part love story, set in the city of Los Angeles.",
     "synopsis": "Part romantic comedy, part love story, set in the city of Los Angeles.",
-    "streamPlatform": "Prime Video",
-    "streamUrl": "https://www.primevideo.com",
+    "streamPlatform": "Netflix",
+    "streamUrl": "https://www.netflix.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/cL8Uc8Ub6U6WcMAz9U12n7XQ2Ed.jpg",
     "image": "https://image.tmdb.org/t/p/w500/cL8Uc8Ub6U6WcMAz9U12n7XQ2Ed.jpg",
     "rating": 8.6,
@@ -9045,17 +8776,17 @@ export const mediaCatalog = [
       "Slice of Life"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "MoodMate Series Studio",
     "description": "Seenu, a young man who is desperate for marriage, lands at a suitable match with great difficulty. While he's relieved about tying the knot at last, comes the twist, when the bride elopes with her boyfriend.",
     "synopsis": "Seenu, a young man who is desperate for marriage, lands at a suitable match with great difficulty. While he's relieved about tying the knot at last, comes the twist, when the bride elopes with her boyfriend.",
-    "streamPlatform": "Netflix",
-    "streamUrl": "https://www.netflix.com",
+    "streamPlatform": "ZEE5",
+    "streamUrl": "https://www.zee5.com",
     "thumbnail": "https://image.tmdb.org/t/p/w500/i40AOdcV2wQHfzIfcHR2pX1mLOb.jpg",
     "image": "https://image.tmdb.org/t/p/w500/i40AOdcV2wQHfzIfcHR2pX1mLOb.jpg",
     "rating": 8.6,
@@ -9080,10 +8811,10 @@ export const mediaCatalog = [
       "Fantasy"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "",
     "director": "",
@@ -9115,10 +8846,10 @@ export const mediaCatalog = [
       "Contemporary"
     ],
     "mood": [
-      "relaxed"
+      "calm"
     ],
     "moodTags": [
-      "relaxed"
+      "calm"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -9129,8 +8860,8 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.6,
-    "releaseYear": 2010,
-    "year": "2010",
+    "releaseYear": 2022,
+    "year": "2022",
     "availableLanguages": [
       "Telugu",
       "English"
