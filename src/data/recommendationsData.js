@@ -2296,24 +2296,26 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Bollywood",
+      "Dance",
+      "Pop"
     ],
     "mood": [
-      "upbeat"
+      "upbeat",
+      "excited"
     ],
     "moodTags": [
-      "upbeat"
+      "upbeat",
+      "excited"
     ],
-    "artist": "Arijit Singh",
+    "artist": "Shankar-Ehsaan-Loy, Harshdeep Kaur, Shankar Mahadevan",
     "director": "",
     "description": "Gallan Goodiyaan is melody content in Hindi. A bright, feel-good pick designed to keep the smile going.",
     "synopsis": "Gallan Goodiyaan is melody content in Hindi. A bright, feel-good pick designed to keep the smile going.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1c/f1/49/1cf149ad-2e46-cb6d-642c-4f7103b77dc8/8902894357036_cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1c/f1/49/1cf149ad-2e46-cb6d-642c-4f7103b77dc8/8902894357036_cover.jpg/600x600bb.jpg",
     "rating": 7.9,
     "releaseYear": 2015,
     "year": "2015",
@@ -2321,8 +2323,8 @@ export const mediaCatalog = [
       "Hindi",
       "English"
     ],
-    "valence": 0.9,
-    "energy": 0.72,
+    "valence": 0.88,
+    "energy": 0.82,
     "baseQuality": 0.87
   },
   {
@@ -2436,33 +2438,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Tamil",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Tamil Film",
+      "Dance",
+      "Mass Number"
     ],
     "mood": [
+      "excited",
       "upbeat"
     ],
     "moodTags": [
+      "excited",
       "upbeat"
     ],
-    "artist": "Anirudh Ravichander",
+    "artist": "Anirudh Ravichander, Vignesh Shivan",
     "director": "",
     "description": "Vaathi Coming is melody content in Tamil. A bright, feel-good pick designed to keep the smile going.",
     "synopsis": "Vaathi Coming is melody content in Tamil. A bright, feel-good pick designed to keep the smile going.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a3/f2/dc/a3f2dc29-fc54-07bb-8f9c-2a3936d21a5d/886448363347.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a3/f2/dc/a3f2dc29-fc54-07bb-8f9c-2a3936d21a5d/886448363347.jpg/600x600bb.jpg",
     "rating": 7.9,
-    "releaseYear": 2015,
-    "year": "2015",
+    "releaseYear": 2021,
+    "year": "2021",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
-    "valence": 0.9,
-    "energy": 0.72,
+    "valence": 0.82,
+    "energy": 0.9,
     "baseQuality": 0.87
   },
   {
@@ -2573,32 +2577,34 @@ export const mediaCatalog = [
     "type": "music",
     "language": "English",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Pop Rock",
+      "Power Pop",
+      "Dance"
     ],
     "mood": [
+      "excited",
       "upbeat"
     ],
     "moodTags": [
+      "excited",
       "upbeat"
     ],
-    "artist": "Coldplay",
+    "artist": "Katrina & The Waves",
     "director": "",
     "description": "Walking on Sunshine is melody content in English. A bright, feel-good pick designed to keep the smile going.",
     "synopsis": "Walking on Sunshine is melody content in English. A bright, feel-good pick designed to keep the smile going.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f6/b6/37/f6b6378c-9b34-72fb-9abe-4a6d6042ad53/13ULAIM49571.rgb.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f6/b6/37/f6b6378c-9b34-72fb-9abe-4a6d6042ad53/13ULAIM49571.rgb.jpg/600x600bb.jpg",
     "rating": 7.7,
-    "releaseYear": 2013,
-    "year": "2013",
+    "releaseYear": 1985,
+    "year": "1985",
     "availableLanguages": [
       "English"
     ],
-    "valence": 0.9,
-    "energy": 0.72,
+    "valence": 0.95,
+    "energy": 0.88,
     "baseQuality": 0.8899999999999999
   },
   {
@@ -2712,17 +2718,19 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Malayalam",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Malayalam Film",
+      "Devotional",
+      "Melody"
     ],
     "mood": [
-      "upbeat"
+      "calm",
+      "reflective"
     ],
     "moodTags": [
-      "upbeat"
+      "calm",
+      "reflective"
     ],
-    "artist": "Sushin Shyam",
+    "artist": "Vineeth Sreenivasan",
     "director": "",
     "description": "Aaradhike is melody content in Malayalam. A bright, feel-good pick designed to keep the smile going.",
     "synopsis": "Aaradhike is melody content in Malayalam. A bright, feel-good pick designed to keep the smile going.",
@@ -2731,14 +2739,14 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.3,
-    "releaseYear": 2019,
-    "year": "2019",
+    "releaseYear": 2020,
+    "year": "2020",
     "availableLanguages": [
       "Malayalam",
       "English"
     ],
-    "valence": 0.9,
-    "energy": 0.72,
+    "valence": 0.72,
+    "energy": 0.22,
     "baseQuality": 0.9099999999999999
   },
   {
@@ -2852,15 +2860,17 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Telugu",
     "genres": [
+      "Telugu Film",
       "Melody",
-      "Pop",
-      "Contemporary"
+      "Romantic"
     ],
     "mood": [
-      "upbeat"
+      "reflective",
+      "calm"
     ],
     "moodTags": [
-      "upbeat"
+      "reflective",
+      "calm"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -2871,14 +2881,14 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 7.7,
-    "releaseYear": 2013,
-    "year": "2013",
+    "releaseYear": 2018,
+    "year": "2018",
     "availableLanguages": [
       "Telugu",
       "English"
     ],
-    "valence": 0.9,
-    "energy": 0.72,
+    "valence": 0.72,
+    "energy": 0.3,
     "baseQuality": 0.8799999999999999
   },
   {
@@ -2957,33 +2967,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Bollywood",
+      "Ballad",
+      "Romantic"
     ],
     "mood": [
-      "low"
+      "low",
+      "lonely"
     ],
     "moodTags": [
-      "low"
+      "low",
+      "lonely"
     ],
-    "artist": "Arijit Singh",
+    "artist": "Arijit Singh, Alka Yagnik",
     "director": "",
     "description": "Agar Tum Saath Ho is melody content in Hindi. A tender story that makes room for difficult feelings and gentle hope.",
     "synopsis": "Agar Tum Saath Ho is melody content in Hindi. A tender story that makes room for difficult feelings and gentle hope.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/ac/67/cbac673a-9213-7118-bb4e-2440273afb03/8902894357470_cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/ac/67/cbac673a-9213-7118-bb4e-2440273afb03/8902894357470_cover.jpg/600x600bb.jpg",
     "rating": 8,
-    "releaseYear": 2018,
-    "year": "2018",
+    "releaseYear": 2015,
+    "year": "2015",
     "availableLanguages": [
       "Hindi",
       "English"
     ],
-    "valence": 0.28,
-    "energy": 0.3,
+    "valence": 0.2,
+    "energy": 0.22,
     "baseQuality": 0.8799999999999999
   },
   {
@@ -3062,33 +3074,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Tamil",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Tamil Film",
+      "Ballad",
+      "Romantic"
     ],
     "mood": [
-      "low"
+      "low",
+      "lonely"
     ],
     "moodTags": [
-      "low"
+      "low",
+      "lonely"
     ],
-    "artist": "Anirudh Ravichander",
+    "artist": "Naresh Iyer",
     "director": "",
     "description": "Unakkenna Venum Sollu is melody content in Tamil. A tender story that makes room for difficult feelings and gentle hope.",
     "synopsis": "Unakkenna Venum Sollu is melody content in Tamil. A tender story that makes room for difficult feelings and gentle hope.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d5/55/1c/d5551c7c-f301-fbbf-daa0-d3a332c988f5/886445038651.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d5/55/1c/d5551c7c-f301-fbbf-daa0-d3a332c988f5/886445038651.jpg/600x600bb.jpg",
     "rating": 8,
-    "releaseYear": 2018,
-    "year": "2018",
+    "releaseYear": 2010,
+    "year": "2010",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
-    "valence": 0.28,
-    "energy": 0.3,
+    "valence": 0.55,
+    "energy": 0.22,
     "baseQuality": 0.8799999999999999
   },
   {
@@ -3165,14 +3179,15 @@ export const mediaCatalog = [
     "type": "music",
     "language": "English",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Alternative Rock",
+      "Post-Britpop"
     ],
     "mood": [
+      "reflective",
       "low"
     ],
     "moodTags": [
+      "reflective",
       "low"
     ],
     "artist": "Coldplay",
@@ -3181,16 +3196,16 @@ export const mediaCatalog = [
     "synopsis": "Fix You is melody content in English. A tender story that makes room for difficult feelings and gentle hope.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0c/82/48/0c8248a8-4a5b-d30d-8056-f32d650d2fc9/190295978068.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0c/82/48/0c8248a8-4a5b-d30d-8056-f32d650d2fc9/190295978068.jpg/600x600bb.jpg",
     "rating": 7.8,
-    "releaseYear": 2016,
-    "year": "2016",
+    "releaseYear": 2005,
+    "year": "2005",
     "availableLanguages": [
       "English"
     ],
-    "valence": 0.28,
-    "energy": 0.3,
+    "valence": 0.52,
+    "energy": 0.38,
     "baseQuality": 0.8999999999999999
   },
   {
@@ -3302,19 +3317,21 @@ export const mediaCatalog = [
     "id": "mus-malayalam-1-b",
     "type": "music",
     "language": "Malayalam",
-    "title": "Muthal Nee Mudivum Nee",
+    "title": "Pavizha Mazha",
     "genres": [
+      "Malayalam Film",
       "Melody",
-      "Pop",
-      "Contemporary"
+      "Romantic"
     ],
     "mood": [
-      "low"
+      "calm",
+      "reflective"
     ],
     "moodTags": [
-      "low"
+      "calm",
+      "reflective"
     ],
-    "artist": "Sushin Shyam",
+    "artist": "Sid Sriram",
     "director": "",
     "description": "Pavizha Mazha is melody content in Malayalam. A tender story that makes room for difficult feelings and gentle hope.",
     "synopsis": "Pavizha Mazha is melody content in Malayalam. A tender story that makes room for difficult feelings and gentle hope.",
@@ -3323,14 +3340,14 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.4,
-    "releaseYear": 2022,
-    "year": "2022",
+    "releaseYear": 2019,
+    "year": "2019",
     "availableLanguages": [
       "Malayalam",
       "English"
     ],
-    "valence": 0.28,
-    "energy": 0.3,
+    "valence": 0.72,
+    "energy": 0.2,
     "baseQuality": 0.9199999999999999
   },
   {
@@ -3444,15 +3461,17 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Telugu",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Telugu Film",
+      "Ballad",
+      "Soul"
     ],
     "mood": [
-      "low"
+      "reflective",
+      "lonely"
     ],
     "moodTags": [
-      "low"
+      "reflective",
+      "lonely"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -3460,17 +3479,17 @@ export const mediaCatalog = [
     "synopsis": "Inkem Inkem Inkem Kaavaale is melody content in Telugu. A tender story that makes room for difficult feelings and gentle hope.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/68/f1/52/68f1523b-3c40-f2cc-7d4a-376642897adb/cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/68/f1/52/68f1523b-3c40-f2cc-7d4a-376642897adb/cover.jpg/600x600bb.jpg",
     "rating": 7.8,
-    "releaseYear": 2016,
-    "year": "2016",
+    "releaseYear": 2018,
+    "year": "2018",
     "availableLanguages": [
       "Telugu",
       "English"
     ],
-    "valence": 0.28,
-    "energy": 0.3,
+    "valence": 0.62,
+    "energy": 0.2,
     "baseQuality": 0.8899999999999999
   },
   {
@@ -3584,14 +3603,16 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
+      "Bollywood",
       "Pop",
-      "Contemporary"
+      "Indie"
     ],
     "mood": [
+      "upbeat",
       "calm"
     ],
     "moodTags": [
+      "upbeat",
       "calm"
     ],
     "artist": "Arijit Singh",
@@ -3600,17 +3621,17 @@ export const mediaCatalog = [
     "synopsis": "Ilahi is melody content in Hindi. A measured, soothing choice for an unhurried evening.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg",
     "rating": 8.1,
-    "releaseYear": 2021,
-    "year": "2021",
+    "releaseYear": 2013,
+    "year": "2013",
     "availableLanguages": [
       "Hindi",
       "English"
     ],
-    "valence": 0.72,
-    "energy": 0.25,
+    "valence": 0.78,
+    "energy": 0.55,
     "baseQuality": 0.8899999999999999
   },
   {
@@ -3724,17 +3745,19 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Tamil",
     "genres": [
+      "Tamil Film",
       "Melody",
-      "Pop",
-      "Contemporary"
+      "Romantic"
     ],
     "mood": [
-      "calm"
+      "reflective",
+      "lonely"
     ],
     "moodTags": [
-      "calm"
+      "reflective",
+      "lonely"
     ],
-    "artist": "Anirudh Ravichander",
+    "artist": "Unni Krishnan",
     "director": "",
     "description": "Nenjame Nenjame is melody content in Tamil. A measured, soothing choice for an unhurried evening.",
     "synopsis": "Nenjame Nenjame is melody content in Tamil. A measured, soothing choice for an unhurried evening.",
@@ -3743,14 +3766,14 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.1,
-    "releaseYear": 2021,
-    "year": "2021",
+    "releaseYear": 2001,
+    "year": "2001",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
     "valence": 0.72,
-    "energy": 0.25,
+    "energy": 0.22,
     "baseQuality": 0.8899999999999999
   },
   {
@@ -3863,33 +3886,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Malayalam",
     "genres": [
+      "Malayalam Film",
       "Melody",
-      "Pop",
-      "Contemporary"
+      "Romantic"
     ],
     "mood": [
-      "calm"
+      "calm",
+      "reflective"
     ],
     "moodTags": [
-      "calm"
+      "calm",
+      "reflective"
     ],
-    "artist": "Sushin Shyam",
+    "artist": "Vijay Yesudas",
     "director": "",
     "description": "Malare is melody content in Malayalam. A measured, soothing choice for an unhurried evening.",
     "synopsis": "Malare is melody content in Malayalam. A measured, soothing choice for an unhurried evening.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music2/v4/6f/3c/cd/6f3ccd36-2a0f-0c4e-ce51-5aebcf9e9f84/cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music2/v4/6f/3c/cd/6f3ccd36-2a0f-0c4e-ce51-5aebcf9e9f84/cover.jpg/600x600bb.jpg",
     "rating": 8.5,
-    "releaseYear": 2010,
-    "year": "2010",
+    "releaseYear": 2015,
+    "year": "2015",
     "availableLanguages": [
       "Malayalam",
       "English"
     ],
-    "valence": 0.72,
-    "energy": 0.25,
+    "valence": 0.78,
+    "energy": 0.28,
     "baseQuality": 0.9299999999999999
   },
   {
@@ -4003,33 +4028,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Telugu",
     "genres": [
+      "Telugu Film",
       "Melody",
-      "Pop",
-      "Contemporary"
+      "Romantic"
     ],
     "mood": [
-      "calm"
+      "calm",
+      "upbeat"
     ],
     "moodTags": [
-      "calm"
+      "calm",
+      "upbeat"
     ],
-    "artist": "Sid Sriram",
+    "artist": "Armaan Malik",
     "director": "",
     "description": "Butta Bomma is melody content in Telugu. A measured, soothing choice for an unhurried evening.",
     "synopsis": "Butta Bomma is melody content in Telugu. A measured, soothing choice for an unhurried evening.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/46/aa/48/46aa4863-c1ec-4574-e98e-80b8c1f3ef69/cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/46/aa/48/46aa4863-c1ec-4574-e98e-80b8c1f3ef69/cover.jpg/600x600bb.jpg",
     "rating": 7.9,
-    "releaseYear": 2019,
-    "year": "2019",
+    "releaseYear": 2020,
+    "year": "2020",
     "availableLanguages": [
       "Telugu",
       "English"
     ],
-    "valence": 0.72,
-    "energy": 0.25,
+    "valence": 0.82,
+    "energy": 0.42,
     "baseQuality": 0.8999999999999999
   },
   {
@@ -4143,33 +4170,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Bollywood",
+      "Dance",
+      "Pop"
     ],
     "mood": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Arijit Singh",
+    "artist": "Benny Dayal, Shefali Alvares",
     "director": "",
     "description": "Badtameez Dil is melody content in Hindi. A lively, high-momentum pick for turning energy into fun.",
     "synopsis": "Badtameez Dil is melody content in Hindi. A lively, high-momentum pick for turning energy into fun.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg",
     "rating": 8.2,
-    "releaseYear": 2024,
-    "year": "2024",
+    "releaseYear": 2013,
+    "year": "2013",
     "availableLanguages": [
       "Hindi",
       "English"
     ],
-    "valence": 0.82,
-    "energy": 0.9,
+    "valence": 0.85,
+    "energy": 0.88,
     "baseQuality": 0.8999999999999999
   },
   {
@@ -4281,35 +4310,37 @@ export const mediaCatalog = [
     "id": "mus-tamil-3-b",
     "type": "music",
     "language": "Tamil",
-    "title": "Vaseegara",
+    "title": "Arabic Kuthu",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Tamil Film",
+      "Dance",
+      "Arabic Fusion"
     ],
     "mood": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Anirudh Ravichander",
+    "artist": "Haricharan, Jonita Gandhi",
     "director": "",
     "description": "Arabic Kuthu is melody content in Tamil. A lively, high-momentum pick for turning energy into fun.",
     "synopsis": "Arabic Kuthu is melody content in Tamil. A lively, high-momentum pick for turning energy into fun.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1c/15/c6/1c15c695-e382-8afb-e291-ef91f79da42e/886446427027.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1c/15/c6/1c15c695-e382-8afb-e291-ef91f79da42e/886446427027.jpg/600x600bb.jpg",
     "rating": 8.2,
-    "releaseYear": 2024,
-    "year": "2024",
+    "releaseYear": 2022,
+    "year": "2022",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
-    "valence": 0.82,
-    "energy": 0.9,
+    "valence": 0.88,
+    "energy": 0.92,
     "baseQuality": 0.8999999999999999
   },
   {
@@ -4420,32 +4451,34 @@ export const mediaCatalog = [
     "type": "music",
     "language": "English",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Rock",
+      "Glam Rock",
+      "Pop Rock"
     ],
     "mood": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Coldplay",
+    "artist": "Queen",
     "director": "",
     "description": "Don’t Stop Me Now is melody content in English. A lively, high-momentum pick for turning energy into fun.",
     "synopsis": "Don’t Stop Me Now is melody content in English. A lively, high-momentum pick for turning energy into fun.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9e/ae/4a/9eae4a23-130a-4ed7-d590-bfa701f9acaf/602527717685.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9e/ae/4a/9eae4a23-130a-4ed7-d590-bfa701f9acaf/602527717685.jpg/600x600bb.jpg",
     "rating": 8,
-    "releaseYear": 2022,
-    "year": "2022",
+    "releaseYear": 1978,
+    "year": "1978",
     "availableLanguages": [
       "English"
     ],
-    "valence": 0.82,
-    "energy": 0.9,
+    "valence": 0.97,
+    "energy": 0.96,
     "baseQuality": 0.9199999999999999
   },
   {
@@ -4559,33 +4592,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Malayalam",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Malayalam Film",
+      "Dance",
+      "Folk Fusion"
     ],
     "mood": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Sushin Shyam",
+    "artist": "Vineeth Sreenivasan, Renjini Jossey",
     "director": "",
     "description": "Jimikki Kammal is melody content in Malayalam. A lively, high-momentum pick for turning energy into fun.",
     "synopsis": "Jimikki Kammal is melody content in Malayalam. A lively, high-momentum pick for turning energy into fun.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/06/20/33/0620333b-9757-97a4-0baf-1c540b5150ac/196873453286.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/06/20/33/0620333b-9757-97a4-0baf-1c540b5150ac/196873453286.jpg/600x600bb.jpg",
     "rating": 8.6,
-    "releaseYear": 2013,
-    "year": "2013",
+    "releaseYear": 2017,
+    "year": "2017",
     "availableLanguages": [
       "Malayalam",
       "English"
     ],
-    "valence": 0.82,
-    "energy": 0.9,
+    "valence": 0.9,
+    "energy": 0.92,
     "baseQuality": 0.94
   },
   {
@@ -4697,34 +4732,36 @@ export const mediaCatalog = [
     "id": "mus-tel-1-b",
     "type": "music",
     "language": "Telugu",
-    "title": "Yenti Yenti",
+    "title": "Ramuloo Ramulaa",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Telugu Film",
+      "Dance",
+      "Mass Number"
     ],
     "mood": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Sid Sriram",
+    "artist": "Anurag Kulkarni, Mangli",
     "director": "",
     "description": "Ramuloo Ramulaa is melody content in Telugu. A lively, high-momentum pick for turning energy into fun.",
     "synopsis": "Ramuloo Ramulaa is melody content in Telugu. A lively, high-momentum pick for turning energy into fun.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/4d/7c/4a/4d7c4a33-0c3b-b0e5-1e5a-8182d9a25811/cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/4d/7c/4a/4d7c4a33-0c3b-b0e5-1e5a-8182d9a25811/cover.jpg/600x600bb.jpg",
     "rating": 8,
-    "releaseYear": 2022,
-    "year": "2022",
+    "releaseYear": 2020,
+    "year": "2020",
     "availableLanguages": [
       "Telugu",
       "English"
     ],
-    "valence": 0.82,
+    "valence": 0.9,
     "energy": 0.9,
     "baseQuality": 0.9099999999999999
   },
@@ -4839,33 +4876,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Bollywood",
+      "Sufi",
+      "Folk"
     ],
     "mood": [
-      "stressed"
+      "reflective",
+      "calm"
     ],
     "moodTags": [
-      "stressed"
+      "reflective",
+      "calm"
     ],
-    "artist": "Arijit Singh",
+    "artist": "Rekha Bhardwaj, Tochi Raina",
     "director": "",
     "description": "Kabira is melody content in Hindi. A reassuring choice that helps release pressure without demanding too much.",
     "synopsis": "Kabira is melody content in Hindi. A reassuring choice that helps release pressure without demanding too much.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg",
     "rating": 8.3,
-    "releaseYear": 2012,
-    "year": "2012",
+    "releaseYear": 2013,
+    "year": "2013",
     "availableLanguages": [
       "Hindi",
       "English"
     ],
-    "valence": 0.62,
-    "energy": 0.2,
+    "valence": 0.52,
+    "energy": 0.28,
     "baseQuality": 0.9099999999999999
   },
   {
@@ -4979,33 +5018,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Tamil",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Tamil",
+      "Folk",
+      "Rap"
     ],
     "mood": [
-      "stressed"
+      "upbeat",
+      "excited"
     ],
     "moodTags": [
-      "stressed"
+      "upbeat",
+      "excited"
     ],
-    "artist": "Anirudh Ravichander",
+    "artist": "Dhee, Arivu",
     "director": "",
     "description": "Enjoy Enjaami is melody content in Tamil. A reassuring choice that helps release pressure without demanding too much.",
     "synopsis": "Enjoy Enjaami is melody content in Tamil. A reassuring choice that helps release pressure without demanding too much.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cf/c5/9b/cfc59b20-dda2-e4a3-54db-e23ac7a55b80/cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cf/c5/9b/cfc59b20-dda2-e4a3-54db-e23ac7a55b80/cover.jpg/600x600bb.jpg",
     "rating": 8.3,
-    "releaseYear": 2012,
-    "year": "2012",
+    "releaseYear": 2021,
+    "year": "2021",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
-    "valence": 0.62,
-    "energy": 0.2,
+    "valence": 0.85,
+    "energy": 0.82,
     "baseQuality": 0.9099999999999999
   },
   {
@@ -5114,17 +5155,19 @@ export const mediaCatalog = [
     "id": "mus-eng-3-b",
     "type": "music",
     "language": "English",
-    "title": "Clocks",
+    "title": "Viva La Vida",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Alternative Rock",
+      "Baroque Pop",
+      "Art Rock"
     ],
     "mood": [
-      "stressed"
+      "upbeat",
+      "reflective"
     ],
     "moodTags": [
-      "stressed"
+      "upbeat",
+      "reflective"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -5132,16 +5175,16 @@ export const mediaCatalog = [
     "synopsis": "Viva La Vida is melody content in English. A reassuring choice that helps release pressure without demanding too much.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/aa/85/52aa851f-15b7-6322-f91f-df84b15b7b19/190295978044.jpg/600x600bb.jpg",
     "rating": 8.1,
-    "releaseYear": 2010,
-    "year": "2010",
+    "releaseYear": 2008,
+    "year": "2008",
     "availableLanguages": [
       "English"
     ],
-    "valence": 0.62,
-    "energy": 0.2,
+    "valence": 0.78,
+    "energy": 0.72,
     "baseQuality": 0.9299999999999999
   },
   {
@@ -5255,33 +5298,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Malayalam",
     "genres": [
+      "Malayalam Film",
       "Melody",
-      "Pop",
-      "Contemporary"
+      "Romantic"
     ],
     "mood": [
-      "stressed"
+      "calm",
+      "reflective"
     ],
     "moodTags": [
-      "stressed"
+      "calm",
+      "reflective"
     ],
-    "artist": "Sushin Shyam",
+    "artist": "Sithara Krishnakumar",
     "director": "",
     "description": "Onakka Munthiri is melody content in Malayalam. A reassuring choice that helps release pressure without demanding too much.",
     "synopsis": "Onakka Munthiri is melody content in Malayalam. A reassuring choice that helps release pressure without demanding too much.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/50/f2/e2/50f2e2a7-2bfd-3064-1a3c-58cc4347c668/8718857675587.png/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/50/f2/e2/50f2e2a7-2bfd-3064-1a3c-58cc4347c668/8718857675587.png/600x600bb.jpg",
     "rating": 8.7,
-    "releaseYear": 2016,
-    "year": "2016",
+    "releaseYear": 2015,
+    "year": "2015",
     "availableLanguages": [
       "Malayalam",
       "English"
     ],
-    "valence": 0.62,
-    "energy": 0.2,
+    "valence": 0.75,
+    "energy": 0.25,
     "baseQuality": 0.95
   },
   {
@@ -5395,15 +5440,17 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Telugu",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Telugu Film",
+      "Ballad",
+      "Melody"
     ],
     "mood": [
-      "stressed"
+      "reflective",
+      "calm"
     ],
     "moodTags": [
-      "stressed"
+      "reflective",
+      "calm"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -5411,17 +5458,17 @@ export const mediaCatalog = [
     "synopsis": "Neeli Neeli Aakasam is melody content in Telugu. A reassuring choice that helps release pressure without demanding too much.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f0/5e/3b/f05e3bde-d1b2-234c-f9ee-09387056af7c/8903431767189_cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f0/5e/3b/f05e3bde-d1b2-234c-f9ee-09387056af7c/8903431767189_cover.jpg/600x600bb.jpg",
     "rating": 8.1,
-    "releaseYear": 2010,
-    "year": "2010",
+    "releaseYear": 2021,
+    "year": "2021",
     "availableLanguages": [
       "Telugu",
       "English"
     ],
-    "valence": 0.62,
-    "energy": 0.2,
+    "valence": 0.72,
+    "energy": 0.25,
     "baseQuality": 0.9199999999999999
   },
   {
@@ -5535,32 +5582,34 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Bollywood",
+      "Ballad",
+      "Melody"
     ],
     "mood": [
-      "calm"
+      "reflective",
+      "lonely"
     ],
     "moodTags": [
-      "calm"
+      "reflective",
+      "lonely"
     ],
-    "artist": "Arijit Singh",
+    "artist": "Rekha Bhardwaj",
     "director": "",
     "description": "Phir Le Aya Dil is melody content in Hindi. A serene experience for protecting a quiet, peaceful headspace.",
     "synopsis": "Phir Le Aya Dil is melody content in Hindi. A serene experience for protecting a quiet, peaceful headspace.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5b/65/4a/5b654a60-886f-8bbf-2f39-5ea0dacb8022/886443625099.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5b/65/4a/5b654a60-886f-8bbf-2f39-5ea0dacb8022/886443625099.jpg/600x600bb.jpg",
     "rating": 8.4,
-    "releaseYear": 2015,
-    "year": "2015",
+    "releaseYear": 2012,
+    "year": "2012",
     "availableLanguages": [
       "Hindi",
       "English"
     ],
-    "valence": 0.8,
+    "valence": 0.68,
     "energy": 0.18,
     "baseQuality": 0.9199999999999999
   },
@@ -5675,33 +5724,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Tamil",
     "genres": [
+      "Tamil Film",
       "Melody",
-      "Pop",
-      "Contemporary"
+      "Romantic"
     ],
     "mood": [
-      "calm"
+      "calm",
+      "reflective"
     ],
     "moodTags": [
-      "calm"
+      "calm",
+      "reflective"
     ],
-    "artist": "Anirudh Ravichander",
+    "artist": "Naresh Iyer",
     "director": "",
     "description": "Munbe Vaa is melody content in Tamil. A serene experience for protecting a quiet, peaceful headspace.",
     "synopsis": "Munbe Vaa is melody content in Tamil. A serene experience for protecting a quiet, peaceful headspace.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/7f/e5/dc/7fe5dcf4-1944-3266-9443-113a6c6fd2ac/8904337276584.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/7f/e5/dc/7fe5dcf4-1944-3266-9443-113a6c6fd2ac/8904337276584.jpg/600x600bb.jpg",
     "rating": 8.4,
-    "releaseYear": 2015,
-    "year": "2015",
+    "releaseYear": 2006,
+    "year": "2006",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
-    "valence": 0.8,
-    "energy": 0.18,
+    "valence": 0.78,
+    "energy": 0.2,
     "baseQuality": 0.9199999999999999
   },
   {
@@ -5812,32 +5863,34 @@ export const mediaCatalog = [
     "type": "music",
     "language": "English",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Indie Folk",
+      "Dream Pop",
+      "Ballad"
     ],
     "mood": [
-      "calm"
+      "low",
+      "lonely"
     ],
     "moodTags": [
-      "calm"
+      "low",
+      "lonely"
     ],
-    "artist": "Coldplay",
+    "artist": "Lord Huron",
     "director": "",
     "description": "The Night We Met is melody content in English. A serene experience for protecting a quiet, peaceful headspace.",
     "synopsis": "The Night We Met is melody content in English. A serene experience for protecting a quiet, peaceful headspace.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/55/41/4a/55414a18-861a-79d1-e575-5bf8cf205dbe/886445056839_Cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/55/41/4a/55414a18-861a-79d1-e575-5bf8cf205dbe/886445056839_Cover.jpg/600x600bb.jpg",
     "rating": 8.2,
-    "releaseYear": 2013,
-    "year": "2013",
+    "releaseYear": 2015,
+    "year": "2015",
     "availableLanguages": [
       "English"
     ],
-    "valence": 0.8,
-    "energy": 0.18,
+    "valence": 0.22,
+    "energy": 0.28,
     "baseQuality": 0.94
   },
   {
@@ -5951,17 +6004,19 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Malayalam",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Malayalam Film",
+      "Ballad",
+      "Soul"
     ],
     "mood": [
-      "calm"
+      "reflective",
+      "lonely"
     ],
     "moodTags": [
-      "calm"
+      "reflective",
+      "lonely"
     ],
-    "artist": "Sushin Shyam",
+    "artist": "Sid Sriram",
     "director": "",
     "description": "Uyiril Thodum is melody content in Malayalam. A serene experience for protecting a quiet, peaceful headspace.",
     "synopsis": "Uyiril Thodum is melody content in Malayalam. A serene experience for protecting a quiet, peaceful headspace.",
@@ -5976,8 +6031,8 @@ export const mediaCatalog = [
       "Malayalam",
       "English"
     ],
-    "valence": 0.8,
-    "energy": 0.18,
+    "valence": 0.52,
+    "energy": 0.22,
     "baseQuality": 0.96
   },
   {
@@ -6091,14 +6146,16 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Telugu",
     "genres": [
-      "Melody",
+      "Telugu Film",
       "Pop",
-      "Contemporary"
+      "Romantic"
     ],
     "mood": [
+      "upbeat",
       "calm"
     ],
     "moodTags": [
+      "upbeat",
       "calm"
     ],
     "artist": "Sid Sriram",
@@ -6107,17 +6164,17 @@ export const mediaCatalog = [
     "synopsis": "Vachindamma is melody content in Telugu. A serene experience for protecting a quiet, peaceful headspace.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/68/f1/52/68f1523b-3c40-f2cc-7d4a-376642897adb/cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/68/f1/52/68f1523b-3c40-f2cc-7d4a-376642897adb/cover.jpg/600x600bb.jpg",
     "rating": 8.2,
-    "releaseYear": 2013,
-    "year": "2013",
+    "releaseYear": 2018,
+    "year": "2018",
     "availableLanguages": [
       "Telugu",
       "English"
     ],
-    "valence": 0.8,
-    "energy": 0.18,
+    "valence": 0.82,
+    "energy": 0.62,
     "baseQuality": 0.9299999999999999
   },
   {
@@ -6231,33 +6288,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Sufi",
+      "Qawwali",
+      "Devotional"
     ],
     "mood": [
-      "low"
+      "reflective",
+      "calm"
     ],
     "moodTags": [
-      "low"
+      "reflective",
+      "calm"
     ],
-    "artist": "Arijit Singh",
+    "artist": "A.R. Rahman, Javed Ali, Mohit Chauhan",
     "director": "",
     "description": "Kun Faya Kun is melody content in Hindi. A beautifully reflective choice for sitting with nostalgia.",
     "synopsis": "Kun Faya Kun is melody content in Hindi. A beautifully reflective choice for sitting with nostalgia.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/ac/41/56ac41f7-99f3-3eae-3b07-443167292c4e/8902894697408_cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/ac/41/56ac41f7-99f3-3eae-3b07-443167292c4e/8902894697408_cover.jpg/600x600bb.jpg",
     "rating": 8.5,
-    "releaseYear": 2018,
-    "year": "2018",
+    "releaseYear": 2011,
+    "year": "2011",
     "availableLanguages": [
       "Hindi",
       "English"
     ],
-    "valence": 0.42,
-    "energy": 0.32,
+    "valence": 0.62,
+    "energy": 0.28,
     "baseQuality": 0.9299999999999999
   },
   {
@@ -6371,33 +6430,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Tamil",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Tamil Film",
+      "Ballad",
+      "Soul"
     ],
     "mood": [
-      "low"
+      "reflective",
+      "lonely"
     ],
     "moodTags": [
-      "low"
+      "reflective",
+      "lonely"
     ],
-    "artist": "Anirudh Ravichander",
+    "artist": "Sid Sriram",
     "director": "",
     "description": "Maruvaarthai is melody content in Tamil. A beautifully reflective choice for sitting with nostalgia.",
     "synopsis": "Maruvaarthai is melody content in Tamil. A beautifully reflective choice for sitting with nostalgia.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/7c/a2/23/7ca223a9-cdf6-f8b3-ab20-ba0c7f07996c/766567958498.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/7c/a2/23/7ca223a9-cdf6-f8b3-ab20-ba0c7f07996c/766567958498.jpg/600x600bb.jpg",
     "rating": 8.5,
-    "releaseYear": 2018,
-    "year": "2018",
+    "releaseYear": 2019,
+    "year": "2019",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
-    "valence": 0.42,
-    "energy": 0.32,
+    "valence": 0.38,
+    "energy": 0.25,
     "baseQuality": 0.9299999999999999
   },
   {
@@ -6508,15 +6569,17 @@ export const mediaCatalog = [
     "type": "music",
     "language": "English",
     "genres": [
-      "Melody",
+      "Electronic Rock",
       "Pop",
-      "Contemporary"
+      "Dance"
     ],
     "mood": [
-      "low"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "low"
+      "excited",
+      "upbeat"
     ],
     "artist": "Coldplay",
     "director": "",
@@ -6524,16 +6587,16 @@ export const mediaCatalog = [
     "synopsis": "A Sky Full of Stars is melody content in English. A beautifully reflective choice for sitting with nostalgia.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/60/90/ad/6090adc3-8863-861d-afcc-23c55c6fe5da/dj.vmtulfyu.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/60/90/ad/6090adc3-8863-861d-afcc-23c55c6fe5da/dj.vmtulfyu.jpg/600x600bb.jpg",
     "rating": 8.3,
-    "releaseYear": 2016,
-    "year": "2016",
+    "releaseYear": 2014,
+    "year": "2014",
     "availableLanguages": [
       "English"
     ],
-    "valence": 0.42,
-    "energy": 0.32,
+    "valence": 0.88,
+    "energy": 0.88,
     "baseQuality": 0.95
   },
   {
@@ -6647,15 +6710,17 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Malayalam",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Malayalam Film",
+      "Dark Ambient",
+      "Thriller"
     ],
     "mood": [
-      "low"
+      "stressed",
+      "reflective"
     ],
     "moodTags": [
-      "low"
+      "stressed",
+      "reflective"
     ],
     "artist": "Sushin Shyam",
     "director": "",
@@ -6663,17 +6728,17 @@ export const mediaCatalog = [
     "synopsis": "Cherathukal is melody content in Malayalam. A beautifully reflective choice for sitting with nostalgia.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ff/e5/09/ffe50919-e001-3e56-bc3f-09a4ce474175/8904337228118.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ff/e5/09/ffe50919-e001-3e56-bc3f-09a4ce474175/8904337228118.jpg/600x600bb.jpg",
     "rating": 8.9,
-    "releaseYear": 2022,
-    "year": "2022",
+    "releaseYear": 2018,
+    "year": "2018",
     "availableLanguages": [
       "Malayalam",
       "English"
     ],
-    "valence": 0.42,
-    "energy": 0.32,
+    "valence": 0.35,
+    "energy": 0.28,
     "baseQuality": 0.82
   },
   {
@@ -6787,15 +6852,17 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Telugu",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Telugu Film",
+      "Devotional",
+      "Melody"
     ],
     "mood": [
-      "low"
+      "reflective",
+      "calm"
     ],
     "moodTags": [
-      "low"
+      "reflective",
+      "calm"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -6806,14 +6873,14 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 8.3,
-    "releaseYear": 2016,
-    "year": "2016",
+    "releaseYear": 2022,
+    "year": "2022",
     "availableLanguages": [
       "Telugu",
       "English"
     ],
-    "valence": 0.42,
-    "energy": 0.32,
+    "valence": 0.65,
+    "energy": 0.28,
     "baseQuality": 0.94
   },
   {
@@ -6927,33 +6994,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Bollywood",
+      "Rock",
+      "Motivational"
     ],
     "mood": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Arijit Singh",
+    "artist": "Siddharth Mahadevan",
     "director": "",
     "description": "Zinda is melody content in Hindi. A propulsive favorite for channeling momentum into celebration.",
     "synopsis": "Zinda is melody content in Hindi. A propulsive favorite for channeling momentum into celebration.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fe/9e/54/fe9e54da-11a4-0c61-4adc-f2ac9d8d4416/886444045575.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fe/9e/54/fe9e54da-11a4-0c61-4adc-f2ac9d8d4416/886444045575.jpg/600x600bb.jpg",
     "rating": 8.6,
-    "releaseYear": 2021,
-    "year": "2021",
+    "releaseYear": 2013,
+    "year": "2013",
     "availableLanguages": [
       "Hindi",
       "English"
     ],
-    "valence": 0.88,
-    "energy": 0.96,
+    "valence": 0.82,
+    "energy": 0.88,
     "baseQuality": 0.94
   },
   {
@@ -7067,14 +7136,16 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Tamil",
     "genres": [
-      "Melody",
+      "Tamil Film",
       "Pop",
-      "Contemporary"
+      "Dance"
     ],
     "mood": [
+      "upbeat",
       "excited"
     ],
     "moodTags": [
+      "upbeat",
       "excited"
     ],
     "artist": "Anirudh Ravichander",
@@ -7083,17 +7154,17 @@ export const mediaCatalog = [
     "synopsis": "Megham Karukatha is melody content in Tamil. A propulsive favorite for channeling momentum into celebration.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/89/18/55/891855c0-3a2d-4633-8484-4fd25b855f67/196925394383.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/89/18/55/891855c0-3a2d-4633-8484-4fd25b855f67/196925394383.jpg/600x600bb.jpg",
     "rating": 8.6,
-    "releaseYear": 2021,
-    "year": "2021",
+    "releaseYear": 2022,
+    "year": "2022",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
-    "valence": 0.88,
-    "energy": 0.96,
+    "valence": 0.82,
+    "energy": 0.75,
     "baseQuality": 0.94
   },
   {
@@ -7170,32 +7241,34 @@ export const mediaCatalog = [
     "type": "music",
     "language": "English",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Electronic",
+      "Dance Pop",
+      "House"
     ],
     "mood": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "excited"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Coldplay",
+    "artist": "David Guetta ft. Sia",
     "director": "",
     "description": "Titanium is melody content in English. A propulsive favorite for channeling momentum into celebration.",
     "synopsis": "Titanium is melody content in English. A propulsive favorite for channeling momentum into celebration.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/600x600bb.jpg",
     "rating": 8.4,
-    "releaseYear": 2019,
-    "year": "2019",
+    "releaseYear": 2011,
+    "year": "2011",
     "availableLanguages": [
       "English"
     ],
-    "valence": 0.88,
-    "energy": 0.96,
+    "valence": 0.82,
+    "energy": 0.88,
     "baseQuality": 0.96
   },
   {
@@ -7309,17 +7382,19 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Malayalam",
     "genres": [
-      "Melody",
+      "Malayalam Film",
       "Pop",
-      "Contemporary"
+      "Feel-Good"
     ],
     "mood": [
+      "upbeat",
       "excited"
     ],
     "moodTags": [
+      "upbeat",
       "excited"
     ],
-    "artist": "Sushin Shyam",
+    "artist": "Vijay Yesudas",
     "director": "",
     "description": "Parudeesa is melody content in Malayalam. A propulsive favorite for channeling momentum into celebration.",
     "synopsis": "Parudeesa is melody content in Malayalam. A propulsive favorite for channeling momentum into celebration.",
@@ -7328,14 +7403,14 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 9,
-    "releaseYear": 2010,
-    "year": "2010",
+    "releaseYear": 2015,
+    "year": "2015",
     "availableLanguages": [
       "Malayalam",
       "English"
     ],
     "valence": 0.88,
-    "energy": 0.96,
+    "energy": 0.78,
     "baseQuality": 0.83
   },
   {
@@ -7449,15 +7524,17 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Telugu",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Telugu Film",
+      "Ballad",
+      "Soul"
     ],
     "mood": [
-      "excited"
+      "reflective",
+      "lonely"
     ],
     "moodTags": [
-      "excited"
+      "reflective",
+      "lonely"
     ],
     "artist": "Sid Sriram",
     "director": "",
@@ -7465,17 +7542,17 @@ export const mediaCatalog = [
     "synopsis": "Maate Vinadhuga is melody content in Telugu. A propulsive favorite for channeling momentum into celebration.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/94/1d/a0/941da079-ee93-ce60-6340-3c7d0f7633a3/cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/94/1d/a0/941da079-ee93-ce60-6340-3c7d0f7633a3/cover.jpg/600x600bb.jpg",
     "rating": 8.4,
-    "releaseYear": 2019,
-    "year": "2019",
+    "releaseYear": 2018,
+    "year": "2018",
     "availableLanguages": [
       "Telugu",
       "English"
     ],
-    "valence": 0.88,
-    "energy": 0.96,
+    "valence": 0.62,
+    "energy": 0.25,
     "baseQuality": 0.95
   },
   {
@@ -7589,33 +7666,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
+      "Bollywood",
       "Pop",
-      "Contemporary"
+      "Indie"
     ],
     "mood": [
-      "stressed"
+      "upbeat",
+      "calm"
     ],
     "moodTags": [
-      "stressed"
+      "upbeat",
+      "calm"
     ],
-    "artist": "Arijit Singh",
+    "artist": "Jasleen Royal, Ali Zafar",
     "director": "",
     "description": "Love You Zindagi is melody content in Hindi. A grounding selection with enough warmth to settle a busy mind.",
     "synopsis": "Love You Zindagi is melody content in Hindi. A grounding selection with enough warmth to settle a busy mind.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/16/a8/45/16a8456a-31fc-d8e9-d20b-44cde16f423d/886446241494.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/16/a8/45/16a8456a-31fc-d8e9-d20b-44cde16f423d/886446241494.jpg/600x600bb.jpg",
     "rating": 8.7,
-    "releaseYear": 2024,
-    "year": "2024",
+    "releaseYear": 2016,
+    "year": "2016",
     "availableLanguages": [
       "Hindi",
       "English"
     ],
-    "valence": 0.58,
-    "energy": 0.22,
+    "valence": 0.85,
+    "energy": 0.65,
     "baseQuality": 0.95
   },
   {
@@ -7729,33 +7808,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Tamil",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Tamil Film",
+      "Dance",
+      "Pop"
     ],
     "mood": [
-      "stressed"
+      "upbeat",
+      "excited"
     ],
     "moodTags": [
-      "stressed"
+      "upbeat",
+      "excited"
     ],
-    "artist": "Anirudh Ravichander",
+    "artist": "Anirudh Ravichander, Jonita Gandhi",
     "director": "",
     "description": "Chellamma is melody content in Tamil. A grounding selection with enough warmth to settle a busy mind.",
     "synopsis": "Chellamma is melody content in Tamil. A grounding selection with enough warmth to settle a busy mind.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/61/2b/14/612b14a0-2a9a-0577-c043-c8becb76dccc/886448649489.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/61/2b/14/612b14a0-2a9a-0577-c043-c8becb76dccc/886448649489.jpg/600x600bb.jpg",
     "rating": 8.7,
-    "releaseYear": 2024,
-    "year": "2024",
+    "releaseYear": 2021,
+    "year": "2021",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
-    "valence": 0.58,
-    "energy": 0.22,
+    "valence": 0.85,
+    "energy": 0.82,
     "baseQuality": 0.95
   },
   {
@@ -7866,32 +7947,34 @@ export const mediaCatalog = [
     "type": "music",
     "language": "English",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Folk Rock",
+      "Pop Rock",
+      "Acoustic"
     ],
     "mood": [
-      "stressed"
+      "upbeat",
+      "calm"
     ],
     "moodTags": [
-      "stressed"
+      "upbeat",
+      "calm"
     ],
-    "artist": "Coldplay",
+    "artist": "The Beatles",
     "director": "",
     "description": "Here Comes the Sun is melody content in English. A grounding selection with enough warmth to settle a busy mind.",
     "synopsis": "Here Comes the Sun is melody content in English. A grounding selection with enough warmth to settle a busy mind.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/df/db/61/dfdb615d-47f8-06e9-9533-b96daccc029f/18UMGIM31076.rgb.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/df/db/61/dfdb615d-47f8-06e9-9533-b96daccc029f/18UMGIM31076.rgb.jpg/600x600bb.jpg",
     "rating": 8.5,
-    "releaseYear": 2022,
-    "year": "2022",
+    "releaseYear": 1969,
+    "year": "1969",
     "availableLanguages": [
       "English"
     ],
-    "valence": 0.58,
-    "energy": 0.22,
+    "valence": 0.88,
+    "energy": 0.52,
     "baseQuality": 0.82
   },
   {
@@ -8005,17 +8088,19 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Malayalam",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Malayalam Film",
+      "Dance",
+      "Folk"
     ],
     "mood": [
-      "stressed"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "stressed"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Sushin Shyam",
+    "artist": "Haricharan",
     "director": "",
     "description": "Kudukku is melody content in Malayalam. A grounding selection with enough warmth to settle a busy mind.",
     "synopsis": "Kudukku is melody content in Malayalam. A grounding selection with enough warmth to settle a busy mind.",
@@ -8024,14 +8109,14 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 9.1,
-    "releaseYear": 2013,
-    "year": "2013",
+    "releaseYear": 2016,
+    "year": "2016",
     "availableLanguages": [
       "Malayalam",
       "English"
     ],
-    "valence": 0.58,
-    "energy": 0.22,
+    "valence": 0.88,
+    "energy": 0.85,
     "baseQuality": 0.84
   },
   {
@@ -8145,33 +8230,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Telugu",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Telugu Film",
+      "Dance",
+      "Hip-Hop"
     ],
     "mood": [
-      "stressed"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "stressed"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Sid Sriram",
+    "artist": "Blaaze, Anurag Kulkarni",
     "director": "",
     "description": "Mind Block is melody content in Telugu. A grounding selection with enough warmth to settle a busy mind.",
     "synopsis": "Mind Block is melody content in Telugu. A grounding selection with enough warmth to settle a busy mind.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b9/65/11/b96511a1-db8d-7b6f-7c3f-1dd761b2a7ca/8903431760432_cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b9/65/11/b96511a1-db8d-7b6f-7c3f-1dd761b2a7ca/8903431760432_cover.jpg/600x600bb.jpg",
     "rating": 8.5,
-    "releaseYear": 2022,
-    "year": "2022",
+    "releaseYear": 2020,
+    "year": "2020",
     "availableLanguages": [
       "Telugu",
       "English"
     ],
-    "valence": 0.58,
-    "energy": 0.22,
+    "valence": 0.85,
+    "energy": 0.88,
     "baseQuality": 0.96
   },
   {
@@ -8285,33 +8372,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Hindi",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Indie Folk",
+      "Acoustic",
+      "Melody"
     ],
     "mood": [
+      "reflective",
       "calm"
     ],
     "moodTags": [
+      "reflective",
       "calm"
     ],
-    "artist": "Arijit Singh",
+    "artist": "Kavita Seth, Amitabh Bhattacharya",
     "director": "",
     "description": "Iktara is melody content in Hindi. An easygoing selection for a comfortable, restorative pause.",
     "synopsis": "Iktara is melody content in Hindi. An easygoing selection for a comfortable, restorative pause.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5c/c8/f8/5cc8f804-a9d6-7a11-57f6-840e1e2c9419/884977322910.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5c/c8/f8/5cc8f804-a9d6-7a11-57f6-840e1e2c9419/884977322910.jpg/600x600bb.jpg",
     "rating": 8.8,
-    "releaseYear": 2012,
-    "year": "2012",
+    "releaseYear": 2009,
+    "year": "2009",
     "availableLanguages": [
       "Hindi",
       "English"
     ],
-    "valence": 0.78,
-    "energy": 0.2,
+    "valence": 0.68,
+    "energy": 0.22,
     "baseQuality": 0.96
   },
   {
@@ -8425,33 +8514,35 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Tamil",
     "genres": [
-      "Melody",
+      "Tamil",
       "Pop",
-      "Contemporary"
+      "Romantic"
     ],
     "mood": [
+      "upbeat",
       "calm"
     ],
     "moodTags": [
+      "upbeat",
       "calm"
     ],
-    "artist": "Anirudh Ravichander",
+    "artist": "Anirudh Ravichander, Sid Sriram",
     "director": "",
     "description": "Katchi Sera is melody content in Tamil. An easygoing selection for a comfortable, restorative pause.",
     "synopsis": "Katchi Sera is melody content in Tamil. An easygoing selection for a comfortable, restorative pause.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/27/78/9f/27789f67-55a6-302c-2642-17178edc12ba/886449809882.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/27/78/9f/27789f67-55a6-302c-2642-17178edc12ba/886449809882.jpg/600x600bb.jpg",
     "rating": 8.8,
-    "releaseYear": 2012,
-    "year": "2012",
+    "releaseYear": 2024,
+    "year": "2024",
     "availableLanguages": [
       "Tamil",
       "English"
     ],
     "valence": 0.78,
-    "energy": 0.2,
+    "energy": 0.48,
     "baseQuality": 0.96
   },
   {
@@ -8562,32 +8653,34 @@ export const mediaCatalog = [
     "type": "music",
     "language": "English",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Indie Folk",
+      "Acoustic",
+      "Dream Pop"
     ],
     "mood": [
-      "calm"
+      "calm",
+      "reflective"
     ],
     "moodTags": [
-      "calm"
+      "calm",
+      "reflective"
     ],
-    "artist": "Coldplay",
+    "artist": "The Paper Kites",
     "director": "",
     "description": "Bloom is melody content in English. An easygoing selection for a comfortable, restorative pause.",
     "synopsis": "Bloom is melody content in English. An easygoing selection for a comfortable, restorative pause.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0b/a9/d7/0ba9d7c7-2e68-dc9b-cde4-d142e8ce86b1/067003806756.png/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0b/a9/d7/0ba9d7c7-2e68-dc9b-cde4-d142e8ce86b1/067003806756.png/600x600bb.jpg",
     "rating": 8.6,
     "releaseYear": 2010,
     "year": "2010",
     "availableLanguages": [
       "English"
     ],
-    "valence": 0.78,
-    "energy": 0.2,
+    "valence": 0.72,
+    "energy": 0.18,
     "baseQuality": 0.83
   },
   {
@@ -8701,17 +8794,19 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Malayalam",
     "genres": [
+      "Malayalam Film",
       "Melody",
-      "Pop",
-      "Contemporary"
+      "Soft Pop"
     ],
     "mood": [
-      "calm"
+      "calm",
+      "reflective"
     ],
     "moodTags": [
-      "calm"
+      "calm",
+      "reflective"
     ],
-    "artist": "Sushin Shyam",
+    "artist": "Haricharan",
     "director": "",
     "description": "Puthiyoru Lokam is melody content in Malayalam. An easygoing selection for a comfortable, restorative pause.",
     "synopsis": "Puthiyoru Lokam is melody content in Malayalam. An easygoing selection for a comfortable, restorative pause.",
@@ -8720,14 +8815,14 @@ export const mediaCatalog = [
     "thumbnail": "https://via.placeholder.com/300x450",
     "image": "https://via.placeholder.com/300x450",
     "rating": 9.2,
-    "releaseYear": 2016,
-    "year": "2016",
+    "releaseYear": 2014,
+    "year": "2014",
     "availableLanguages": [
       "Malayalam",
       "English"
     ],
-    "valence": 0.78,
-    "energy": 0.2,
+    "valence": 0.75,
+    "energy": 0.28,
     "baseQuality": 0.85
   },
   {
@@ -8841,24 +8936,26 @@ export const mediaCatalog = [
     "type": "music",
     "language": "Telugu",
     "genres": [
-      "Melody",
-      "Pop",
-      "Contemporary"
+      "Telugu Film",
+      "Folk Dance",
+      "Mass Number"
     ],
     "mood": [
-      "calm"
+      "excited",
+      "upbeat"
     ],
     "moodTags": [
-      "calm"
+      "excited",
+      "upbeat"
     ],
-    "artist": "Sid Sriram",
+    "artist": "Rahul Sipligunj, Kaala Bhairava",
     "director": "",
     "description": "Naatu Naatu is melody content in Telugu. An easygoing selection for a comfortable, restorative pause.",
     "synopsis": "Naatu Naatu is melody content in Telugu. An easygoing selection for a comfortable, restorative pause.",
     "streamPlatform": "Spotify",
     "streamUrl": "https://open.spotify.com",
-    "thumbnail": "https://via.placeholder.com/300x450",
-    "image": "https://via.placeholder.com/300x450",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/dd/39/14/dd3914e5-a2f3-b355-51f3-9a1f0e3ca246/8903431853592_cover.jpg/600x600bb.jpg",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/dd/39/14/dd3914e5-a2f3-b355-51f3-9a1f0e3ca246/8903431853592_cover.jpg/600x600bb.jpg",
     "rating": 8.6,
     "releaseYear": 2022,
     "year": "2022",
@@ -8866,8 +8963,8 @@ export const mediaCatalog = [
       "Telugu",
       "English"
     ],
-    "valence": 0.78,
-    "energy": 0.2,
+    "valence": 0.92,
+    "energy": 0.96,
     "baseQuality": 0.82
   }
 ];

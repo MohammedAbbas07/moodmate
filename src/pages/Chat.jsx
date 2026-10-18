@@ -69,6 +69,7 @@ export default function Chat() {
   const navigate = useNavigate();
   const { updateMoodProfile } = useMood();
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   const [currentStep, setCurrentStep] = useState(0);
   const [input, setInput] = useState('');
@@ -96,9 +97,23 @@ export default function Chat() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
+  // Focus input on initial page load
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  // Return focus to input after each bot reply finishes rendering
+  useEffect(() => {
+    if (!isTyping && !conversationFinished) {
+      inputRef.current?.focus();
+    }
+  }, [isTyping, conversationFinished]);
+
   const handleSendMessage = (textToSend = input) => {
     const trimmed = textToSend.trim();
     if (!trimmed || isTyping || conversationFinished) return;
+
+    inputRef.current?.focus();
 
     idRef.current += 1;
     // 1. Append User Message — stamp with the current question's type so the
@@ -182,6 +197,7 @@ export default function Chat() {
     setInput('');
     setIsTyping(false);
     setConversationFinished(false);
+    inputRef.current?.focus();
     setMessages([
       {
         id: 1,
@@ -359,7 +375,9 @@ export default function Chat() {
                 className="relative flex items-center gap-2"
               >
                 <input
+                  ref={inputRef}
                   type="text"
+                  autoCapitalize="sentences"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   disabled={isTyping}
