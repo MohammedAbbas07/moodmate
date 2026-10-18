@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Play, Heart, Star, Music, Film, Tv, Sparkles, ExternalLink } from 'lucide-react';
 import { useMood } from '../context/MoodContext';
 import { getMatchExplanation, calculateMatchScore, buildStreamSearchUrl } from '../data/recommendationsData';
+import MediaFallback from './MediaFallback';
 
 export default function RecommendationCard({ item, index = 0 }) {
   const { toggleSaveItem, isItemSaved, moodProfile } = useMood();
@@ -32,6 +33,8 @@ export default function RecommendationCard({ item, index = 0 }) {
   const streamUrl = buildStreamSearchUrl(item.title, platformName, item.artist);
   const actionLabel = item.type === 'music' ? `Listen on ${platformName}` : `Watch on ${platformName}`;
 
+  const hasValidImage = Boolean(item.image && item.image.trim() && !item.image.includes('via.placeholder.com'));
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 18 }}
@@ -42,7 +45,7 @@ export default function RecommendationCard({ item, index = 0 }) {
     >
       {/* Poster Image Container */}
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-white/[0.02]">
-        {!imageError && item.image ? (
+        {!imageError && hasValidImage ? (
           <img
             src={item.image}
             alt={item.title}
@@ -51,10 +54,7 @@ export default function RecommendationCard({ item, index = 0 }) {
             loading="lazy"
           />
         ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-purple-950/40 to-[#030308] p-6 text-center">
-            {getTypeIcon()}
-            <span className="mt-2 text-xs font-semibold text-white/60">{item.title}</span>
-          </div>
+          <MediaFallback title={item.title} type={item.type} />
         )}
 
         {/* Cinematic dark gradient */}
