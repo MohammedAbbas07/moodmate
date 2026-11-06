@@ -28,3 +28,8 @@ dist-ssr
 .env.local
 .env.*.local
 backend/.env
+
+__pycache__/
+*.pyc
+
+backend/moodmate.db

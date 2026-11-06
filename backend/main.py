@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from auth import create_access_token, hash_password, verify_password, verify_token
 from database import create_tables, get_db
 from models import Feedback, SavedItem, User
+from mood_routes import router as mood_router
 
 app = FastAPI(
     title="MoodMate API",
@@ -31,6 +32,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(mood_router)
 
 security = HTTPBearer(auto_error=False)
 
