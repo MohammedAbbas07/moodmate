@@ -65,6 +65,7 @@ export function createMoodProfile(profile) {
     userIntent: profile.userIntent ?? null,
     languagePreference,
     confidence,
+    engineUsed: profile.engineUsed === 'llm' || profile.engineUsed === 'keyword' ? profile.engineUsed : null,
 
     // Assessment metadata and presentation data retained for existing routes.
     assessmentStatus: 'complete',

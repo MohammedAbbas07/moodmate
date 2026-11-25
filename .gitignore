@@ -33,3 +33,10 @@ __pycache__/
 *.pyc
 
 backend/moodmate.db
+
+eval_tmp/
+plan.md
+mood_eval.py
+mood_eval_cases.json
+keyword_eval.mjs
+recs_check.mjs

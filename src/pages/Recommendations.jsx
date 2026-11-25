@@ -240,13 +240,18 @@ export default function Recommendations() {
             </div>
 
             <div className="flex items-center gap-3 shrink-0">
-              <Link
-                to="/chat"
-                className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-white/[0.04] px-4 py-2 text-xs font-medium text-white/80 hover:border-purple-500/50 hover:text-white hover:shadow-sm hover:shadow-purple-500/20 transition"
+              <button
+                onClick={() => {
+                  try {
+                    sessionStorage.removeItem('moodmate_chat_session');
+                  } catch (_) {}
+                  navigate('/chat', { state: { fresh: true } });
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-white/[0.04] px-4 py-2 text-xs font-medium text-white/80 hover:border-purple-500/50 hover:text-white hover:shadow-sm hover:shadow-purple-500/20 transition cursor-pointer"
               >
                 <ArrowLeft size={14} />
                 <span>Retake Chat</span>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
