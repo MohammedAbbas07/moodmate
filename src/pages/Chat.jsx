@@ -1,10 +1,43 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Sparkles, Send, ArrowLeft, RefreshCw, ShieldCheck, Loader2 } from 'lucide-react';
+import { Sparkles, Send, ArrowLeft, RefreshCw, ShieldCheck, Loader2, Check } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import CrisisSupport from '../components/CrisisSupport';
 import { analyzeSentiment, generateAdaptiveReply } from '../utils/sentimentEngine';
 import { useMood } from '../context/MoodContext';
+
+const CRISIS_PHRASES = [
+  'suicide',
+  'kill myself',
+  'end my life',
+  'want to die',
+  'hurt myself',
+  'self harm',
+  'no point in living',
+  'want to disappear',
+  'dont want to live',
+  'cant go on',
+  'better off dead',
+  'end it all',
+  'no reason to live',
+  'wish i was dead',
+  'wish i were dead',
+  'not worth living',
+  'dont see the point',
+  'life is pointless',
+  'kill me',
+  'want to end it',
+];
+
+function normalizeText(text) {
+  return String(text || '')
+    .toLowerCase()
+    .replace(/['’]/g, '')
+    .replace(/[^\w\s]|_/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 const CONVERSATION_QUESTIONS = [
   {
@@ -65,19 +98,57 @@ const CONVERSATION_QUESTIONS = [
   }
 ];
 
+const SESSION_CHAT_KEY = 'moodmate_chat_session';
+
+function loadSavedChatSession() {
+  try {
+    const raw = sessionStorage.getItem(SESSION_CHAT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (
+      parsed &&
+      Array.isArray(parsed.messages) &&
+      parsed.messages.length > 0 &&
+      typeof parsed.currentStep === 'number' &&
+      typeof parsed.conversationFinished === 'boolean'
+    ) {
+      return {
+        messages: parsed.messages,
+        currentStep: parsed.currentStep,
+        conversationFinished: parsed.conversationFinished,
+      };
+    }
+  } catch (_) {}
+  return null;
+}
+
 export default function Chat() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { updateMoodProfile } = useMood();
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
-  const [currentStep, setCurrentStep] = useState(0);
+  const [initialSession] = useState(() => {
+    if (location.state?.fresh) {
+      try {
+        sessionStorage.removeItem('moodmate_chat_session');
+      } catch (_) {}
+      return null;
+    }
+    return loadSavedChatSession();
+  });
+
+  const [currentStep, setCurrentStep] = useState(() => initialSession?.currentStep ?? 0);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [conversationFinished, setConversationFinished] = useState(false);
+  const [conversationFinished, setConversationFinished] = useState(() => initialSession?.conversationFinished ?? false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [showCrisisSupport, setShowCrisisSupport] = useState(false);
+  const [isGuest, setIsGuest] = useState(false);
+  const [guestNoticeVisible, setGuestNoticeVisible] = useState(false);
 
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState(() => initialSession?.messages ?? [
     {
       id: 1,
       sender: 'ai',
@@ -90,7 +161,36 @@ export default function Chat() {
     }
   ]);
 
-  const idRef = useRef(10);
+  const idRef = useRef(
+    initialSession?.messages
+      ? Math.max(...initialSession.messages.map((m) => (typeof m.id === 'number' ? m.id : 0)), 10)
+      : 10
+  );
+
+  // Save current chat state to sessionStorage whenever messages, currentStep, or conversationFinished change
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(
+        SESSION_CHAT_KEY,
+        JSON.stringify({ messages, currentStep, conversationFinished })
+      );
+    } catch (_) {}
+  }, [messages, currentStep, conversationFinished]);
+
+  // Check for guest user on mount and show timed notice if no token
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem('moodmate_token');
+      if (!token) {
+        setIsGuest(true);
+        setGuestNoticeVisible(true);
+        const timer = setTimeout(() => {
+          setGuestNoticeVisible(false);
+        }, 6000);
+        return () => clearTimeout(timer);
+      }
+    } catch (_) {}
+  }, []);
 
   // Auto-scroll to bottom of message list
   useEffect(() => {
@@ -112,6 +212,15 @@ export default function Chat() {
   const handleSendMessage = (textToSend = input) => {
     const trimmed = textToSend.trim();
     if (!trimmed || isTyping || conversationFinished) return;
+
+    const normalizedMessage = normalizeText(trimmed);
+    if (CRISIS_PHRASES.some((phrase) => normalizedMessage.includes(normalizeText(phrase)))) {
+      console.warn('crisis path');
+      setIsTyping(false);
+      setShowCrisisSupport(true);
+      setInput('');
+      return;
+    }
 
     inputRef.current?.focus();
 
@@ -159,10 +268,18 @@ export default function Chat() {
       }, 700);
 
     } else {
-      // 3. Final Step: Run Sentiment & Affective Engine
-      setTimeout(() => {
-        const sentimentResult = analyzeSentiment(nextMessages);
-        updateMoodProfile(sentimentResult);
+      // 3. Final Step: Try LLM engine, fall back to keyword engine
+      const userMessages = nextMessages.filter((m) => m.sender === 'user');
+      const stateAnswers = userMessages.slice(0, 4).map((m) => m.text.trim());
+      const preferenceAnswers = userMessages.slice(4, 8).map((m) => m.text.trim());
+
+      let crisisDetected = CRISIS_PHRASES.some((phrase) => {
+        const normPhrase = normalizeText(phrase);
+        return stateAnswers.some((ans) => normalizeText(ans).includes(normPhrase));
+      });
+
+      const runFinish = (profile) => {
+        updateMoodProfile(profile);
 
         idRef.current += 2;
         setMessages((prev) => [
@@ -188,16 +305,103 @@ export default function Chat() {
             navigate('/mood-analysis');
           }, 800);
         }, 1200);
+      };
+
+      setTimeout(async () => {
+        let usedLlm = false;
+
+        try {
+          const token = localStorage.getItem('moodmate_token');
+          const headers = {
+            'Content-Type': 'application/json',
+          };
+          if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+          }
+
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 25000);
+
+          const response = await fetch('http://localhost:8000/api/mood/analyze', {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({ state_answers: stateAnswers, preference_answers: preferenceAnswers }),
+            signal: controller.signal,
+          });
+          clearTimeout(timeoutId);
+
+          if (response.ok) {
+            const data = await response.json();
+            if (data?.result?.crisis === true) {
+              crisisDetected = true;
+            }
+
+            if (!crisisDetected && data.result !== null && data.result !== undefined && data.result.crisis === false) {
+              const r = data.result;
+
+              let keywordProfile = {};
+              try {
+                keywordProfile = analyzeSentiment(nextMessages) || {};
+              } catch {
+                keywordProfile = {};
+              }
+
+              // Map LLM result fields to createMoodProfile input shape
+              const llmProfile = {
+                mood: r.mood,
+                valence: r.valence,
+                energy: r.energy,
+                emotionalNeed: r.emotional_need,
+                // headline becomes the description shown on the Mood Profile page
+                description: r.headline,
+                // report stored in suggestedMediaStyle for profile compatibility
+                suggestedMediaStyle: r.report,
+                contentPreference: keywordProfile.contentPreference !== undefined ? keywordProfile.contentPreference : 'all',
+                genrePreference: keywordProfile.genrePreference !== undefined ? keywordProfile.genrePreference : [],
+                userIntent: keywordProfile.userIntent !== undefined ? keywordProfile.userIntent : null,
+                languagePreference: keywordProfile.languagePreference !== undefined ? keywordProfile.languagePreference : null,
+                confidence: 85,
+                engineUsed: 'llm',
+                analyzedAt: new Date().toISOString(),
+                extractedSignals: [],
+              };
+              runFinish(llmProfile);
+              usedLlm = true;
+            } else if (!crisisDetected) {
+              console.warn('LLM: result null, status', response.status);
+            }
+          } else {
+            console.warn('LLM: non-200 status', response.status);
+          }
+        } catch (err) {
+          console.warn('LLM: request failed', err.name);
+        }
+
+        if (crisisDetected) {
+          console.warn('crisis path');
+          setIsTyping(false);
+          setShowCrisisSupport(true);
+          return;
+        }
+
+        if (!usedLlm) {
+          runFinish({ ...analyzeSentiment(nextMessages), engineUsed: 'keyword' });
+        }
       }, 900);
     }
   };
 
   const handleRestart = () => {
+    try {
+      sessionStorage.removeItem(SESSION_CHAT_KEY);
+    } catch (_) {}
     setCurrentStep(0);
     setInput('');
     setIsTyping(false);
     setConversationFinished(false);
+    setShowCrisisSupport(false);
     inputRef.current?.focus();
+    idRef.current = 10;
     setMessages([
       {
         id: 1,
@@ -215,6 +419,10 @@ export default function Chat() {
   const progressPercent = conversationFinished
     ? 100
     : Math.round(((currentStep + 1) / CONVERSATION_QUESTIONS.length) * 100);
+
+  if (showCrisisSupport) {
+    return <CrisisSupport onBack={handleRestart} />;
+  }
 
   return (
     <div className="relative min-h-screen bg-[#030308] text-white flex flex-col justify-between selection:bg-purple-500/30 selection:text-white">
@@ -236,12 +444,22 @@ export default function Chat() {
 
       <Navbar />
 
+      {isGuest && (
+        <div
+          className={`fixed top-20 right-4 z-40 pointer-events-none transition-opacity duration-700 rounded-xl border-2 border-emerald-400/50 bg-emerald-500/15 px-5 py-3.5 text-base font-semibold text-emerald-300 shadow-lg backdrop-blur-md ${
+            guestNoticeVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <Check size={16} className="inline mr-2" />
+          Guest mode: your chat is kept for this browser session only.
+        </div>
+      )}
+
       {/* Main Expansive Chat Interface Container */}
       <main className="relative z-10 mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 lg:px-8 flex-1 flex flex-col">
         
         {/* Chat Window Frame */}
-        <div className="flex-1 flex flex-col rounded-3xl border border-purple-500/30 bg-[#05060a]/90 shadow-2xl shadow-purple-950/30 backdrop-blur-2xl overflow-hidden min-h-[75vh] md:min-h-[82vh]">
-          
+        <div className="relative flex-1 flex flex-col rounded-3xl border border-purple-500/30 bg-[#05060a]/90 shadow-2xl shadow-purple-950/30 backdrop-blur-2xl overflow-hidden min-h-[75vh] md:min-h-[82vh]">
           {/* Chat Window Header */}
           <div className="flex items-center justify-between border-b border-white/[0.08] bg-white/[0.02] px-6 py-4">
             <div className="flex items-center gap-3">

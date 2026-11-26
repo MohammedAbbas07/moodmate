@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Sparkles, ArrowRight, RefreshCw, Heart, Zap, CheckCircle, Info, Loader2 } from 'lucide-react';
+import { Sparkles, ArrowRight, RefreshCw, Heart, Zap, CheckCircle, Info, Loader2, Key, Cpu } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import CinematicBackground from '../components/CinematicBackground';
 import ScrollDownIndicator from '../components/ScrollDownIndicator';
@@ -157,7 +157,14 @@ export default function MoodAnalysis() {
       <main className="relative z-10 mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
         
         {/* Mood Profile Summary Card */}
-        <div className="rounded-3xl border border-purple-500/30 bg-[#05060a]/75 p-6 sm:p-10 backdrop-blur-xl shadow-2xl shadow-purple-950/30 text-center max-w-3xl mx-auto">
+        <div className="relative rounded-3xl border border-purple-500/30 bg-[#05060a]/75 p-6 sm:p-10 backdrop-blur-xl shadow-2xl shadow-purple-950/30 text-center max-w-3xl mx-auto">
+          {moodProfile?.engineUsed === 'keyword' && (
+            <Key size={12} className="absolute top-4 right-4 text-white/35 pointer-events-none" aria-hidden="true" />
+          )}
+          {moodProfile?.engineUsed === 'llm' && (
+            <Cpu size={12} className="absolute top-4 right-4 text-white/35 pointer-events-none" aria-hidden="true" />
+          )}
+
           {/* Header Eyebrow */}
           <div className="text-center max-w-2xl mx-auto">
             <motion.div
@@ -190,6 +197,12 @@ export default function MoodAnalysis() {
                 ? moodProfile.description
                 : 'Your mood profile will be available after you complete the existing eight-question check-in.'}
             </p>
+
+            {moodProfile?.engineUsed === 'llm' && typeof moodProfile?.suggestedMediaStyle === 'string' && moodProfile.suggestedMediaStyle.trim() !== '' && (
+              <p className="mt-4 text-base sm:text-lg leading-relaxed text-white/90">
+                {moodProfile.suggestedMediaStyle}
+              </p>
+            )}
           </div>
 
           {/* Mood Insight Summary & Research Grounding */}
@@ -203,6 +216,14 @@ export default function MoodAnalysis() {
               </p>
             </div>
           )}
+        </div>
+
+        {/* Caution Notice */}
+        <div className="mt-8 mb-4 rounded-xl border border-violet-400/30 bg-violet-500/10 px-5 py-3 flex items-start gap-3 text-base font-semibold text-violet-100">
+          <span className="shrink-0">⚠️</span>
+          <span>
+            <strong>Please note:</strong> MoodMate&apos;s mood analysis is for entertainment personalization only and is not a substitute for professional mental health assessment.
+          </span>
         </div>
 
         {/* 3-Column Core Metrics Dashboard */}
@@ -295,48 +316,6 @@ export default function MoodAnalysis() {
 
         </div>
 
-        {/* Disclaimer */}
-        <p className="mt-5 text-center text-[11px] text-white/30 leading-relaxed">
-          ⚠️ MoodMate&apos;s mood analysis is for entertainment personalization only and is not a substitute for professional mental health assessment.
-        </p>
-
-        {/* Conversational Insights & Extracted Signals */}
-        <div className="mt-6 rounded-2xl border border-purple-500/30 bg-[#05060a]/75 p-6 backdrop-blur-xl shadow-xl shadow-purple-950/20">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <h3 className="text-sm font-semibold text-white">Extracted Conversational Signals</h3>
-              <p className="text-xs text-white/45 mt-0.5">
-                Linguistic and affective indicators captured during your check-in.
-              </p>
-            </div>
-
-            {/* Signal Badges */}
-            <div className="flex flex-wrap gap-2">
-              {hasProfile && moodProfile.extractedSignals.length > 0 ? (
-                moodProfile.extractedSignals.map((signal, i) => (
-                  <span
-                    key={i}
-                    className="rounded-lg border border-purple-500/35 bg-purple-500/15 px-3 py-1 text-xs font-medium text-purple-300 shadow-sm shadow-purple-500/20"
-                  >
-                    #{signal}
-                  </span>
-                ))
-              ) : (
-                <span className="text-xs text-white/40">No completed assessment signals yet</span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Methodology & Research Note */}
-        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-purple-500/30 bg-[#05060a]/75 p-5 backdrop-blur-xl text-xs text-white/50 shadow-lg shadow-purple-950/20">
-          <Info size={16} className="text-purple-400 shrink-0 mt-0.5" />
-          <div>
-            <span className="font-semibold text-white/70">Affective Computing Methodology: </span>
-            Our explainable NLP pipeline maps natural conversation to continuous Valence–Arousal dimensions (inspired by Russell's Circumplex Model of Affect) and fine-grained emotional taxonomies (inspired by GoEmotions and MovieLens quality scoring) to ensure recommendations are transparent and emotionally matched.
-          </div>
-        </div>
-
         {/* Action Decision Area */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
@@ -348,7 +327,12 @@ export default function MoodAnalysis() {
           </button>
 
           <button
-            onClick={() => navigate('/chat')}
+            onClick={() => {
+              try {
+                sessionStorage.removeItem('moodmate_chat_session');
+              } catch (_) {}
+              navigate('/chat', { state: { fresh: true } });
+            }}
             className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-purple-500/30 bg-white/[0.04] px-6 py-4 text-sm font-medium text-white/80 backdrop-blur-md transition-all hover:border-purple-500/50 hover:bg-white/[0.08] hover:text-white hover:shadow-md hover:shadow-purple-500/20 cursor-pointer"
           >
             <RefreshCw size={14} />
